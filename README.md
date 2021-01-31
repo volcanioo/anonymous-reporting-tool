@@ -9,8 +9,10 @@ Anonymously Reporting is a tool that provides an app that makes users send feedb
 	* [Case Creation Dataset](#case-creation-dataset "Case Creation Dataset")
 * [How will it be anonymous?](#how-will-it-be-anonymous "How will it be anonymous?")
 * Diversity & Inclusive `WIP`
-* [Full Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
+* [Final Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
+* [Final Design](https://www.figma.com/file/TquNrHQ9d4TlC0z6DWeGbO/Untitled?node-id=13%3A159 "Full Design")
 * Implementation For Companies `WIP`
+* [Acknowledges](#acknowledges "Acknowledges")
 
 ## How does it work?
 The tool doesn't need any personal data (e.g., name, surname, e-mail, phone number) to send feedback, report a harassment/bias, or ask a question. Instead of getting personal data from the user, tool receives only [case related details](#case-creation-dataset "Case Creation Dataset"). It automatically creates an anonymous user to assign the case, then shares this username and password with the user before completing the case report process.
@@ -29,5 +31,9 @@ Here is what app receives to create a new case.
 | Detailed Message | Free text area  | 
 | Attachments | Free file area (max 3 per time)  | 
 
-## How will it be anonymous?.
+## How will it be anonymous?
 The tool doesn't need [any personal data (e.g., name, surname, e-mail, phone number)](#how-does-it-work "How does it work?"). Instead, generates a unique/anon username & password before completing the case report process to show anon username and password to the user. The user must protect this anon username and password to log in to the app, which makes it possible for the user to follow their case's further updates. After the user gets the anon user info, the app encrypts and saves it to the database. Afterward, even a developer can't see the actual username and password after the case report process. 
+
+# Acknowledges
+* Thanks to [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") to create such an amazing design for the tool.
+
