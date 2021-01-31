@@ -21,15 +21,15 @@ The tool doesn't need any personal data (e.g., name, surname, e-mail, phone numb
 Here is what app receives to create a new case.
 
 | Data | Options |
-| ------------ | ------------ | ------------ |
+| ------------ | ------------ |
 | Feedback Type | `General, feedback or questions` <br> `Culture Issues` <br>`Harassment or Bias`<br> `Diversity, equity, and inclusion` |
 | Did this happen to you or some else? <br> `optional` | `Me` <br> `Someone else` |
-| Relationship to the company <br> `optional` | `Current Empoyee` <br> `Former Employee` <br> `I interviewed there.` <br> `I had a parnership relations with this company.`  |
+| Relationship to the company <br> `optional` | `Current Empoyee` <br> `Former Employee` <br> `I interviewed there.` <br> `I had a parnership relations with this company.` |
 | When did this happen? | `1-6 months` <br> `6-12 months` <br> `1 year ago`  <br> `I don't remember`  |
-| Which city did this happen?  | `All cities can be selected.`  | 
+| Which city did this happen?  | `All cities can be selected.` |
 | Which department did this happen? | Free text area |
-| Detailed Message | Free text area  | 
-| Attachments | Free file area (max 3 per time)  | 
+| Detailed Message | Free text area  |
+| Attachments | Free file area (max 3 per time)  |
 
 ## How will it be anonymous?
 The tool doesn't need [any personal data (e.g., name, surname, e-mail, phone number)](#how-does-it-work "How does it work?"). Instead, generates a unique/anon username & password before completing the case report process to show anon username and password to the user. The user must protect this anon username and password to log in to the app, which makes it possible for the user to follow their case's further updates. After the user gets the anon user info, the app encrypts and saves it to the database. Afterward, even a developer can't see the actual username and password after the case report process. 
