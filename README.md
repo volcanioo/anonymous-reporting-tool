@@ -41,5 +41,5 @@ The tool doesn't need [any personal data](#how-does-it-work "How does it work?")
 
 # Acknowledges
 * **Thanks to [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") to create such an amazing design for the tool.**
-* Thanks to [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") as contributor
+* Thanks to [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") to contributing to this project
 
