@@ -9,6 +9,7 @@
 * [How does it work?](#how-does-it-work "How does it work?")
 	* [Case Creation Dataset](#case-creation-dataset "Case Creation Dataset")
 * [How Anonymous it is?](#how-anonymous-it-is "How Anonymous it is?")
+	* Technical Aspect `WIP`
 * [Final Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
 * [Final Design](https://www.figma.com/file/TquNrHQ9d4TlC0z6DWeGbO/Untitled?node-id=13%3A159 "Full Design")
 * Implementation For Companies `WIP`
