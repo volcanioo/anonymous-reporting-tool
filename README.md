@@ -47,4 +47,4 @@ The tool doesn't need [any personal data](#how-does-it-work "How does it work?")
 * [Daniel González](http://github.com/metal-gogo/ "Daniel González") as developer
 * [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") as idea contributor
 * [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") as content contributor
-* Mehmet "Volkan" Deveci as developer
+* [Mehmet "Volkan" Deveci](https://github.com/volcanioo "Mehmet Volkan Deveci") as developer
