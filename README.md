@@ -16,7 +16,7 @@
 * [Acknowledges](#acknowledges "Acknowledges")
 
 # Why?
-In January 2021, I noticed that some companies needed a tool that provide the opportunity to their employees to anonymously report harassment and bias, discrimination, or abuse. I tried to look for such a tool but I couldn't find a suitable, fit product or even an open-source tool. I thought there must be a tool that, on a side, it's easy to be implemented by companies. And, on the other side, it would be as much anonymous as possible to make the app safer and extra secure for people who would experience problems such as; racism, discrimination, harassment/bias, or abuse in their workspace.
+In January 2021, We noticed that some companies needed a tool that provide the opportunity to their employees to anonymously report harassment and bias, discrimination, or abuse. We tried to look for such a tool but We couldn't find a suitable, fit product or even an open-source tool. We thought there must be a tool that, on a side, it's easy to be implemented by companies. And, on the other side, it would be as much anonymous as possible to make the app safer and extra secure for people who would experience problems such as; racism, discrimination, harassment/bias, or abuse in their workspace.
 
 As a contributor, this tool is my personal attitude towards racism, harassment/bias, discrimination, and abuse that still happens worldwide.
 
