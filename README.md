@@ -43,5 +43,6 @@ The tool doesn't need [any personal data](#how-does-it-work "How does it work?")
 # Acknowledges
 * Thanks to [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") to create such an amazing design for the tool.
 * Thanks to [Daniel González](http://github.com/metal-gogo/ "Daniel González") for being front-end contributor
+* Thanks to [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") for supporting us to make this tool more useful for companies
 * Thanks to [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") for being content contributor
 
