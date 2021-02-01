@@ -42,9 +42,10 @@ Here is what app receives to create a new case.
 ## How Anonymous it is?
 The tool doesn't need [any personal data](#how-does-it-work "How does it work?"). Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process.
 
-# Acknowledges
-* Thanks to [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") to create such an amazing design for the tool.
-* Thanks to [Daniel González](http://github.com/metal-gogo/ "Daniel González") for being front-end contributor
-* Thanks to [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") for supporting us to make this tool more useful for companies
-* Thanks to [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") for being content contributor
+# Contributors
+* [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") as designer
+* [Daniel González](http://github.com/metal-gogo/ "Daniel González") as developer
+* [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") as concept contributor
+* [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") for being content contributor
+* Mehmet "Volkan" Deveci as developer and concept contributor
 
