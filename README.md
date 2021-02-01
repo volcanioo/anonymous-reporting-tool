@@ -2,6 +2,8 @@
 # Anonymously Reporting Tool "ART"
 **Anonymously Reporting Tool** (ART) is a tool that allows users to send feedback, report harassment/bias, or ask questions anonymously to the app's publisher. Those whom in need to have a tool which allows their employees to send feedback, report harassment/bias, or ask questions anonymously, can download the source code or check the [final concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept").
 
+This tool always will work 100% FREE and won't be transformed into a product. We aim to make people available to send feedback, report harassment/bias, or ask questions anonymously to their companies while not requiring their companies to pay for this tool. 
+
 <!-- [If you want to get more information about the implementation click here.](#implementation-for-companies "If you want to get more information about the implementation click here.") -->
 
 * Demo `WIP`
@@ -12,7 +14,7 @@
 	* Technical Aspect `WIP`
 * [Final Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
 * [Final Design](https://www.figma.com/file/TquNrHQ9d4TlC0z6DWeGbO/Untitled?node-id=13%3A159 "Full Design")
-* Implementation For Companies `WIP`
+* Set-up For Companies
 * [Acknowledges](#acknowledges "Acknowledges")
 
 # Why?
