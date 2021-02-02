@@ -1,5 +1,15 @@
 html, body {
     padding: 0;
     margin: 0;
+    font-family: "Poppins", sans-serif;
     --primary-color: #D0F6E4;
+    --secondary-color: #bbddcd;
+    --dark-black: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: antialiased;
 }
+button {
+  font-family: inherit;
+}
+
+@import "z-indexes";

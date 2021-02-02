@@ -1,7 +1,19 @@
 <template>
-  <div>
-    <strong>{{ $t("hello") }}</strong>
-  </div>
+  <header class="header">
+    <button 
+      class="header__button z-index-1"
+      v-text="$t('anonymous_login')"
+    />
+    <router-link
+      to="/"
+      class="header__title z-index-1"
+      v-text="$t('name')"
+    />
+    <button 
+      class="header__button z-index-1"
+      v-text="$t('company_login')"
+    />
+  </header>
 </template>
 
 <script>
@@ -11,5 +23,49 @@
 </script>
 
 <style lang="scss" scoped>
+.header {
+  padding: 45px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
+.header__title {
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--dark-black);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0 80px;
+}
+
+.header__button {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 24px;
+  color: var(--dark-black);
+  border: 1px solid var(--dark-black);
+  background: transparent;
+  font-weight: 500;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 5px 5px var(--dark-black);
+
+  &:first-child:hover {
+    background: var(--dark-black);
+    border-color: var(--dark-black);
+    color: var(--secondary-color);
+  }
+  &:last-child {
+    box-shadow: 5px 5px var(--secondary-color);
+  }
+  &:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--dark-black);
+    box-shadow: 0px 0px var(--dark-black);
+  }
+}
 </style>

@@ -1,3 +1,6 @@
 {
-    "hello": "Hello!"
+    "name": "Anonymous Reporting Tool",
+    "anonymous_login": "Anonymous Login",
+    "company_login": "Company Login",
+    "scroll_down": "Scroll down to learn how it works"
 }
