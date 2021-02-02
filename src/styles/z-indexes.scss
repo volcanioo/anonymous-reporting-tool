@@ -1,0 +1,8 @@
+@mixin z-index-list {
+  @for $i from 1 through 10 {
+      .z-index-#{$i} {
+          z-index: $i;
+      }
+  }
+}
+@include z-index-list;
