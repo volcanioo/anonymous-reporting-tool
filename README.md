@@ -45,6 +45,7 @@ The tool doesn't need [any personal data](#how-does-it-work "How does it work?")
 # Contributors
 * [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") as designer
 * [Daniel González](http://github.com/metal-gogo/ "Daniel González") as developer
+* [Dursun Can Aydin](https://www.linkedin.com/in/dcanaydin/ "Dursun Can Aydin") as QA tester
 * [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") as idea contributor
 * [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") as content contributor
 * [Mehmet "Volkan" Deveci](https://github.com/volcanioo "Mehmet Volkan Deveci") as developer
