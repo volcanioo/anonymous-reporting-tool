@@ -1,8 +1,8 @@
 
 # Anonymously Reporting Tool "ART"
-**Anonymously Reporting Tool** (ART) is a tool that allows users to send feedback, report harassment/bias, or ask questions anonymously to the app's publisher. Those whom in need to have a tool which allows their employees to send feedback, report harassment/bias, or ask questions anonymously, can download the source code or check the [final concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept").
+**Anonymously Reporting Tool** (ART) is a tool that allows users to send feedback, report harassment/bias, or ask questions anonymously to the app's publisher. Those whom in need to have a tool which allows their employees to send feedback, report harassment/bias, or ask questions anonymously, can use the tool or download the source code.
 
-This tool always will work 100% FREE and won't be transformed into a product. We aim to make people available to send feedback, report harassment/bias, or ask questions anonymously to their companies while not requiring their companies to pay for this tool. 
+This tool always will work 100% FREE and won't be transformed into a product. We aim to make people available to send feedback, report harassment/bias, or ask questions anonymously to their companies while not requiring their companies to pay for this tool.
 
 <!-- [If you want to get more information about the implementation click here.](#implementation-for-companies "If you want to get more information about the implementation click here.") -->
 
@@ -42,9 +42,33 @@ Here is what app receives to create a new case.
 ## How Anonymous it is?
 The tool doesn't need [any personal data](#how-does-it-work "How does it work?"). Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process.
 
+### Project Setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/)
+
 # Contributors
-* [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli") as designer
-* [Daniel González](http://github.com/metal-gogo/ "Daniel González") as developer
-* [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ") as idea contributor
-* [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih") as content contributor
-* [Mehmet "Volkan" Deveci](https://github.com/volcanioo "Mehmet Volkan Deveci") as developer
+* [Mehmet "Volkan" Deveci](https://github.com/volcanioo "Mehmet Volkan Deveci")
+* [Caner Elbeli](https://www.linkedin.com/in/caner-elbeli-87440819a/ "Caner Elbeli")
+* [Daniel González](http://github.com/metal-gogo/ "Daniel González")
+* [Linh Nguyen ](https://www.linkedin.com/in/linhnguyen1/ "Linh Nguyen ")
+* [Halit Salih](https://www.linkedin.com/in/-kale/ "Halit Salih")
+* [Dursun Can Aydin](https://www.linkedin.com/in/dcanaydin/ "Dursun Can Aydin")
