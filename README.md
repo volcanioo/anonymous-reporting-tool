@@ -14,8 +14,13 @@ This tool always will work 100% FREE and won't be transformed into a product. We
 	* Technical Aspect `WIP`
 * [Final Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
 * [Final Design](https://www.figma.com/file/TquNrHQ9d4TlC0z6DWeGbO/Untitled?node-id=13%3A159 "Full Design")
-* Set-up For Companies
-* [Acknowledges](#acknowledges "Acknowledges")
+* [Project Structure](#project-structure "Project Structure")
+	* [Vue](#vue "Vue")
+	* [Firebase](#firebase "Firebase")
+		* [Database Diagram](#database-diagram "Diagram")
+	* [Project Setup](#project-setup "Project Setup")
+	* [Upcoming Challanges](#upcoming-challanges "Upcoming Challanges")
+* [Contributors](#contributors "Contributors")
 
 # Why?
 In January 2021, We noticed that some companies needed a tool that provide the opportunity to their employees to anonymously report harassment and bias, discrimination, or abuse. We tried to look for such a tool but We couldn't find a suitable, fit product or even an open-source tool. We thought there must be a tool that, on a side, it's easy to be implemented by companies. And, on the other side, it would be as much anonymous as possible to make the app safer and extra secure for people who would experience problems such as; racism, discrimination, harassment/bias, or abuse in their workspace.
@@ -42,6 +47,16 @@ Here is what app receives to create a new case.
 ## How Anonymous it is?
 The tool doesn't need [any personal data](#how-does-it-work "How does it work?"). Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process.
 
+# Project Structure
+....
+
+## Vue
+
+## Firebase
+
+### Database Diagram
+![Database Diagram](src/assets/database-diagram.png)
+
 ### Project Setup
 ```
 npm install
@@ -64,6 +79,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/)
+
+### Upcoming Challanges
+* firebase 
+* stand-alone
 
 # Contributors
 * [Mehmet "Volkan" Deveci](https://github.com/volcanioo "Mehmet Volkan Deveci")
