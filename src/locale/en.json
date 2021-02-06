@@ -2,5 +2,13 @@
     "name": "Anonymous Reporting Tool",
     "anonymous_login": "Anonymous Login",
     "company_login": "Company Login",
-    "scroll_down": "Scroll down to learn how it works"
+    "scroll_down": "Scroll down to learn how it works",
+    "slider_title": "<strong>Anonymously</strong> send feedback to your company!",
+    "slider_description": "This tool allows the employees to send feedback <strong>anonymously</strong> to their company.",
+    "send_feedback": "Send Feedback",
+    "sign_in": "Sign In",
+    "company_email": "Company E-mail",
+    "password": "Password",
+    "register": "Register",
+    "company_name": "Company Name"
 }

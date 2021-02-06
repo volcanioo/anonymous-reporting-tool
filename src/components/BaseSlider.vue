@@ -1,14 +1,17 @@
 <template>
   <div class="slider">
-    <span class="slider__title">
-      <strong>Anonymously</strong> send feedback to us.
-    </span>
-    <p class="slider__description">
-      This tool allows the employees to report harassment/discrimination anonymously to the company.
-    </p>
-    <button class="slider__button">
-      Send Feedback
-    </button>
+    <span 
+      class="slider__title"
+      v-html="$t('slider_title')"
+    />
+    <p 
+      class="slider__description"
+      v-html="$t('slider_description')"
+    />
+    <button
+      class="button"
+      v-html="$t('send_feedback')"
+    />
   </div>
 </template>
 
@@ -31,10 +34,10 @@ $element_offset: 75px;
   font-size: 36px;
   line-height: 44px;
   font-weight: 500;
-}
 
-.slider__title strong {
-  font-weight: 700;
+  strong {
+    font-weight: 700;
+  }
 }
 
 .slider__description {
@@ -43,25 +46,5 @@ $element_offset: 75px;
   font-weight: 400;
   padding: 0 $element_offset;
   margin: 20px 0 40px 0;
-}
-
-.slider__button {
-  width: calc(100% - #{$element_offset});
-  background: var(--dark-black);
-  margin: 0 auto;
-  color: white;
-  border: none;
-  height: 68px;
-  font-size: 20px;
-  line-height: 28px;
-  cursor: pointer;
-  transition: all .3s;
-
-  &:hover {
-    background: var(--secondary-color);
-    color: black;
-    transition: background .4s cubic-bezier(0.25, 1, 0.5, 1) .1s, box-shadow .2s cubic-bezier(0.25, 1, 0.5, 1) .5s;
-    box-shadow: 0px 0px 0px 6px var(--dark-black);
-  }
 }
 </style>
