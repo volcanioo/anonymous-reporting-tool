@@ -1,6 +1,7 @@
 <template>
   <header class="header">
-    <button 
+    <router-link
+      to="#"
       class="header__button z-index-1"
       v-text="$t('anonymous_login')"
     />
@@ -9,7 +10,8 @@
       class="header__title z-index-1"
       v-text="$t('name')"
     />
-    <button 
+    <router-link
+      to="/login"
       class="header__button z-index-1"
       v-text="$t('company_login')"
     />
@@ -43,6 +45,7 @@
 .header__button {
   font-size: 16px;
   line-height: 24px;
+  text-decoration: none;
   padding: 12px 24px;
   color: var(--dark-black);
   border: 1px solid var(--dark-black);
