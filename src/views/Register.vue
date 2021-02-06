@@ -42,10 +42,7 @@
 
 <script>
 import BaseHeader from '../components/BaseHeader.vue';
-import {
-  companyRegister, 
-  userRegister
-} from '../firebase/functions';
+import API from "../api";
 
 export default {
   name: 'Register',
@@ -63,12 +60,10 @@ export default {
   methods: {
     submit() {
       this.progress = true;
-      userRegister(this.email, this.password)
-      .then((userCredential) => {
-        companyRegister(this.companyName, userCredential.user.uid)
+      API.users.post(this.email, this.password).then((userCredential) => {
+        API.companies.post(this.companyName, userCredential.user.uid)
           .then((doc) => {
             setTimeout(() => this.progress = false, 500)
-            console.log(doc.data())
           }).catch((error) => {
             setTimeout(() => this.progress = false, 500)
           });

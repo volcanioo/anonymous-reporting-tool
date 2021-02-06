@@ -6,9 +6,7 @@
 </template>
 
 <script>
-import {
-  companyLogout,
-} from '../firebase/functions';
+import API from '../api';
 
 export default {
   name: 'Dashboard',
@@ -19,7 +17,7 @@ export default {
   },
   methods: {
     singOut() {
-      companyLogout();
+      API.companies.logout();
     }
   },
 };

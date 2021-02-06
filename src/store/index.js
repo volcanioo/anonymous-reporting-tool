@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  getCompanyInfo,
-  getAuthToken
-} from '../firebase/functions';
+import API from "../api";
 
 Vue.use(Vuex);
 
@@ -22,14 +19,14 @@ export default new Vuex.Store({
   },
   actions: {
     fetchCompanyData({ commit }, companyId) {
-      getCompanyInfo(companyId).then((response) => {
+      API.companies.get(companyId).then((response) => {
         response.forEach((company) => {
           commit('setCompanyInfo', company.data());
         });
       });
     },
     saveToken({ commit }, token) {
-      getAuthToken(token).then((response) => {
+      API.users.get(token).then((response) => {
         commit('setToken', response);
       });;
     },
