@@ -18,12 +18,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchCompanyData({ commit }, companyId) {
-      API.companies.get(companyId).then((response) => {
-        response.forEach((company) => {
-          commit('setCompanyInfo', company.data());
-        });
-      });
+    getCompanyData({ commit }, company) {
+      commit('setCompanyInfo', company);
     },
     saveToken({ commit }, token) {
       API.users.get(token).then((response) => {

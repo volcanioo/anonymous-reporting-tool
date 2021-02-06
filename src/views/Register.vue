@@ -24,6 +24,12 @@
         type="password"
         name="password"
       />
+      <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
+      <input
+        v-model="companyPhotoURL"
+        type="text"
+        name="companyPhotoURL"
+      />
       <button
         type="submit"
         :class="{ 'button--progress': progress }"
@@ -54,19 +60,15 @@ export default {
       email: '',
       password: '',
       companyName: '',
+      companyPhotoURL: '',
       progress: false,
     }
   },
   methods: {
     submit() {
       this.progress = true;
-      API.users.post(this.email, this.password).then((userCredential) => {
-        API.companies.post(this.companyName, userCredential.user.uid)
-          .then((doc) => {
-            setTimeout(() => this.progress = false, 500)
-          }).catch((error) => {
-            setTimeout(() => this.progress = false, 500)
-          });
+      API.users.post(this.email, this.password, this.companyName, this.companyPhotoURL).then(() => {
+        setTimeout(() => this.progress = false, 500)
       }).catch((error) => {
         setTimeout(() => this.progress = false, 500)
       });
