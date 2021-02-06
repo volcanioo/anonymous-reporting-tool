@@ -15,10 +15,11 @@ This tool always will work 100% FREE and won't be transformed into a product. We
 * [Final Concept](https://miro.com/app/board/o9J_lW60VQs=/ "Full Concept")
 * [Final Design](https://www.figma.com/file/TquNrHQ9d4TlC0z6DWeGbO/Untitled?node-id=13%3A159 "Full Design")
 * [Project Structure](#project-structure "Project Structure")
-	* [Vue](#vue "Vue")
-	* [Firebase](#firebase "Firebase")
-		* [Database Diagram](#database-diagram "Diagram")
-	* [Project Setup](#project-setup "Project Setup")
+	* [Frontend](#frontend "Frontend")
+		* [Project Setup](#project-setup "Project Setup")
+	* [Backend](#backend "Backend")
+		* [Firebase](#firebase "Firebase")
+		* [Diagram](#diagram "Diagram")
 	* [Upcoming Challanges](#upcoming-challanges "Upcoming Challanges")
 * [Contributors](#contributors "Contributors")
 
@@ -48,14 +49,10 @@ Here is what app receives to create a new case.
 The tool doesn't need [any personal data](#how-does-it-work "How does it work?"). Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process.
 
 # Project Structure
-....
+text.
 
-## Vue
-
-## Firebase
-
-### Database Diagram
-![Database Diagram](src/assets/database-diagram.png)
+## Frontend
+BEM, router, localization
 
 ### Project Setup
 ```
@@ -79,6 +76,11 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/)
+
+## Backend
+Firebase
+### Diagram
+![Diagram](src/assets/database-diagram.png)
 
 ### Upcoming Challanges
 * firebase 
