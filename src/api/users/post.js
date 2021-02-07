@@ -8,6 +8,7 @@ export default function (company_email, company_password, company_name, company_
         displayName: company_name,
         photoURL: company_photo_url,
       }).then(() => {
+        auth.currentUser.sendEmailVerification();
         resolve(userData);
       }); 
     },

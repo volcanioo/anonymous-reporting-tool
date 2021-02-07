@@ -1,8 +1,6 @@
 <template>
   <div>
-    <img :src="photoURL" :alt="companyName">
-    <br />
-    <h1>Welcome, {{ companyName }}</h1>
+    <h1>You have to verify your email!</h1>
     <button @click="singOut">SING OUT</button>
   </div>
 </template>
@@ -11,14 +9,8 @@
 import API from '../api';
 
 export default {
-  name: 'Dashboard',
+  name: 'Verify',
   computed: {
-    photoURL() {
-      return this.$store.state.company.photo_url; 
-    },
-    companyName() {
-      return this.$store.state.company.company_name; 
-    },
     isVerified() {
       return this.$store.state.company.is_mail_verified; 
     }
