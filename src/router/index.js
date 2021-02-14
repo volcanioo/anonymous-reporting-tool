@@ -4,7 +4,6 @@ import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/Dashboard.vue';
-import Verify from '../views/Verify.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -39,14 +38,6 @@ const routes = [
       auth: true
     }
   },
-  {
-    path: '/verify',
-    name: 'Verify',
-    component: Verify,
-    meta: {
-      auth: true
-    }
-  },
 ];
 
 const router = new VueRouter({
@@ -77,22 +68,11 @@ router.beforeEach((to, from, next) => {
         })
       }
     })
-  } else if (to.matched.some(record => record.meta.guest)) {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        next({
-          path: "/",
-        })
-      } else {
-        next()
-      }
-    })
-
   } else if (to.matched.some(record => record.meta.company)) {
     auth.onAuthStateChanged(user => {
       if (user) {
         next({
-          path: "/verify",
+          path: "/dashboard",
         })
       } else {
         next()
