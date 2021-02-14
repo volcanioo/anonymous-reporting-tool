@@ -1,3 +1,5 @@
+import TYPES from './TYPES';
+
 export const culturalIssues = {
   issueType: {
     parentField: TYPES.CULTURE_ISSUES,
@@ -15,10 +17,4 @@ export const culturalIssues = {
       'Other (please describe below)',
     ],
   },
-  whichDepartmentDidThisHappen: {
-    parentField: TYPES.CULTURE_ISSUES,
-    type: 'input',
-    value: '',
-    placeholder: 'Which department did this happen in?',
-  }
 };

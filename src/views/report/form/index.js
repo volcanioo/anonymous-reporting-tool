@@ -1,6 +1,6 @@
 import { culturalIssues } from "./culture-issues";
 import { harassmentOrBias } from "./harassment-bias";
-import TYPES from './TYPES';
+import TYPES from "./TYPES";
 
 export default {
   feedbackType: {
@@ -32,6 +32,11 @@ export default {
     type: 'input',
     value: '',
     placeholder: 'Which city did this happen in?',
+  },
+  whichDepartmentDidThisHappen: {
+    type: 'input',
+    value: '',
+    placeholder: 'Which department did this happen in?',
   },
   message: {
     type: 'textarea',

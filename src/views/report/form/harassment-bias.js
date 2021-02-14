@@ -39,10 +39,4 @@ export const harassmentOrBias = {
       'More than a year ago',
     ]
   },
-  whichDepartment: {
-    parentField: TYPES.HARASSMENT_OR_BIAS,
-    type: 'input',
-    value: '',
-    placeholder: 'Which department did this happen in?',
-  }
 };
