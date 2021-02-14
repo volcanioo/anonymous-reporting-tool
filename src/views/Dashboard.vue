@@ -4,7 +4,7 @@
       <img :src="photoURL" :alt="companyName">
       <br />
       <h1>Welcome, {{ companyName }}</h1>
-      <button @click="singOut">SING OUT</button>
+      <button @click="singOut">SIGN OUT</button>
     </aside>
     <div class="content">
       <div
