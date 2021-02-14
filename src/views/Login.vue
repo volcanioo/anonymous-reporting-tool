@@ -55,7 +55,6 @@ export default {
       API.companies.login(this.email, this.password)
       .then((userCredential) => {
         this.progress = false;
-        this.$store.dispatch('saveToken');
         alert(`Welcome! You logged in successufully!`);
       }).catch((error) => {
         this.progress = false;

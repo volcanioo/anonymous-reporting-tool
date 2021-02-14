@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import API from "../api";
 
 Vue.use(Vuex);
 
@@ -22,9 +21,7 @@ export default new Vuex.Store({
       commit('setCompanyInfo', company);
     },
     saveToken({ commit }, token) {
-      API.users.get(token).then((response) => {
-        commit('setToken', response);
-      });;
+      commit('setToken', token);
     },
   },
   modules: {
