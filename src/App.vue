@@ -7,14 +7,15 @@
 <style lang="scss">
 @import 'styles/main.scss';
 #app {
-  background: var(--primary-color) url('./assets/face-bg-left.svg') no-repeat left center / contain;
+  background: var(--primary-color);
   width: 100%;
   min-height: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  &::after {
+  &::after,
+  &::before {
     content: "";
     background: url('./assets/face-bg-right.svg') no-repeat right center / contain;
     display: block;
@@ -25,6 +26,10 @@
     left: 0;
     pointer-events: none;
     z-index: 0;
+  }
+  &::before {
+    content: "";
+    background: url('./assets/face-bg-left.svg') no-repeat left center / contain;
   }
 }
 </style>
