@@ -1,12 +1,12 @@
 import { auth } from '../../firebase/index';
 
-export default function (company_email, company_password, company_name, company_photo_url) {
+export default function (companyEmail, companyPassword, companyName, companyPhotoURL) {
   return new Promise((resolve, reject) => {
-    auth.createUserWithEmailAndPassword(company_email, company_password)
+    auth.createUserWithEmailAndPassword(companyEmail, companyPassword)
     .then(userData => {
       userData.user.updateProfile({
-        displayName: company_name,
-        photoURL: company_photo_url,
+        displayName: companyName,
+        photoURL: companyPhotoURL,
       }).then(() => {
         auth.currentUser.sendEmailVerification();
         resolve(userData);

@@ -1,9 +1,9 @@
 import { auth } from '../../firebase';
 import store from "../../store";
 
-export default function (company_email, company_password) {
+export default function (companyEmail, companyPassword) {
   return new Promise((resolve, reject) => {
-    auth.signInWithEmailAndPassword(company_email, company_password)
+    auth.signInWithEmailAndPassword(companyEmail, companyPassword)
     .then((userCredential) => {
       auth.currentUser.getIdToken()
       .then((token) => {
