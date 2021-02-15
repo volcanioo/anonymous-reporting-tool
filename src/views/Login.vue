@@ -35,7 +35,7 @@
 
 <script>
 import BaseHeader from '../components/BaseHeader.vue';
-import { companySignIn } from '../firebase/functions';
+import API from '../api';
 
 export default {
   name: 'Login',
@@ -52,10 +52,9 @@ export default {
   methods: {
     submit() {
       this.progress = true;
-      companySignIn(this.email, this.password)
+      API.companies.login(this.email, this.password)
       .then((userCredential) => {
         this.progress = false;
-        this.$store.dispatch('saveToken');
         alert(`Welcome! You logged in successufully!`);
       }).catch((error) => {
         this.progress = false;

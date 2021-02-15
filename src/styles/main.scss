@@ -5,6 +5,8 @@ html, body {
     --primary-color: #D0F6E4;
     --secondary-color: #bbddcd;
     --dark-black: #1a1a1a;
+    --gray: #808080;
+    --light-gray: #F6F7F9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: antialiased;
 }
@@ -53,6 +55,45 @@ button {
     border-top-color: #000;
     animation: spinner .6s linear infinite;
   }
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  border: none;
+  min-height: 58px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-family: inherit;
+  padding: 20px;
+  box-sizing: border-box;
+  color: var(--dark-black);
+  background-color: var(--light-gray);
+  width: 100%;
+}
+
+select {
+  color: var(--gray);
+  background-image: url('./assets/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  padding-right: 50px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
 @keyframes spinner {
