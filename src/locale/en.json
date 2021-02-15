@@ -10,5 +10,6 @@
     "company_email": "Company E-mail",
     "password": "Password",
     "register": "Register",
-    "company_name": "Company Name"
+    "company_name": "Company Name",
+    "company_photo_url": "Company Photo URL"
 }

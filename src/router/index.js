@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Report from '../views/report';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/Dashboard.vue';
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/report',
+    name: 'Report',
+    component: Report,
   },
   {
     path: '/login',
@@ -48,7 +54,15 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // TODO !! We need to update this function to optimize firebase connections. 
   auth.onAuthStateChanged(user => {
-    if (user) store.dispatch('fetchCompanyData', user.uid);
+    if (user) {
+      store.dispatch('getCompanyData', {
+        company_name: user.displayName,
+        company_email: user.email,
+        is_mail_verified: user.emailVerified,
+        photo_url: user.photoURL,
+        phone_number: user.phoneNumber,
+      });
+    }
   })
   if (to.matched.some(record => record.meta.auth)) {
     auth.onAuthStateChanged(user => {
@@ -60,18 +74,6 @@ router.beforeEach((to, from, next) => {
         })
       }
     })
-  } else if (to.matched.some(record => record.meta.guest)) {
-    auth.onAuthStateChanged(user => {
-      // console.log(user);
-      if (user) {
-        next({
-          path: "/",
-        })
-      } else {
-        next()
-      }
-    })
-
   } else if (to.matched.some(record => record.meta.company)) {
     auth.onAuthStateChanged(user => {
       if (user) {

@@ -21,8 +21,7 @@ const auth = firebase.auth();
 
 const collections = {
   cases: db.collection('cases'),
-  anonymous: db.collection('anonymous'),
-  companies: db.collection('companies'),
+  anonymous: db.collection('anonymous'),  
 };
 
 export {
