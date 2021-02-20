@@ -2,6 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import CONFIG from './config';
+import algoliasearch from 'algoliasearch';
+
+const algoliaIndex = algoliasearch(
+  CONFIG.ALGOLIA_CLIENT_ID,
+  CONFIG.ALGOLIA_API_KEY
+).initIndex(CONFIG.ALGOLIA_INDEX);
 
 const firebaseConfig = {
   apiKey: CONFIG.FIREBASE_API_KEY,
@@ -21,11 +27,11 @@ const auth = firebase.auth();
 
 const collections = {
   cases: db.collection('cases'),
-  anonymous: db.collection('anonymous'),  
 };
 
 export {
   auth,
   collections,
-  firebase
+  firebase,
+  algoliaIndex
 };

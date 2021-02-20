@@ -3,8 +3,11 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Report from '../views/report';
 import Login from '../views/Login.vue';
+import AnonymousLogin from '../views/AnonymousLogin.vue';
+import CaseDetail from '../views/CaseDetail.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/Dashboard.vue';
+import Verify from '../views/Verify.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -29,6 +32,22 @@ const routes = [
     }
   },
   {
+    path: '/case-detail',
+    name: 'CaseDetail',
+    component: CaseDetail,
+    meta: {
+      case: true
+    }
+  },
+  {
+    path: '/anonymous-login',
+    name: 'AnonymousLogin',
+    component: AnonymousLogin,
+    meta: {
+      anonymous: true
+    }
+  },
+  {
     path: '/register',
     name: 'Register',
     component: Register,
@@ -44,6 +63,14 @@ const routes = [
       auth: true
     }
   },
+  {
+    path: '/email-verification',
+    name: 'Verify',
+    component: Verify,
+    meta: {
+      auth: true
+    },
+  },
 ];
 
 const router = new VueRouter({
@@ -52,7 +79,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // TODO !! We need to update this function to optimize firebase connections. 
+  // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
     if (user) {
       store.dispatch('getCompanyData', {
@@ -61,6 +88,7 @@ router.beforeEach((to, from, next) => {
         is_mail_verified: user.emailVerified,
         photo_url: user.photoURL,
         phone_number: user.phoneNumber,
+        userUid: user.uid,
       });
     }
   })
@@ -74,6 +102,24 @@ router.beforeEach((to, from, next) => {
         })
       }
     })
+  } else if (to.matched.some(record => record.meta.case)) {
+    if (localStorage.getItem('report')) {
+      store.dispatch('saveReport', JSON.parse(localStorage.getItem('report')));
+      next()
+    } else {
+      next({
+        path: "/anonymous-login",
+      })
+    }
+  } else if (to.matched.some(record => record.meta.anonymous)) {
+    if (localStorage.getItem('report')) {
+      store.dispatch('saveReport', JSON.parse(localStorage.getItem('report')));
+      next({
+        path: "/case-detail",
+      })
+    } else {
+      next()
+    }
   } else if (to.matched.some(record => record.meta.company)) {
     auth.onAuthStateChanged(user => {
       if (user) {

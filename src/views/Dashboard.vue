@@ -1,9 +1,18 @@
 <template>
   <main class="dashboard z-index-1">
     <aside class="sidebar">
-      <img :src="photoURL" :alt="companyName">
-      <br />
-      <h1>Welcome, {{ companyName }}</h1>
+      <figure 
+        v-if="photoURL"
+      >
+        <img :src="photoURL" :alt="companyName">
+      </figure>
+      <figure
+        class="sidebar__logo"
+        v-else
+      >
+        <img src="@/assets/user.svg" :alt="companyName">
+      </figure>
+      <h1>{{ companyName }}</h1>
       <button @click="singOut">SIGN OUT</button>
     </aside>
     <div class="content">
@@ -41,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .dashboard {
   display: grid;
   grid-template-columns: 295px auto;
@@ -56,7 +65,20 @@ export default {
 }
 
 .sidebar img {
+  display: block;
   max-width: 100px;
+}
+
+.sidebar__logo {
+  margin: 0;
+
+  img {
+    background: white;
+    border-radius: 100%;
+    width: 50%;
+    max-width: initial;
+    margin: 0 auto;
+  }
 }
 
 .notification {

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="element">
+  <div v-if="element" class="element">
     <select
       v-if="element.type === 'select'"
       v-model="element.value"
