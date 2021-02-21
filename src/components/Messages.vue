@@ -1,0 +1,174 @@
+<template>
+  <div>
+    <div 
+      class="chat"
+      ref="chat"
+      v-if="messages"
+    >
+      <span
+        v-for="(message, index) in messages"
+        :key="index"
+        class="chat__message"
+        :data-sender="message.sender"
+      >
+        {{message.content}}
+        <i>{{convertDate(message.created.toDate())}}</i>
+      </span>
+      <strong>Last Updated: {{ convertDate(lastUpdate) }}</strong>
+    </div>
+    <form action="javascript:void(0)" class="chat__send">
+      <textarea
+        v-model="message"
+        required
+        placeholder="Message here..."
+        @keydown.enter.exact.prevent
+        @keyup.enter.exact="sendMessage"
+        @keydown.enter.shift.exact="newline"
+      ></textarea>
+      <button
+        class="button"
+        @click="sendMessage"
+      >Send Message</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import API from '../api';
+import utilities from '../utilities';
+
+export default {
+  props: {
+    caseId: {
+      type: String,
+      default: null
+    },
+  },
+  data() {
+    return {
+      message: "",
+      messages: [],
+      lastUpdate: "",
+    }
+  },
+  created() {
+    this.getMessages()
+  },
+  watch: {
+    messages(newValue, oldValue) {
+      setTimeout(() => {
+        this.$refs.chat.scrollTop = 9999999999;
+      }, 300)
+    }
+  },
+  methods: {
+    convertDate(date) {
+      return utilities.dateMapper(date)
+    },
+    getMessages() {
+      this.messages = [];
+      this.lastUpdate = new Date();
+      API.messages.get(this.$props.caseId)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((message) => {
+          this.messages.push(message.data());
+        })
+      }).catch((err) => {
+        console.warn(err);
+      });
+    },
+    userCheck() {
+      console.log(this.$store.getters.getCompany);
+      if (Object.keys(this.$store.getters.getCompany).length > 0) {
+        localStorage.removeItem('caseId');
+        return 'company';
+      } else {
+        return 'anonymous';
+      }
+    },
+    sendMessage() {
+      const sender = this.userCheck();
+      console.log(sender);
+      API.messages.post(this.$props.caseId, sender, this.message)
+      .then((querySnapshot) => {
+        this.getMessages();
+        this.message = "";
+      }).catch((err) => {
+        console.warn(err);
+      });
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+
+.chat {
+  background: white;
+  max-height: 400px;
+  min-height: 400px;
+  overflow-x: hidden;
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  overflow-y: scroll;
+  margin-top: auto;
+
+  strong {
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 50px;
+    opacity: .3;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+  }
+}
+
+.chat__message {
+  font-weight: 400;
+  opacity: .8;
+  padding: 10px;
+  width: auto;
+  overflow: hidden;
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 12px 20px;
+  max-width: 50%;
+  flex: 0 0 100%;
+  border-radius: 10px 20px 20px 0;
+  margin-top: 10px;
+  height: fit-content;
+
+  i {
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    opacity: .5;
+  }
+}
+
+.chat__message[data-sender=anonymous] {
+  margin-right: 20px;
+  margin-left: auto;
+  color: var(--dark-color);
+  position: relative;
+  background: var(--light-gray);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 10px;
+}
+
+.chat__message[data-sender=company] {
+  margin-left: 20px;
+  margin-right: auto;
+  color: white;
+  position: relative;
+  background: #d0f6e4;
+  border-bottom-left-radius: 0;
+  color: black;
+  border-bottom-left-radius: 0;
+}
+</style>
