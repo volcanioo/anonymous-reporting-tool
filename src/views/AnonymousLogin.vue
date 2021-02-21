@@ -52,9 +52,10 @@ export default {
     setCompany(e) {
       this.selectedCompany = e;
     },
-    async anonymousLogin() {
-      const verifyCase = await API.cases.get(this.selectedCompany, this.passcode)
+    anonymousLogin() {
+      API.cases.get(this.selectedCompany, this.passcode)
       .then((query) => {
+        console.log(this.selectedCompany, this.passcode);
         query.forEach(doc => {
           if (doc.exists) {
             API.companies.logout().then((res) => {
@@ -65,6 +66,8 @@ export default {
                 })
               }, 100)
             })
+          } else {
+            alert('no input!');
           }
         });
       })

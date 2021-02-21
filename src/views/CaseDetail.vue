@@ -92,11 +92,16 @@ export default {
       this.$router.push({ name: 'home' });
     }
     API.cases.getById(this.pageId).then((doc) => {
-      this.details = {
-        category: doc.data().feedbackType,
-        id: this.id,
-        ...doc.data(),
-      };
+      if (doc.exists) {
+        this.details = {
+          category: doc.data().feedbackType,
+          id: this.id,
+          ...doc.data(),
+        };
+      } else {
+        this.removeItem('caseId');
+        this.$router.push({ name: 'home' });
+      }
     })
     .catch((err) => {
       console.warn(err)
@@ -222,7 +227,7 @@ export default {
     padding: 0 12px;
     color: #000000;
     font-size: 32px;
-    width: 210px;
+    width: 250px;
     outline: none;
     margin: 0 10px;
     font-weight: 600;
