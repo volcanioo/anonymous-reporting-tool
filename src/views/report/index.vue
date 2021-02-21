@@ -109,7 +109,8 @@ export default {
   methods: {
     generatePasscode() {
       const d = new Date();
-      this.passcode = `${this.selectedCompany.companyName.toString().charAt(0)}${Math.floor(Math.random()*900) + 100}-${d.getHours()}:${d.getUTCMinutes()}`; 
+      const random = Date.now().toString();
+      this.passcode = `${this.selectedCompany.companyName.toString().charAt(0)}${random.substring(8, random.length)}-${d.getHours()}:${d.getUTCMinutes()}`; 
     },
     setCompany(e) {
       this.selectedCompany = e;
@@ -141,11 +142,9 @@ export default {
       API.cases.post(payload)
       .then((doc) => {
         setTimeout(() => {
+          localStorage.setItem('caseId', doc.id);
           this.$router.push({
             name: 'CaseDetail',
-            params: {
-              id: doc.id
-            }
           })
         }, 200)
         this.loading = false;
