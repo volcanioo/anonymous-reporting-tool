@@ -1,17 +1,8 @@
 import { collections } from '../../firebase/index';
 
-export default function (companyId, passcode) {
+export default function (companyObject, passcode) {
   return collections.cases
     .where("passcode", "==", passcode)
-    .where("company", "==", companyId)
+    .where("company", "==", companyObject)
     .get()
-    .then((query) => {
-      if (query) {
-        query.forEach(doc => {
-          localStorage.setItem('report', JSON.stringify(doc.data()));
-        });
-      }
-    }).catch((error) => {
-      console.warn(error);
-    });
 }

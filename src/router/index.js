@@ -22,6 +22,9 @@ const routes = [
     path: '/report',
     name: 'Report',
     component: Report,
+    meta: {
+      anonymous: true
+    },
   },
   {
     path: '/login',

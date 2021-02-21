@@ -38,15 +38,6 @@ export default {
       return this.$store.getters.getReport; 
     }
   },
-  mounted() {
-    API.cases.get(this.details.company, this.details.passcode)
-    .then((res) => {
-      this.$store.dispatch('removeReport');
-    })
-    .catch((err) => {
-      console.warn(err);
-    });
-  },
   methods: {
     camelCaseToNormal(data) {
       return data.replace(/([A-Z])/g, ' $1')

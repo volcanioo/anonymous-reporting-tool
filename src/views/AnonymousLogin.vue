@@ -9,7 +9,7 @@
           v-model="passcode"
           type="passcode"
           name="passcode"
-          placeholder="X-12345"
+          placeholder="X000-00:00"
         />
         <button
           @click="anonymousLogin"
@@ -52,18 +52,24 @@ export default {
     setCompany(e) {
       this.selectedCompany = e;
     },
-    anonymousLogin() {
-      API.cases.get(this.selectedCompany.userUid, this.passcode);
-      setTimeout(() => {
+    async anonymousLogin() {
+      const getCase = await API.cases.get(this.selectedCompany, this.passcode)
+      .then((query) => {
+        query.forEach(doc => {
+          console.log(doc.data());
+          localStorage.setItem('report', JSON.stringify(doc.data()));
+        });
         this.$router.push({
           name: 'CaseDetail',
         })
-      }, 100)
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
     },
   },
 };
 </script>
-
 <style lang="scss">
 .anonymous-login__form {
   max-width: 640px;
