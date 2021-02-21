@@ -134,7 +134,7 @@ export default {
       const payload = {
         ...this.enteredData, 
         passcode: this.passcode, 
-        company: this.selectedCompany.userUid, 
+        company: this.selectedCompany, 
         created: Date.now()
       };
       API.cases.post(payload)

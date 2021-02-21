@@ -30,6 +30,10 @@ export default new Vuex.Store({
     saveReport({ commit }, report) {
       commit('setReport', report);
     },
+    removeReport({ commit }) {
+      commit('setReport', {});
+      localStorage.removeItem('report');
+    },
   },
   getters: {
     getReport: state => {

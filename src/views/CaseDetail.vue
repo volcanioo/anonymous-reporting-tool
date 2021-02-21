@@ -31,12 +31,21 @@ import API from '../api';
 export default {
   name: 'CaseDetail',
   components: {
-    BaseHeader
+    BaseHeader,
   },
   computed: {
     details() {
       return this.$store.getters.getReport; 
     }
+  },
+  mounted() {
+    API.cases.get(this.details.company, this.details.passcode)
+    .then((res) => {
+      this.$store.dispatch('removeReport');
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
   },
   methods: {
     camelCaseToNormal(data) {
