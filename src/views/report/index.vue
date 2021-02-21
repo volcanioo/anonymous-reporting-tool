@@ -108,7 +108,8 @@ export default {
   },
   methods: {
     generatePasscode() {
-      this.passcode = `${this.selectedCompany.companyName.toString().charAt(0)}-${Math.floor(Math.random()*90000) + 10000}`; 
+      const d = new Date();
+      this.passcode = `${this.selectedCompany.companyName.toString().charAt(0)}${Math.floor(Math.random()*900) + 100}-${d.getHours()}:${d.getUTCMinutes()}`; 
     },
     setCompany(e) {
       this.selectedCompany = e;
@@ -135,18 +136,20 @@ export default {
         ...this.enteredData, 
         passcode: this.passcode, 
         company: this.selectedCompany, 
-        created: Date.now()
+        created: Date.now(),
       };
       API.cases.post(payload)
       .then((result) => {
-        this.$router.push({
-          name: 'AnonymousLogin',
-        })
+        localStorage.setItem('report', JSON.stringify(payload));
+        setTimeout(() => {
+          this.$router.push({
+            name: 'AnonymousLogin',
+          })
+        }, 200)
+        this.loading = false;
       })
       .catch((error) => {
         console.warn(error);
-      })
-      .finally(() => {
         this.loading = false;
       })
     }
