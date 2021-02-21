@@ -136,14 +136,16 @@ export default {
         ...this.enteredData, 
         passcode: this.passcode, 
         company: this.selectedCompany, 
-        created: Date.now(),
+        created: new Date(),
       };
       API.cases.post(payload)
-      .then((result) => {
-        localStorage.setItem('report', JSON.stringify(payload));
+      .then((doc) => {
         setTimeout(() => {
           this.$router.push({
-            name: 'AnonymousLogin',
+            name: 'CaseDetail',
+            params: {
+              id: doc.id
+            }
           })
         }, 200)
         this.loading = false;

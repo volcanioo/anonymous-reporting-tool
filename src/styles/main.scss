@@ -27,6 +27,7 @@ button {
   min-height: 68px;
   cursor: pointer;
   transition: all .3s;
+  overflow: hidden;
 
   &:hover {
     background: white;
@@ -41,7 +42,6 @@ button {
   position: relative;
   text-indent: -9999px;
   pointer-events: none;
-  overflow: hidden;
 
   &:before {
     content: '';

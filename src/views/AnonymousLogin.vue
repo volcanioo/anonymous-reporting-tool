@@ -53,15 +53,20 @@ export default {
       this.selectedCompany = e;
     },
     async anonymousLogin() {
-      const getCase = await API.cases.get(this.selectedCompany, this.passcode)
+      const verifyCase = await API.cases.get(this.selectedCompany, this.passcode)
       .then((query) => {
         query.forEach(doc => {
-          console.log(doc.data());
-          localStorage.setItem('report', JSON.stringify(doc.data()));
+          if (doc.exists) {
+            API.companies.logout().then((res) => {
+              localStorage.setItem('caseId', doc.id);
+              setTimeout(() => {
+                this.$router.push({
+                  name: 'CaseDetail',
+                })
+              }, 100)
+            })
+          }
         });
-        this.$router.push({
-          name: 'CaseDetail',
-        })
       })
       .catch((err) => {
         console.warn(err);

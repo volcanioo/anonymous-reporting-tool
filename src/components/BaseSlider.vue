@@ -9,13 +9,13 @@
     <p
       class="slider__description"
     >
-      This tool allows you to <span ref="sentence3" style="white-space:pre;"></span> <b>anonymously</b> to your company!
+      This app allows you to send feedback, report harassment/bias, or ask questions anonymously to your company.
     </p>
     <button
       class="button slider__button"
       @click="goReportPage()"
     >
-      <span ref="sentence2" style="white-space:pre;"></span>
+      Send Feedback
     </button>
   </div>
 </template>
@@ -48,8 +48,6 @@ export default {
     }
 
     this.typed = new Typed(this.$refs.sentence, this.options);
-    this.typed = new Typed(this.$refs.sentence2, this.options);
-    this.typed = new Typed(this.$refs.sentence3, this.options);
   },
   methods:{
     addSentence(){

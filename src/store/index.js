@@ -21,23 +21,20 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getCompanyData({ commit }, company) {
+    setCompanyData({ commit }, company) {
       commit('setCompanyInfo', company);
     },
     saveToken({ commit }, token) {
       commit('setToken', token);
-    },
-    saveReport({ commit }, report) {
-      commit('setReport', report);
-    },
-    removeReport({ commit }) {
-      commit('setReport', {});
-      localStorage.removeItem('report');
+      localStorage.removeItem('caseId');
     },
   },
   getters: {
     getReport: state => {
       return state.report
+    },
+    getCompany: state => {
+      return state.company
     }
   },
   modules: {

@@ -22,6 +22,16 @@
       >
         Please approve your email. Otherwise, your emplooyes won't see your company in the company list.
       </div>
+      <div class="dashboard">
+        <div
+          v-for="report in cases"
+          :key="report.id"
+        >
+          <router-link :to="{ name: 'CaseDetail', params: { id: report.id } }">
+            {{ report }}
+          </router-link>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -42,9 +52,33 @@ export default {
       return this.$store.state.company.is_mail_verified; 
     }
   },
+  data() {
+    return {
+      cases: []
+    }
+  },
+  mounted () {
+    this.fetchCases();
+  },
   methods: {
     singOut() {
       API.companies.logout();
+    },
+    fetchCases() {
+      API.cases.list(this.$store.state.company.userUid)
+      .then((query) => {
+        query.forEach(doc => {
+          if (doc.exists) {
+            this.cases.push({
+              ...doc.data(),
+              id: doc.id,
+            });
+          }
+        });
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
     }
   },
 };

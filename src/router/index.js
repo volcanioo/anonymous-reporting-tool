@@ -24,7 +24,7 @@ const routes = [
     component: Report,
     meta: {
       anonymous: true
-    },
+    }
   },
   {
     path: '/login',
@@ -35,8 +35,9 @@ const routes = [
     }
   },
   {
-    path: '/case-detail',
+    path: '/case-detail/:id?',
     name: 'CaseDetail',
+    props: true,
     component: CaseDetail,
     meta: {
       case: true
@@ -74,6 +75,7 @@ const routes = [
       auth: true
     },
   },
+  { path: "*", component: Home }
 ];
 
 const router = new VueRouter({
@@ -85,7 +87,7 @@ router.beforeEach((to, from, next) => {
   // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
     if (user) {
-      store.dispatch('getCompanyData', {
+      store.dispatch('setCompanyData', {
         company_name: user.displayName,
         company_email: user.email,
         is_mail_verified: user.emailVerified,
@@ -93,6 +95,8 @@ router.beforeEach((to, from, next) => {
         phone_number: user.phoneNumber,
         userUid: user.uid,
       });
+    } else {
+      store.dispatch('setCompanyData', {});
     }
   })
   if (to.matched.some(record => record.meta.auth)) {
@@ -106,8 +110,7 @@ router.beforeEach((to, from, next) => {
       }
     })
   } else if (to.matched.some(record => record.meta.case)) {
-    if (localStorage.getItem('report')) {
-      store.dispatch('saveReport', JSON.parse(localStorage.getItem('report')));
+    if (to.params.id || localStorage.getItem('caseId')) {
       next()
     } else {
       next({
@@ -115,8 +118,7 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else if (to.matched.some(record => record.meta.anonymous)) {
-    if (localStorage.getItem('report')) {
-      store.dispatch('saveReport', JSON.parse(localStorage.getItem('report')));
+    if (localStorage.getItem('caseId') || store.getters.getCompany.length > 0) {
       next({
         path: "/case-detail",
       })
