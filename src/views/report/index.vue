@@ -261,7 +261,7 @@ export default {
     max-width: max-content;
     margin: 0;
     font-size: 30px;
-    max-width: 210px;
+    max-width: 260px;
   }
 
   button, span {
