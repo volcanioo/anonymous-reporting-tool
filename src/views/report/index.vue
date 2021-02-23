@@ -208,7 +208,6 @@ export default {
 .report-page__warning {
   width: 100%;
   background: var(--dark-black);
-  box-sizing: border-box;
   flex-direction: row;
   display: flex;
   align-items: flex-start;

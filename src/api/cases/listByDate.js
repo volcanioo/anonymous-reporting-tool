@@ -1,8 +1,9 @@
 import { collections } from '../../firebase/index';
 
-export default function (userUid) {
+export default function (userUid, startDate, endDate) {
   return collections.cases
     .where("company.userUid", "==", userUid)
-    .orderBy('created')
+    .where('created', '>', startDate)
+    .where('created', '<', endDate)
     .get()
 }
