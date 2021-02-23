@@ -80,7 +80,6 @@ export default {
     color: #808080;
     margin-bottom: 20px;
     padding-left: 20px;
-    box-sizing: border-box;
   }
 
   label {

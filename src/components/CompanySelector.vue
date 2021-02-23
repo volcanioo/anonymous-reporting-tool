@@ -145,7 +145,6 @@ a {
 
   &:before {
     content: '';
-    box-sizing: border-box;
     position: absolute;
     top: 50%;
     left: 50%;

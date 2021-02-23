@@ -4,6 +4,10 @@
       class="chat"
       ref="chat"
       v-if="messages"
+      :class="{
+        'chat--company': (userCheck() === 'company'),
+        'chat--anonymous': (userCheck() === 'anonymous'),
+      }"
     >
       <span
         v-for="(message, index) in messages"
@@ -78,7 +82,6 @@ export default {
       });
     },
     userCheck() {
-      console.log(this.$store.getters.getCompany);
       if (Object.keys(this.$store.getters.getCompany).length > 0) {
         localStorage.removeItem('caseId');
         return 'company';
@@ -151,7 +154,8 @@ export default {
   }
 }
 
-.chat__message[data-sender=anonymous] {
+.chat.chat--company .chat__message[data-sender=company],
+.chat.chat--anonymous .chat__message[data-sender=anonymous] {
   margin-right: 20px;
   margin-left: auto;
   color: var(--dark-color);
@@ -161,7 +165,8 @@ export default {
   border-bottom-left-radius: 10px;
 }
 
-.chat__message[data-sender=company] {
+.chat.chat--company .chat__message[data-sender=anonymous],
+.chat.chat--anonymous .chat__message[data-sender=company] {
   margin-left: 20px;
   margin-right: auto;
   color: white;

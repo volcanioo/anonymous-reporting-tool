@@ -110,7 +110,6 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  box-sizing: border-box;
   color: white;
   font-family: Poppins;
   font-style: normal;

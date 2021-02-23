@@ -18,7 +18,7 @@
             }"
           >
             <b>Category</b>
-            <span class="badge">{{ details.category }}</span>
+            <span>{{ details.category }}</span>
           </p>
           <p 
             class="case-detail__object"
@@ -170,7 +170,6 @@ export default {
   font-size: 16px;
   max-width: 100%;
   flex: 0 0 100%;
-  box-sizing: border-box;
 
   &:last-child {
     border-top: 1px solid var(--light-gray);

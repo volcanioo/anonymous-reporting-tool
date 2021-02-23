@@ -10,6 +10,9 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: antialiased;
 }
+* {
+  box-sizing: border-box;
+}
 button {
   font-family: inherit;
   text-transform: capitalize;
@@ -45,7 +48,6 @@ button {
 
   &:before {
     content: '';
-    box-sizing: border-box;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -119,7 +121,6 @@ textarea {
   font-size: 18px;
   font-family: inherit;
   padding: 20px;
-  box-sizing: border-box;
   color: var(--dark-black);
   background-color: var(--light-gray);
   width: 100%;
@@ -141,6 +142,22 @@ select {
 textarea {
   min-height: 150px;
   resize: vertical;
+}
+
+.harassmentOrBias {
+  background: #fbb01a;
+}
+
+.cultureIssues {
+  background-color: #348ffb;
+}
+
+.diversityEquityAndInclusion {
+  background-color: #fb4560;
+}
+
+.generalFeedbackOrQuestion {
+  background-color: #25e396;
 }
 
 @keyframes spinner {
