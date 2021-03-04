@@ -58,6 +58,7 @@
 
 <script>
 import API from "../api";
+import utilities from '../utilities';
 
 export default {
   props: ['onlyInput'],
@@ -75,22 +76,8 @@ export default {
     this.companySearch();
   },
   methods: {
-    debounce(func, wait, immediate) {
-      var timeout;
-      return function() {
-        var context = this, args = arguments;
-        var later = function() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-      };
-    },
     companySearch() {
-      this.$refs.searchCompanyInput.addEventListener('keyup', this.debounce(() => {
+      this.$refs.searchCompanyInput.addEventListener('keyup', utilities.debounce(() => {
         if (!this.searchCompanyInput || this.searchCompanyInput.length < 3) {
           this.items = [];
           return false;
