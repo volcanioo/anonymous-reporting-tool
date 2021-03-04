@@ -89,6 +89,7 @@ import formElements from './form/index';
 import InputGenerator from '@/components/InputGenerator.vue';
 import CompanySelector from '@/components/CompanySelector.vue'
 import API from "../../api";
+import { firebase } from '../../firebase'
 
 export default {
   name: "Report",
@@ -137,7 +138,7 @@ export default {
         ...this.enteredData, 
         passcode: this.passcode, 
         company: this.selectedCompany, 
-        created: new Date(),
+        created: firebase.firestore.FieldValue.serverTimestamp(),
         status: true
       };
       API.cases.post(payload)
