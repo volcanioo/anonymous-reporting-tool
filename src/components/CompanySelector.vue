@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <article>
     <div class="input">
       <input
         type="text"
@@ -53,7 +53,7 @@
         Next
       </button>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
