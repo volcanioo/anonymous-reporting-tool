@@ -332,7 +332,7 @@ export default {
   input {
     background: #bbddcd;
     padding: 0 12px;
-    color: #000000;
+    color: var(--dark-black);
     font-size: 32px;
     width: 250px;
     outline: none;
