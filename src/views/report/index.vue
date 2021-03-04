@@ -63,7 +63,7 @@
             <span>PASSCODE</span> <input ref="passcode" :value="passcode" readonly>
             <button @click="copyToClipboard">COPY</button>
           </div>
-          <div class="report-page__checkbox">
+          <div class="checkbox checkbox--signal">
             <input type="checkbox" v-model="conditionsAccepted">
             <span>
               I understand that if I forget or lose the passcode, I have to create my case report from the beginning as the system ensures my safety, security and anonymousness!
@@ -138,15 +138,16 @@ export default {
         passcode: this.passcode, 
         company: this.selectedCompany, 
         created: new Date(),
+        status: true
       };
       API.cases.post(payload)
       .then((doc) => {
+        localStorage.setItem('caseId', doc.id);
         setTimeout(() => {
-          localStorage.setItem('caseId', doc.id);
           this.$router.push({
             name: 'CaseDetail',
           })
-        }, 200)
+        }, 400)
         this.loading = false;
       })
       .catch((error) => {
@@ -278,71 +279,4 @@ export default {
   }
 }
 
-.report-page__checkbox {
-  position: relative;
-  margin: 25px 0;
-
-  input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    opacity: 0;
-  }
-
-  input:checked + span:after {
-    -webkit-mask: url('../../assets/check.svg');
-    background-color: black;
-    -webkit-mask-size: 80% 80%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center center;
-  }
-  input:checked + span:before {
-    animation: none;
-    background: white;
-    opacity: 1;
-  }
-
-  span {
-    padding-left: 35px;
-    position: relative;
-    display: block;
-
-    &:after,
-    &:before {
-      content: "";
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 255, 255, .4);
-      border: 1px solid rgba(255, 255, 255, .1);
-      left: 0;
-      top: 6px;
-      position: absolute;
-    }
-
-    &:before {
-      background: transparent;
-      border: 1px solid white;
-      animation: signal 1.2s infinite;
-    }
-  }
-}
-@keyframes signal {
-  from {
-    width: 20px;
-    height: 20px;
-    transform: translate(0px, 0px);
-    opacity: 1;
-    box-shadow: inset 0 0 0 2px var(--dark-black);
-  }
-  to {
-    width: 30px;
-    height: 30px;
-    box-shadow: inset 0 0 0 1px var(--dark-black);
-    opacity: 0;
-    transform: translate(-5px, -5px)
-  }
-}
 </style>

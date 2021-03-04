@@ -3,6 +3,7 @@ import get from "./get";
 import getById from "./getById";
 import list from "./list";
 import listByDate from "./listByDate";
+import postById from "./postById";
 
 export default {
   post,
@@ -10,4 +11,5 @@ export default {
   getById,
   list,
   listByDate,
+  postById,
 }

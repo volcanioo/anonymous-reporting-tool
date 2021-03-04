@@ -25,7 +25,10 @@
       >
         Please approve your email. Otherwise, your emplooyes won't see your company in the company list.
       </div>
-      <div class="dashboard__content">
+      <div 
+        v-if="cases.length > 0"
+        class="dashboard__content"
+      >
         <div class="dashboard__card dashboard__card--welcome">
           <strong class="card__title">Welcome! <span>{{ companyName }}</span></strong>
           <div class="card__content">
@@ -87,8 +90,25 @@
               <div>{{ (report.created) ? getMappedDate(report.created.toDate()) : '-' }}</div>
               <div>{{ (report.relationshipToCompany) ? report.relationshipToCompany : '-' }}</div>
               <div>{{ (report.whichCityDidThisHappen) ? report.whichCityDidThisHappen : '-' }}</div>
-              <div class="card__item--short"> <span class="badge generalFeedbackOrQuestion"></span> </div>
+              <div class="card__item--short">
+                <span 
+                  class="badge generalFeedbackOrQuestion"
+                  :class="{
+                    'diversityEquityAndInclusion': (report.status === false)
+                  }"></span> 
+              </div>
             </router-link>
+          </div>
+        </div>
+      </div>
+      <div 
+        v-else
+        class="dashboard__content"
+      >
+        <div class="dashboard__card dashboard__card--full">
+          <strong class="card__title">Welcome! <span>{{ companyName }}</span></strong>
+          <div class="card__content">
+            <p>You don't have any case at the moment.</p>
           </div>
         </div>
       </div>
@@ -261,11 +281,17 @@ export default {
   color: white;
   font-size: 17px;
   font-weight: 600;
+  margin: -20px;
+  margin-bottom: 20px;
 }
 
 .dashboard__card {
   background: white;
   padding: 14px 18px;
+}
+
+.dashboard__card--full {
+  flex: 0 0 100%;
 }
 
 .dashboard__card--overall {

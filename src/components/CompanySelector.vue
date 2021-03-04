@@ -26,7 +26,7 @@
         @click="selectCompany(item)"
         class="company-list__item"
         :class="{
-          'company-list__item--selected': (item.user_id === selectedCompanyId)
+          'company-list__item--selected': (item.userUid === selectedCompanyId)
         }"
       >
         <figure 
@@ -107,7 +107,7 @@ export default {
       }, 250));
     },
     selectCompany(item) {
-      this.selectedCompanyId = item.user_id;
+      this.selectedCompanyId = item.userUid;
       this.selectedCompany = item;
     },
     nextStep() {
@@ -125,7 +125,9 @@ a {
   font-weight: 600;
   color: #566960;
   margin-top: 10px;
+  text-decoration: underline;
 }
+
 .company-list {
   margin-top: -20px;
   background: white;

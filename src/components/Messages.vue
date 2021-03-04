@@ -7,6 +7,7 @@
       :class="{
         'chat--company': (userCheck() === 'company'),
         'chat--anonymous': (userCheck() === 'anonymous'),
+        'chat--disabled': disabled,
       }"
     >
       <span
@@ -20,7 +21,7 @@
       </span>
       <strong>Last Updated: {{ convertDate(lastUpdate) }}</strong>
     </div>
-    <form action="javascript:void(0)" class="chat__send">
+    <form action="javascript:void(0)" class="chat__send" v-if="!disabled">
       <textarea
         v-model="message"
         required
@@ -34,6 +35,9 @@
         @click="sendMessage"
       >Send Message</button>
     </form>
+    <div class="chat__info" v-else>
+      <p>This case has archived.</p>
+    </div>
   </div>
 </template>
 
@@ -46,6 +50,10 @@ export default {
     caseId: {
       type: String,
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
   },
   data() {
@@ -91,7 +99,6 @@ export default {
     },
     sendMessage() {
       const sender = this.userCheck();
-      console.log(sender);
       API.messages.post(this.$props.caseId, sender, this.message)
       .then((querySnapshot) => {
         this.getMessages();
@@ -175,5 +182,10 @@ export default {
   border-bottom-left-radius: 0;
   color: black;
   border-bottom-left-radius: 0;
+}
+
+.chat__info {
+  font-size: 24px;
+  opacity: .4
 }
 </style>

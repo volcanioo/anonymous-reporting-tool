@@ -44,7 +44,7 @@ export default {
       backSpeed: 0,
       loop: true,
       showCursor: false,
-      backDelay: 4000,
+      backDelay: 3000,
     }
 
     this.typed = new Typed(this.$refs.sentence, this.options);
@@ -94,7 +94,6 @@ $element_offset: 75px;
   font-size: 20px;
   line-height: 32px;
   font-weight: 400;
-  padding: 0 $element_offset;
   margin: 20px auto 40px auto;
 }
 </style>

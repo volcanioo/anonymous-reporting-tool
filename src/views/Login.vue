@@ -55,7 +55,7 @@ export default {
       API.companies.login(this.email, this.password)
       .then((userCredential) => {
         this.progress = false;
-        alert(`Welcome! You logged in successufully!`);
+        // alert(`Welcome! You logged in successufully!`);
       }).catch((error) => {
         this.progress = false;
         alert(error);

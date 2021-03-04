@@ -13,7 +13,7 @@
         />
         <button
           @click="anonymousLogin"
-          :class="{ 'button--progress': progress }"
+          :class="{ 'button--progress': loading }"
           class="button"
         >Go Case Detail</button>
       </div>
@@ -40,22 +40,19 @@ export default {
   },
   data() {
     return {
+      loading: false,
       selectedCompany: null,
       passcode: '',
-      progress: false,
     }
   },
   methods: {
-    submit() {
-      this.progress = true;
-    },
     setCompany(e) {
       this.selectedCompany = e;
     },
     anonymousLogin() {
-      API.cases.get(this.selectedCompany, this.passcode)
+      this.loading = true;
+      API.cases.get(this.selectedCompany.userUid, this.passcode)
       .then((query) => {
-        console.log(this.selectedCompany, this.passcode);
         query.forEach(doc => {
           if (doc.exists) {
             API.companies.logout().then((res) => {
@@ -64,7 +61,7 @@ export default {
                 this.$router.push({
                   name: 'CaseDetail',
                 })
-              }, 100)
+              }, 400)
             })
           } else {
             alert('no input!');
@@ -73,6 +70,9 @@ export default {
       })
       .catch((err) => {
         console.warn(err);
+      })
+      .finally(() => {
+        this.loading = false;
       });
     },
   },

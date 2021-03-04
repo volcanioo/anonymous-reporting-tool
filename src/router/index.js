@@ -110,13 +110,15 @@ router.beforeEach((to, from, next) => {
       }
     })
   } else if (to.matched.some(record => record.meta.case)) {
-    if (to.params.id || localStorage.getItem('caseId')) {
-      next()
-    } else {
-      next({
-        path: "/anonymous-login",
-      })
-    }
+    auth.onAuthStateChanged(user => {
+      if ((user) || localStorage.getItem('caseId')) {
+        next();
+      } else {
+        next({
+          path: "/anonymous-login",
+        })
+      }
+    })
   } else if (to.matched.some(record => record.meta.anonymous)) {
     if (localStorage.getItem('caseId') || store.getters.getCompany.length > 0) {
       next({

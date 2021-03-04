@@ -45,6 +45,7 @@ button {
   position: relative;
   text-indent: -9999px;
   pointer-events: none;
+  overflow: hidden;
 
   &:before {
     content: '';
@@ -62,15 +63,52 @@ button {
   }
 }
 
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+  transition: all .2s;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-top-color: rgba(255, 255, 255, .5);
+    animation: spinner .4s linear infinite;
+  }
+}
+
 .button--signal {
   position: relative;
+  overflow: initial;
 
   &:after {
     content: "";
     position: absolute;
+    box-shadow: 0 0 0 1px var(--dark-black);
     left: 0;
     top: 0;
-    animation: signal 1.2s infinite;
+    animation: buttonSignal 1.2s infinite;
   }
 }
 
@@ -80,7 +118,7 @@ button {
   }
 }
 
-@keyframes signal {
+@keyframes buttonSignal {
   from {
     width: 100%;
     height: 100%;
@@ -152,12 +190,86 @@ textarea {
   background-color: #348ffb;
 }
 
+.generalFeedbackOrQuestion {
+  background-color: #25e396;
+}
+
 .diversityEquityAndInclusion {
   background-color: #fb4560;
 }
 
-.generalFeedbackOrQuestion {
-  background-color: #25e396;
+
+.checkbox {
+  position: relative;
+  margin: 25px 0;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  input:checked + span:after {
+    -webkit-mask: url('./assets/check.svg');
+    background-color: black;
+    -webkit-mask-size: 80% 80%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center center;
+  }
+  input:checked + span:before {
+    animation: none;
+    background: white;
+    opacity: 1;
+  }
+  span {
+    padding-left: 35px;
+    position: relative;
+    display: block;
+
+    &:after,
+    &:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 1);
+      border: 1px solid var(--dark-black);
+      left: 0;
+      top: 6px;
+      position: absolute;
+    }
+  }
+}
+
+.checkbox--signal {
+  span {
+
+    &:before {
+      background: transparent;
+      border: 1px solid white;
+      animation: signal 1.2s infinite;
+    }
+  }
+}
+@keyframes signal {
+  from {
+    width: 20px;
+    height: 20px;
+    transform: translate(0px, 0px);
+    opacity: 1;
+    box-shadow: inset 0 0 0 2px var(--dark-black);
+  }
+  to {
+    width: 30px;
+    height: 30px;
+    box-shadow: inset 0 0 0 1px var(--dark-black);
+    opacity: 0;
+    transform: translate(-5px, -5px)
+  }
 }
 
 @keyframes spinner {

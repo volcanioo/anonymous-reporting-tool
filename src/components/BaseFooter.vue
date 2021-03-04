@@ -21,7 +21,9 @@
     margin: 0;
   }
   a {
-    color: var(--dark-black)
+    color: var(--dark-black);
+    text-decoration: underline;
+    font-weight: 600;
   }
 }
 </style>

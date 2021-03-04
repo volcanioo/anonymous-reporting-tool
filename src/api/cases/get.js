@@ -1,8 +1,8 @@
 import { collections } from '../../firebase/index';
 
-export default function (companyObject, passcode) {
+export default function (companyId, passcode) {
   return collections.cases
     .where("passcode", "==", passcode)
-    .where("company", "==", companyObject)
+    .where("company.userUid", "==", companyId)
     .get()
 }

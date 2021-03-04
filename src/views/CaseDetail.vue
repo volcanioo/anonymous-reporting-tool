@@ -4,10 +4,27 @@
       class="container"
       v-if="details"
     >
-      <h1 class="passcode">
+      <router-link
+        v-if="id"
+        class="case-detail__button"
+        :to="{ name: 'Dashboard' }"
+      >
+        Back to Dashboard
+      </router-link>
+      <div class="passcode">
         Case: <input ref="passcode" type="text" readonly :value="details.passcode"  @click="copyToClipboard"> 
         <span @click="copyToClipboard">COPY</span>
-      </h1>
+
+        <button
+          v-if="!id"
+          class="button button--red"
+          @click="logout({
+            name: 'Home'
+          })"
+        >
+          Logout
+        </button>
+      </div>
       <aside class="case-detail__sidebar">
         <div class="case-detail__content">
           <p
@@ -57,17 +74,47 @@
             <span>{{ details.message }}</span>
           </p>
         </div>
+
+        <div v-if="this.id && this.details.status">
+          <div class="checkbox">
+            <input type="checkbox" v-model="conditionsAccepted">
+            <span>
+              I'm aware of when I click the “Close the Case” button, and I won't be able to view the case again.
+            </span>
+          </div>
+
+          <button
+            class="button"
+            :disabled="!conditionsAccepted"
+            :class="{
+              'button--signal': conditionsAccepted,
+            }"
+            @click="closeTheCase()"
+          >Close the Case</button>
+        </div>
       </aside>
       <div class="case-detail__chat">
          <messages
           :case-id="pageId"
+          :disabled="!this.details.status"
          />
       </div>
     </div>
+    <div v-if="!isPageActive" class="case-detail__archived">
+      <h1>This case has been archived or removed.</h1>
+      <router-link
+        class="case-detail__button"
+        :to="{ name: 'Home' }"
+      >
+        Back to Home
+      </router-link>
+    </div>
+    <base-footer class="case-detail__footer"></base-footer>
   </div>
 </template>
 
 <script>
+import BaseFooter from '../components/BaseFooter.vue';
 import BaseHeader from '../components/BaseHeader.vue';
 import Messages from '@/components/Messages.vue';
 import utilities from '../utilities';
@@ -78,12 +125,15 @@ export default {
   name: 'CaseDetail',
   components: {
     BaseHeader,
+    BaseFooter,
     Messages,
   },
   data() {
     return {
+      isPageActive: true,
       details: null,
       pageId: null,
+      conditionsAccepted: false,
     }
   },
   created() {
@@ -92,15 +142,15 @@ export default {
       this.$router.push({ name: 'home' });
     }
     API.cases.getById(this.pageId).then((doc) => {
-      if (doc.exists) {
+      if (doc.exists && !((!doc.data().status) && !(this.id))) {
         this.details = {
           category: doc.data().feedbackType,
           id: this.id,
           ...doc.data(),
         };
       } else {
-        this.removeItem('caseId');
-        this.$router.push({ name: 'home' });
+        this.isPageActive = false;
+        this.logout();
       }
     })
     .catch((err) => {
@@ -128,18 +178,73 @@ export default {
       copyText.setSelectionRange(0, 99999);
       document.execCommand("copy");
     },
+    logout(toObject) {
+      localStorage.removeItem('caseId');
+      if (toObject) {
+        setTimeout(() => {
+          this.$router.push(toObject)
+        }, 400)
+      }
+    },
+    closeTheCase() {
+      API.cases.postById(this.pageId, {
+        ...this.details,
+        status: false
+      })
+      .then((doc) => {
+        this.logout({
+          name: "Dashboard"
+        });
+      })
+      .catch((err) => {
+        console.warn(err)
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-  max-width: 1140px;
+  max-width: 85%;
   margin: 0 auto;
   padding-top: 42px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+
+.case-detail__button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .6);
+  margin-bottom: 35px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    color: var(--dark-black);
+    &:before {
+      background-color: var(--dark-black);
+    }
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    -webkit-mask: url('../assets/arrow-right.svg') no-repeat left center;
+    transform: rotate(180deg);
+    background-color: rgba(0, 0, 0, .6);
+    margin-left: -4px;
+    margin-right: 4px;
+  }
 }
 
 .case-detail__content {
@@ -215,7 +320,10 @@ export default {
   flex: 0 0 100%;
   flex-direction: row;
   align-items: center;
-
+  margin-bottom: 10px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 600;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -237,9 +345,31 @@ export default {
     font-weight: 800;
     cursor: pointer;
   }
+  button {
+    max-width: fit-content;
+    margin-right: 0;
+    padding: 0 30px;
+  }
 }
 
 .case-detail__chat {
   width: 50%;
+}
+
+.case-detail__archived {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-black);
+  flex-direction: column;
+
+}
+
+.case-detail__footer {
+  margin-top: 200px;
 }
 </style>
