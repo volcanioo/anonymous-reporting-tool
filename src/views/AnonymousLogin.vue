@@ -19,7 +19,7 @@
       </div>
       <div v-else>
         <label> Company </label>
-        <company-selector
+        <company-select
           @company-selected="setCompany"
         />
       </div>
@@ -29,14 +29,14 @@
 
 <script>
 import BaseHeader from '../components/BaseHeader.vue';
-import CompanySelector from '@/components/CompanySelector.vue'
+import CompanySelect from '@/components/CompanySelect/index.vue'
 import API from '../api';
 
 export default {
   name: 'AnnonymousLogin',
   components: {
     BaseHeader,
-    CompanySelector
+    CompanySelect
   },
   data() {
     return {

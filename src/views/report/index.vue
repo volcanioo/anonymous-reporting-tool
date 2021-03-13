@@ -3,7 +3,7 @@
     <div v-if="!selectedCompany">
       <h1>Select your company.</h1>
       <div class="container">
-        <company-selector 
+        <company-select
           @company-selected="setCompany"
         />
       </div>
@@ -87,7 +87,7 @@
 <script>
 import formElements from './form/index';
 import InputGenerator from '@/components/InputGenerator.vue';
-import CompanySelector from '@/components/CompanySelector.vue'
+import CompanySelect from '@/components/CompanySelect'
 import API from "../../api";
 import { firebase } from '../../firebase'
 
@@ -95,7 +95,7 @@ export default {
   name: "Report",
   components: {
     InputGenerator,
-    CompanySelector,
+    CompanySelect,
   },
   data() {
     return {

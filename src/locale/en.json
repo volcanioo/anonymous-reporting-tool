@@ -11,5 +11,10 @@
     "password": "Password",
     "register": "Register",
     "company_name": "Company Name",
-    "company_photo_url": "Company Photo URL"
+    "company_photo_url": "Company Photo URL",
+    "type_your_company_name": "Type your company name",
+    "AT_LEAST_THREE_CHAR": "type at least 3 characters",
+    "NO_RESULT": "No result",
+    "NEXT": "Next",
+    "couldnt_find_company": "Couldn't find your company?"
 }
