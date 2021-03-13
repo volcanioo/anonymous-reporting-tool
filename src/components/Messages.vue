@@ -17,7 +17,7 @@
         :data-sender="message.sender"
       >
         {{message.content}}
-        <i>{{convertDate(message.created.toDate())}}</i>
+        <i>{{ convertDate(message.created.toDate()) }}</i>
       </span>
       <strong>Last Updated: {{ convertDate(lastUpdate) }}</strong>
     </div>
@@ -81,13 +81,13 @@ export default {
       this.messages = [];
       this.lastUpdate = new Date();
       API.messages.get(this.$props.caseId)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((message) => {
-          this.messages.push(message.data());
-        })
-      }).catch((err) => {
-        console.warn(err);
-      });
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.doc.data().created !== null) {
+            this.messages.push(change.doc.data());
+          }
+        });
+      })
     },
     userCheck() {
       if (Object.keys(this.$store.getters.getCompany).length > 0) {
@@ -101,7 +101,6 @@ export default {
       const sender = this.userCheck();
       API.messages.post(this.$props.caseId, sender, this.message)
       .then((querySnapshot) => {
-        this.getMessages();
         this.message = "";
       }).catch((err) => {
         console.warn(err);
