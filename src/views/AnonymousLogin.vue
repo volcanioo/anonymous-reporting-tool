@@ -1,21 +1,22 @@
 <template>
-  <div class="anonymous-login">
+  <div>
     <base-header></base-header>
-    <div class="anonymous-login__form">
+    <div class="form">
       <h1> Anonymous Login </h1>
       <div v-if="selectedCompany">
-        <label for="email"> Passcode </label>
+        <label for="email"> {{ $t('passcode') }} </label>
         <input
           v-model="passcode"
           type="passcode"
           name="passcode"
-          placeholder="X000-00:00"
+          :placeholder="$t('dummy_passcode')"
         />
         <button
           @click="anonymousLogin"
-          :class="{ 'button--progress': loading }"
           class="button"
-        >Go Case Detail</button>
+          :class="{ 'button--progress': loading }"
+          v-text="$t('go_case_detail')"
+        />
       </div>
       <div v-else>
         <label> Company </label>
@@ -79,14 +80,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.anonymous-login__form {
-  max-width: 640px;
-  margin: 0 auto;
-  width: 100%;
-  margin-bottom: 25px;
-  
-  h1 {
-    text-align: center;
-  }
-}
 </style>
