@@ -4,10 +4,10 @@ import Home from '../views/Home.vue';
 import Report from '../views/report';
 import Login from '../views/Login.vue';
 import AnonymousLogin from '../views/AnonymousLogin.vue';
-import CaseDetail from '../views/CaseDetail.vue';
+import CaseDetail from '../views/auth/CaseDetail.vue';
 import Register from '../views/Register.vue';
-import Dashboard from '../views/Dashboard.vue';
-import Verify from '../views/Verify.vue';
+import Dashboard from '../views/auth/Dashboard.vue';
+import Verify from '../views/auth/Verify.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -95,8 +95,6 @@ router.beforeEach((to, from, next) => {
         phone_number: user.phoneNumber,
         userUid: user.uid,
       });
-    } else {
-      store.dispatch('setCompanyData', {});
     }
   })
   if (to.matched.some(record => record.meta.auth)) {

@@ -1,5 +1,5 @@
 {
-    "name": "Anonymous Reporting Tool",
+    "name": "Anonymously Reporting Tool",
     "anonymous_login": "Anonymous Login",
     "company_login": "Company Login",
     "scroll_down": "Scroll down to learn how it works",
@@ -9,6 +9,9 @@
     "sign_in": "Sign In",
     "company_email": "Company E-mail",
     "password": "Password",
+    "passcode": "Passcode",
+    "send": "Send",
+    "company_register": "Company Register",
     "register": "Register",
     "company_name": "Company Name",
     "company_photo_url": "Company Photo URL",
@@ -16,5 +19,9 @@
     "AT_LEAST_THREE_CHAR": "type at least 3 characters",
     "NO_RESULT": "No result",
     "NEXT": "Next",
-    "couldnt_find_company": "Couldn't find your company?"
+    "couldnt_find_company": "Couldn't find your company?",
+    "go_case_detail": "Go Case Detail",
+    "dummy_passcode": "X000-00:00",
+    "dummy_password": "•••••••••",
+    "dummy_email": "email@domain.com"
 }
