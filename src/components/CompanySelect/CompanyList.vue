@@ -1,5 +1,5 @@
 <template>
-  <div
+  <ul
     class="company-selector__list"
     :class="{ 
       'company-selector__list--loading': isLoading
@@ -19,7 +19,7 @@
       }"
       @click.native="setSelectedCompany(item)"
     />
-  </div>
+  </ul>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  <div
+  <li
     class="company-selector__item"
   >
     <img :src="getImage" :alt="item.companyName">
     <p>{{ item.companyName }}</p>
-  </div>
+  </li>
 </template>
 
 <script>
