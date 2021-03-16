@@ -70,8 +70,7 @@ export default {
         return false;
       }
       this.isLoading = true;
-      const search = API.companies.search(companies);
-      search.then((response) => {
+      API.companies.search(companies).then((response) => {
         this.items = response.hits;
       }).catch((error) => {
         console.warn(error);
