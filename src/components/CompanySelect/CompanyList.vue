@@ -91,7 +91,7 @@ export default {
     margin-left: -12px;
     border-radius: 50%;
     border: 2px solid #ccc;
-    border-top-color: #000;
+    border-top-color: var(--dark-black);
     animation: spinner .6s linear infinite;
   }
 
