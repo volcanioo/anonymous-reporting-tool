@@ -62,6 +62,8 @@ export default {
   max-height: 200px;
   transition: max-height .3s;
   text-indent: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .company-selector__empty {
