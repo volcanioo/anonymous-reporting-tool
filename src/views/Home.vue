@@ -14,11 +14,14 @@
     <div class="content">
       <div class="container">
           <div class="wrapper">
-              <strong>How does it work?</strong>
-              <p>The tool doesn't require any personal data (e.g. name, surname, e-mail, phone number) to report a harassment/bias, send a feedback or ask a question. Instead, the tool requires only case related details. It automatically creates an anonymous username and password, and assign it to the case. Then, it shares these credentials with the user before completing the case report process. Afterward, the user can login into the app anonymously to follow the created case's further updates.</p>
+              <strong>{{ $t('HOMEPAGE.HOW_DOES_IT_WORK.TITLE') }}</strong>
+              <p>{{ $t('HOMEPAGE.HOW_DOES_IT_WORK.DESC') }}</p>
           </div>
           <figure>
-              <img src="@/assets/1.svg" alt="image about how does it work?">
+              <img
+                src="@/assets/1.svg"
+                :alt="$t('HOMEPAGE.HOW_DOES_IT_WORK.TITLE')"
+              />
           </figure>
       </div>
 
@@ -27,8 +30,8 @@
               <img src="@/assets/2.svg" alt="image about how does it work?">
           </figure>
           <div class="wrapper">
-              <strong>How Anonymous it is?</strong>
-              <p>The tool doesn't need any personal data. Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process.</p>
+              <strong>{{ $t('HOMEPAGE.HOW_ANON_IT_IS.TITLE') }}</strong>
+              <p>{{ $t('HOMEPAGE.HOW_ANON_IT_IS.DESC') }}</p>
           </div>
       </div>
     </div>
