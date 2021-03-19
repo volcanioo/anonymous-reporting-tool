@@ -13,6 +13,7 @@
     "send": "Send",
     "company_register": "Company Register",
     "register": "Register",
+    "company": "Company",
     "company_name": "Company Name",
     "company_photo_url": "Company Photo URL",
     "type_your_company_name": "Type your company name",
@@ -23,5 +24,19 @@
     "go_case_detail": "Go Case Detail",
     "dummy_passcode": "X000-00:00",
     "dummy_password": "•••••••••",
-    "dummy_email": "email@domain.com"
+    "dummy_email": "email@domain.com",
+    "HOMEPAGE": {
+        "HOW_DOES_IT_WORK": {
+            "TITLE": "How does it work?",
+            "DESC": "The tool doesn't require any personal data (e.g. name, surname, e-mail, phone number) to report a harassment/bias, send a feedback or ask a question. Instead, the tool requires only case related details. It automatically creates an anonymous username and password, and assign it to the case. Then, it shares these credentials with the user before completing the case report process. Afterward, the user can login into the app anonymously to follow the created case's further updates."
+        },
+        "HOW_ANON_IT_IS": {
+            "TITLE": "How Anonymous it is?",
+            "DESC": "The tool doesn't need any personal data. Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process."
+        }
+    },
+    "we_couldnt_find": "We couldn't find your case!",
+    "welcome": "Welcome",
+    "oops": "Oops...",
+    "create_a_new_case": "Create a new case"
 }
