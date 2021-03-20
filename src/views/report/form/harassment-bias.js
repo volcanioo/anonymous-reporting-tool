@@ -2,6 +2,7 @@ import TYPES from './TYPES';
 
 export const harassmentOrBias = {
   harassmentType: {
+    id: 'harassmentType',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
     value: '-1',
@@ -18,6 +19,7 @@ export const harassmentOrBias = {
     ],
   },
   toWho: {
+    id: 'toWho',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
     value: '-1',
@@ -28,6 +30,7 @@ export const harassmentOrBias = {
     ]
   },
   whenDidHappen: {
+    id: 'whenDidHappen',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
     value: '-1',
