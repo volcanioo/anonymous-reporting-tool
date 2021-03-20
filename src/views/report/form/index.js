@@ -4,6 +4,7 @@ import TYPES from "./TYPES";
 
 export default {
   feedbackType: {
+    id: 'feedbackType',
     type: 'select',
     value: '-1',
     options: [
@@ -19,6 +20,7 @@ export default {
     }
   },
   relationshipToCompany: {
+    id: 'relationshipToCompany',
     type: 'select',
     value: '-1',
     options: [
@@ -26,26 +28,28 @@ export default {
       'Current Employee',
       'Former Employee',
       'Other',
-    ]
+    ],
+    subfields: {}
   },
   whichCityDidThisHappen: {
+    id: 'whichCityDidThisHappen',
     type: 'input',
     value: '',
     placeholder: 'Which city did this happen in?',
+    subfields: {}
   },
   whichDepartmentDidThisHappen: {
+    id: 'whichDepartmentDidThisHappen',
     type: 'input',
     value: '',
     placeholder: 'Which department did this happen in?',
+    subfields: {}
   },
   message: {
+    id: 'message',
     type: 'textarea',
     value: '',
     placeholder: 'Detailed Message',
-  },
-  button: {
-    type: 'button',
-    value: '',
-    label: 'Go Last Step',
+    subfields: {}
   }
 }

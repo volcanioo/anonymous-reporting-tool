@@ -3,8 +3,11 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Report from '../views/report';
 import Login from '../views/Login.vue';
+import AnonymousLogin from '../views/AnonymousLogin.vue';
+import CaseDetail from '../views/auth/CaseDetail.vue';
 import Register from '../views/Register.vue';
-import Dashboard from '../views/Dashboard.vue';
+import Dashboard from '../views/auth/Dashboard.vue';
+import Verify from '../views/auth/Verify.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -19,6 +22,9 @@ const routes = [
     path: '/report',
     name: 'Report',
     component: Report,
+    meta: {
+      anonymous: true
+    }
   },
   {
     path: '/login',
@@ -26,6 +32,23 @@ const routes = [
     component: Login,
     meta: {
       company: true
+    }
+  },
+  {
+    path: '/case-detail/:id?',
+    name: 'CaseDetail',
+    props: true,
+    component: CaseDetail,
+    meta: {
+      case: true
+    }
+  },
+  {
+    path: '/anonymous-login',
+    name: 'AnonymousLogin',
+    component: AnonymousLogin,
+    meta: {
+      anonymous: true
     }
   },
   {
@@ -44,6 +67,15 @@ const routes = [
       auth: true
     }
   },
+  {
+    path: '/email-verification',
+    name: 'Verify',
+    component: Verify,
+    meta: {
+      auth: true
+    },
+  },
+  { path: "*", component: Home }
 ];
 
 const router = new VueRouter({
@@ -52,15 +84,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // TODO !! We need to update this function to optimize firebase connections. 
+  // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
     if (user) {
-      store.dispatch('getCompanyData', {
+      store.dispatch('setCompanyData', {
         company_name: user.displayName,
         company_email: user.email,
         is_mail_verified: user.emailVerified,
         photo_url: user.photoURL,
         phone_number: user.phoneNumber,
+        userUid: user.uid,
       });
     }
   })
@@ -74,6 +107,24 @@ router.beforeEach((to, from, next) => {
         })
       }
     })
+  } else if (to.matched.some(record => record.meta.case)) {
+    auth.onAuthStateChanged(user => {
+      if ((user) || localStorage.getItem('caseId')) {
+        next();
+      } else {
+        next({
+          path: "/anonymous-login",
+        })
+      }
+    })
+  } else if (to.matched.some(record => record.meta.anonymous)) {
+    if (localStorage.getItem('caseId') || store.getters.getCompany.length > 0) {
+      next({
+        path: "/case-detail",
+      })
+    } else {
+      next()
+    }
   } else if (to.matched.some(record => record.meta.company)) {
     auth.onAuthStateChanged(user => {
       if (user) {

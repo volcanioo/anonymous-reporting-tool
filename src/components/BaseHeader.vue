@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <router-link
-      to="#"
+      to="/anonymous-login"
       class="header__button z-index-1"
       v-text="$t('anonymous_login')"
     />

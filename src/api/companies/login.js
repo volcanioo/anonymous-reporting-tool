@@ -8,10 +8,8 @@ export default function (companyEmail, companyPassword) {
       auth.currentUser.getIdToken()
       .then((token) => {
         store.dispatch('saveToken', token);
-      }).catch((error) => {
-        reject(error);
-      });
-      resolve(userCredential);
+        resolve(userCredential);
+      })
     }).catch((error) => {
       reject(error);
     });

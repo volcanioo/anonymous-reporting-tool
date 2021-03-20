@@ -1,7 +1,7 @@
 import post from "./post";
-import verify from "./verify";
+import get from "./get";
 
 export default {
   post,
-  verify,
+  get,
 }

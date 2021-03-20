@@ -2,6 +2,7 @@ import TYPES from './TYPES';
 
 export const culturalIssues = {
   issueType: {
+    id: 'issueType',
     parentField: TYPES.CULTURE_ISSUES,
     type: 'select',
     value: '-1',
