@@ -131,8 +131,20 @@ export default {
     companyName() {
       return this.$store.state.company.company_name; 
     },
+    userUid() {
+      return this.$store.state.company.userUid; 
+    },
     isVerified() {
       return this.$store.state.company.is_mail_verified; 
+    },
+    oobCode() {
+      return this.$route.query.oobCode; 
+    },
+    mode() {
+      return this.$route.query.mode; 
+    },
+    lang() {
+      return this.$route.query.lang; 
     }
   },
   data() {
@@ -174,7 +186,7 @@ export default {
         ...this.options,
         labels: [TYPES.CULTURE_ISSUES, TYPES.GENERAL, TYPES.HARASSMENT_OR_BIAS, TYPES.DIVERSITY]
       }
-    }
+    },
   },
   created() {
     this.fetchCases();
@@ -208,7 +220,7 @@ export default {
     },
     getMappedDate(date) {
       return utilities.dateMapper(date);
-    }
+    },
   },
 };
 </script>

@@ -104,7 +104,7 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
-  margin: 60px auto;
+  margin: 86px auto;
   width: 1140px;
 }
 
@@ -126,10 +126,15 @@ export default {
   }
 
   p {
-    font-weight: normal;
+    font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
-    color: #BFBFBF;
+    line-height: 26px;
+    color: var(--gray);
+    margin: 0;
+
+    span {
+      color: #F2F2F2;
+    }
   }
 }
 
