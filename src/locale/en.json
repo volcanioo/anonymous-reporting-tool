@@ -28,15 +28,17 @@
     "HOMEPAGE": {
         "HOW_DOES_IT_WORK": {
             "TITLE": "How does it work?",
-            "DESC": "The tool doesn't require any personal data (e.g. name, surname, e-mail, phone number) to report a harassment/bias, send a feedback or ask a question. Instead, the tool requires only case related details. It automatically creates an anonymous username and password, and assign it to the case. Then, it shares these credentials with the user before completing the case report process. Afterward, the user can login into the app anonymously to follow the created case's further updates."
+            "DESC": "Have you experienced something bad at your company and want to share this problem with your managers? You can report report harassment/bias, send feedback, or ask questions to your company while not sharing any personal data (e.g., name, surname, e-mail, phone number). The app will automatically create a passcode that makes you available to log in anonymously into the app to follow the case's further updates, such as messages or company answers."
         },
         "HOW_ANON_IT_IS": {
             "TITLE": "How Anonymous it is?",
-            "DESC": "The tool doesn't need any personal data. Alternatively, it generates a unique username and password before completing the case report and displays it to the user. The user must protect these anonymous credentials as it will be needed to login into the app to be able for the user to follow their case's further updates. After receiving and saving the anonymous credentials, the app encrypts and stores them in the database. Even a developer will not be able to see the credentials at any stage of the case report process."
+            "DESC": "The app doesn't require you to share any personal data (e.g., name, surname, e-mail, phone number) to report an issue. Alternatively, it generates a unique passcode before completing the case report and shows it to the user. The passcode must not be forgotten as it will be needed to login into the app to be able for the user to follow their case's further updates."
         }
     },
     "we_couldnt_find": "We couldn't find your case!",
     "welcome": "Welcome",
+    "congratulations": "Congratulations",
+    "approved_email": "The email successfully approved. Now, your employees can see your company's name on the company list.",
     "oops": "Oops...",
     "create_a_new_case": "Create a new case"
 }

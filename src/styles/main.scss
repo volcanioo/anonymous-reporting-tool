@@ -63,6 +63,13 @@ button {
   }
 }
 
+.button--small {
+  min-height: 52px;
+  height: 52px;
+  line-height: 52px;
+  font-size: 16px;
+  font-weight: 500;
+}
 
 .loading {
   position: fixed;
@@ -282,3 +289,9 @@ textarea {
   to {transform: rotate(360deg);}
 }
 @import "z-indexes";
+
+// textarea:invalid,
+// select:invalid,
+// input:invalid {
+//     box-shadow: 0 0 0 1px white, 0 0 0 2px #fb4560;
+// }

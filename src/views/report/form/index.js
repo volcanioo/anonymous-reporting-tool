@@ -7,6 +7,7 @@ export default {
     id: 'feedbackType',
     type: 'select',
     value: '-1',
+    required: true,
     options: [
       'Feedback Type',
       TYPES.GENERAL,
@@ -34,6 +35,7 @@ export default {
   whichCityDidThisHappen: {
     id: 'whichCityDidThisHappen',
     type: 'input',
+    required: true,
     value: '',
     placeholder: 'Which city did this happen in?',
     subfields: {}
@@ -48,6 +50,7 @@ export default {
   message: {
     id: 'message',
     type: 'textarea',
+    required: true,
     value: '',
     placeholder: 'Detailed Message',
     subfields: {}
