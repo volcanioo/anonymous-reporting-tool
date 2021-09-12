@@ -1,6 +1,6 @@
 import TYPES from './TYPES';
 
-export const culturalIssues = {
+export default {
   issueType: {
     id: 'issueType',
     parentField: TYPES.CULTURE_ISSUES,
@@ -17,5 +17,12 @@ export const culturalIssues = {
       'Punished for mistakes and failures',
       'Other (please describe below)',
     ],
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
 };

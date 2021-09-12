@@ -1,6 +1,6 @@
 import TYPES from './TYPES';
 
-export const harassmentOrBias = {
+export default {
   harassmentType: {
     id: 'harassmentType',
     parentField: TYPES.HARASSMENT_OR_BIAS,
@@ -17,6 +17,13 @@ export const harassmentOrBias = {
       'Subtle bias',
       'Other (please describe below)',
     ],
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
   toWho: {
     id: 'toWho',
@@ -27,7 +34,14 @@ export const harassmentOrBias = {
       'Did this happen to you or someone else?',
       'Me',
       'Someone else',
-    ]
+    ],
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
   whenDidHappen: {
     id: 'whenDidHappen',
@@ -40,6 +54,13 @@ export const harassmentOrBias = {
       'In the past month',
       'In the past year',
       'More than a year ago',
-    ]
+    ],
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
 };

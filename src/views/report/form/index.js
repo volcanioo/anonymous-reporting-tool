@@ -1,5 +1,6 @@
-import { culturalIssues } from "./culture-issues";
-import { harassmentOrBias } from "./harassment-bias";
+import isEmpty from 'lodash/isEmpty';
+import culturalIssues from "./culture-issues";
+import harassmentOrBias from "./harassment-bias";
 import TYPES from "./TYPES";
 
 export default {
@@ -18,7 +19,14 @@ export default {
     subfields: {
       ...culturalIssues,
       ...harassmentOrBias,
-    }
+    },
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
   relationshipToCompany: {
     id: 'relationshipToCompany',
@@ -30,7 +38,14 @@ export default {
       'Former Employee',
       'Other',
     ],
-    subfields: {}
+    subfields: {},
+    validate: (value) => {
+      if (value === -1 || value === '-1') {
+        return false;
+      }
+
+      return true;
+    },
   },
   whichCityDidThisHappen: {
     id: 'whichCityDidThisHappen',
@@ -38,14 +53,28 @@ export default {
     required: true,
     value: '',
     placeholder: 'Which city did this happen in?',
-    subfields: {}
+    subfields: {},
+    validate: (value) => {
+      if (isEmpty(value)) {
+        return false;
+      }
+
+      return true;
+    },
   },
   whichDepartmentDidThisHappen: {
     id: 'whichDepartmentDidThisHappen',
     type: 'input',
     value: '',
     placeholder: 'Which department did this happen in?',
-    subfields: {}
+    subfields: {},
+    validate: (value) => {
+      if (isEmpty(value)) {
+        return false;
+      }
+
+      return true;
+    },
   },
   message: {
     id: 'message',
@@ -53,6 +82,13 @@ export default {
     required: true,
     value: '',
     placeholder: 'Detailed Message',
-    subfields: {}
+    subfields: {},
+    validate: (value) => {
+      if (isEmpty(value)) {
+        return false;
+      }
+
+      return true;
+    },
   }
 }

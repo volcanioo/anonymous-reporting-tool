@@ -14,7 +14,7 @@
         <div class="company-card">
           <span>TO:</span>
           <figure>
-            <img 
+            <img
               :src="selectedCompany.companyPhotoUrl"
               :alt="selectedCompany.companyName"
             >
@@ -49,7 +49,11 @@
             </div>
           </div>
         </div>
-        <button class="button" @click="goLastStep">Go Last Step</button>
+        <button
+          :disabled="!isFormValid"
+          class="button"
+          @click="goLastStep"
+        >Go Last Step</button>
       </div>
       <div
         class="report-page__warning"
@@ -85,14 +89,18 @@
 </template>
 
 <script>
-import formElements from './form/index';
+/*
+ * !TODO(1): The form should be resetted once the user update the FeedbackType. (to avoid some bugs)
+ * !TODO(2): Required messages shouldn't be visible at the first load
+ */
 import InputGenerator from '@/components/InputGenerator.vue';
-import CompanySelect from '@/components/CompanySelect'
-import API from "../../api";
-import { firebase } from '../../firebase'
+import CompanySelect from '@/components/CompanySelect/index.vue';
+import formElements from './form/index';
+import API from '../../api';
+import { firebase } from '../../firebase';
 
 export default {
-  name: "Report",
+  name: 'Report',
   components: {
     InputGenerator,
     CompanySelect,
@@ -105,7 +113,24 @@ export default {
       enteredData: [],
       conditionsAccepted: false,
       passcode: null,
-    }
+    };
+  },
+  computed: {
+    isFormValid() {
+      const hasFormElementsValid = Object.values(this.formElements).map((field) => {
+        if (field.subfields) {
+          Object.values(field.subfields).forEach((subfield) => {
+            if (!subfield.validate(subfield.value)) {
+              return false;
+            }
+          });
+        }
+
+        return field.validate(field.value);
+      });
+
+      return hasFormElementsValid.every((condition) => condition === true);
+    },
   },
   methods: {
     generatePasscode() {
@@ -130,34 +155,34 @@ export default {
       });
       setTimeout(() => {
         window.scrollTo(0, window.innerHeight);
-      }, 100)
+      }, 100);
     },
     finishCaseCreation() {
       this.loading = true;
       const payload = {
-        ...this.enteredData, 
-        passcode: this.passcode, 
-        company: this.selectedCompany, 
+        ...this.enteredData,
+        passcode: this.passcode,
+        company: this.selectedCompany,
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        status: true
+        status: true,
       };
       API.cases.post(payload)
-      .then((doc) => {
-        localStorage.setItem('caseId', doc.id);
-        setTimeout(() => {
-          this.$router.push({
-            name: 'CaseDetail',
-          })
-        }, 400)
-        this.loading = false;
-      })
-      .catch((error) => {
-        console.warn(error);
-        this.loading = false;
-      })
-    }
+        .then((doc) => {
+          localStorage.setItem('caseId', doc.id);
+          setTimeout(() => {
+            this.$router.push({
+              name: 'CaseDetail',
+            })
+          }, 400)
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.warn(error);
+          this.loading = false;
+        });
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
