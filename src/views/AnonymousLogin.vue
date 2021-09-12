@@ -19,7 +19,6 @@
         />
       </div>
       <div v-else>
-        <label> {{ $t('company') }} </label>
         <company-select
           @company-selected="setCompany"
         />
