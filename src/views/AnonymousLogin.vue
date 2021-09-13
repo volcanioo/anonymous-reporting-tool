@@ -1,6 +1,7 @@
 <template>
   <div>
     <base-header></base-header>
+    <!-- TODO Remove and use the component -->
     <div class="form">
       <h1> {{ $t('anonymous_login') }} </h1>
       <div v-if="selectedCompany">
