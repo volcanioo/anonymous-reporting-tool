@@ -1,23 +1,6 @@
 <template>
   <main class="dashboard z-index-1">
-    <aside class="sidebar">
-      <figure 
-        v-if="photoURL"
-      >
-        <img :src="photoURL" :alt="companyName">
-      </figure>
-      <figure
-        class="sidebar__logo"
-        v-else
-      >
-        <img src="@/assets/user.svg" :alt="companyName">
-      </figure>
-      <nav class="sidebar__nav">
-        <strong>{{ companyName }}</strong>
-        <a href="#">Settings</a>
-      </nav>
-      <button class="button" @click="singOut">SIGN OUT</button>
-    </aside>
+    <Sidebar />
     <div class="content">
       <div
         v-if="!isVerified"
@@ -120,14 +103,15 @@
 import API from '../../api';
 import utilities from '../../utilities';
 import TYPES from "../report/form/TYPES";
+import Sidebar from './Sidebar.vue';
 import _ from 'lodash';
 
 export default {
   name: 'Dashboard',
+  components: {
+    Sidebar,
+  },
   computed: {
-    photoURL() {
-      return this.$store.state.company.photo_url; 
-    },
     companyName() {
       return this.$store.state.company.company_name; 
     },
@@ -192,9 +176,6 @@ export default {
     this.fetchCases();
   },
   methods: {
-    singOut() {
-      API.companies.logout();
-    },
     fetchCases() {
       API.cases.list(this.$store.state.company.userUid)
       .then((query) => { 
