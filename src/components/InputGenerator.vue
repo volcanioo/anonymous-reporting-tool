@@ -34,6 +34,18 @@
       class="button"
       v-text="element.label"
     />
+    <div
+      class="element--file"
+      v-else-if="element.type === 'file'"
+    >
+      <img v-if="element.value" :src="element.value" :alt="element.placeholder">
+      <input
+        type="file"
+        @keyup="handleInput"
+        :placeholder="element.placeholder"
+        :required="Boolean(element.required)"
+      />
+    </div> 
   </div>
 </template>
 
@@ -52,3 +64,21 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .element {
+    &--file {
+      display: flex;
+      align-items: center;
+
+      img {
+        flex: 1;
+      }
+
+      input {
+        flex: 4;
+        margin-left: 1em;
+      }
+    }
+  }
+</style>
