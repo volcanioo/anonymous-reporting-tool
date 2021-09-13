@@ -215,59 +215,6 @@ export default {
   padding: 20px;
 }
 
-.sidebar {
-  background: var(--dark-black);
-  height: 100vh;
-  text-align: center;
-  color: white;
-  padding: 20px;
-  position: fixed;
-  width: 295px;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar img {
-  display: block;
-  max-width: 50px;
-  margin: 0 auto;
-  border-radius: 100%;
-}
-
-.sidebar__logo {
-  margin: 0;
-
-  img {
-    background: white;
-    border-radius: 100%;
-    width: 50%;
-    max-width: initial;
-    margin: 0 auto;
-  }
-}
-
-.sidebar__nav {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-}
-
-.sidebar__nav a {
-  color: white;
-  line-height: 55px;
-  background: rgba(255, 255, 255, .04);
-  margin: 20px;
-  transition: .3s;
-  
-  &:hover {
-    margin: 20px 10px;
-    background: rgba(255, 255, 255, .1);
-  }
-}
-
 .notification {
   background: #d01f09;
   padding: 20px;
