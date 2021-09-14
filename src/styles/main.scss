@@ -144,13 +144,20 @@ button {
   }
 }
 
-.button--red {
-  background: #f63131;
+button[disabled] {
+  background: #bbddcd;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: no-drop;
 }
 
-button[disabled] {
-  opacity: 0.4;
-  cursor: no-drop;
+.button--red {
+  background: #f63131;
+
+  &[disabled] {
+    background: #f63131;
+    color: white;
+    opacity: 0.4;
+  }
 }
 
 h1 {
