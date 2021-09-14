@@ -33,7 +33,28 @@ export default {
         values.phone_number,
         values.company_email,
         false
-      );
+      ).then( () => {
+        this.$swal({
+          icon: 'success',
+          showConfirmButton: false,
+          position: 'top-end',
+          title: `Settings saved!`,
+          toast: true,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+      }).catch(( error ) => {
+        console.error(error);
+        this.$swal({
+          icon: 'error',
+          showConfirmButton: false,
+          position: 'top-end',
+          title: `Error!`,
+          toast: true,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+      });
     },
   },
   computed: {
