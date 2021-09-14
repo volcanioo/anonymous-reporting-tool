@@ -11,6 +11,7 @@
 import Sidebar from '@/views/auth/Sidebar.vue';
 import InputGenerator from '@/components/InputGenerator.vue';
 import Form from '@/components/Form.vue';
+import API from '@/api';
 
 export default {
   name: 'CompanySettings',
@@ -20,8 +21,19 @@ export default {
     Form
   },
   methods: {
-    submit() {
-      alert('hello');
+    submit(e) {
+      const userUid = this.$store.state.company.userUid;
+      const values = {};
+      e.target.elements.forEach(e => (e.name) ? values[e.name] = e.value : null);
+
+      API.companies.post(
+        userUid,
+        values.company_name,
+        values.photo_url,
+        values.phone_number,
+        values.company_email,
+        false
+      );
     },
   },
   computed: {

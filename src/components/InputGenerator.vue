@@ -5,6 +5,8 @@
       v-model="element.value"
       @change="handleInput"
       :required="Boolean(element.required)"
+      :name="element.id"
+      :id="element.id"
     >
       <option
         v-for="(option, index) in element.options"
@@ -20,6 +22,8 @@
       v-model="element.value"
       :placeholder="element.placeholder"
       :required="Boolean(element.required)"
+      :name="element.id"
+      :id="element.id"
     >
     <textarea
       v-else-if="element.type === 'textarea'"
@@ -27,6 +31,8 @@
       v-model="element.value"
       :placeholder="element.placeholder"
       :required="Boolean(element.required)"
+      :name="element.id"
+      :id="element.id"
     />
     <button
       v-else-if="element.type === 'button'"
@@ -44,6 +50,8 @@
         @keyup="handleInput"
         :placeholder="element.placeholder"
         :required="Boolean(element.required)"
+        :name="element.id"
+        :id="element.id"
       />
     </div> 
   </div>

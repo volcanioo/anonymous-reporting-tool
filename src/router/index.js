@@ -9,7 +9,7 @@ import Register from '../views/Register.vue';
 import Dashboard from '../views/auth/Dashboard.vue';
 import Verify from '../views/auth/Verify.vue';
 import CompanySettings from '../views/auth/CompanySettings.vue';
-import { auth } from '../firebase/index';
+import { auth, algoliaIndex } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
 
@@ -95,17 +95,28 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
-    if (user) {
-      store.dispatch('setCompanyData', {
-        company_name: user.displayName,
-        company_email: user.email,
-        is_mail_verified: user.emailVerified,
-        photo_url: user.photoURL,
-        phone_number: user.phoneNumber,
-        userUid: user.uid,
-      });
+    // get the data from angolia
+    if (! user) {
+      next({
+        path: "/login",
+      })
+      return;
     }
+
+    algoliaIndex.findObject((hit) => hit.userUid === user.uid).then(({object}) => {
+      if (user) {
+        store.dispatch('setCompanyData', {
+          company_email: user.email,
+          is_mail_verified: user.emailVerified,
+          userUid: user.uid,
+          company_name: object.name,
+          phone_number: object.phoneNumber,
+          photo_url: object.photoURL,
+        });
+      }
+    })
   })
+
   if (to.matched.some(record => record.meta.auth)) {
     auth.onAuthStateChanged(user => {
       if (user) {
