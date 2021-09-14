@@ -119,7 +119,7 @@
 <script>
 import API from '../../api';
 import utilities from '../../utilities';
-import TYPES from "../report/form/TYPES";
+import TYPES from "../report/codables/TYPES";
 import _ from 'lodash';
 
 export default {

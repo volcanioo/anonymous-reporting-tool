@@ -58,6 +58,7 @@
         >Go Last Step</button>
       </div>
       <warning
+        v-if="showWarningMessage"
         :selected-company="selectedCompany"
         :loading="loading"
         :onFinish="finishCaseCreation"
@@ -88,6 +89,7 @@ export default {
   },
   data() {
     return {
+      showWarningMessage: false,
       loading: false,
       formFields: FORM_FIELDS,
       selectedCompany: null,
@@ -131,6 +133,7 @@ export default {
       allEnteredFields.forEach((element) => {
         this.enteredData[element.getAttribute('data-field')] = element.getAttribute('value');
       });
+      this.showWarningMessage = true;
 
       setTimeout(() => window.scrollTo(0, window.innerHeight), 100);
     },
