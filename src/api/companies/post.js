@@ -22,12 +22,14 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
           email
         }, { autoGenerateObjectIDIfNotExist: generate })
           .then((response) => {
+            const companyData = store.state.company;
+
             store.dispatch('setCompanyData', {
-              userUid: userUid,
+              ...companyData,
               company_name: name,
               phone_number: phoneNumber,
               photo_url: photoUrl,
-              company_email: email
+              company_email: email,
             });
             resolve(response);
         }).catch((error) => {

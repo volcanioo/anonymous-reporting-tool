@@ -95,19 +95,16 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
+    
     // get the data from angolia
-    algoliaIndex.findObject((hit) => hit.userUid === user.uid).then(({object}) => {
-      if (user) {
+    if (user) {
+        const companyData = store.state.company;
+
         store.dispatch('setCompanyData', {
-          company_email: user.email,
+          ...companyData,
           is_mail_verified: user.emailVerified,
-          userUid: user.uid,
-          company_name: object.name,
-          phone_number: object.phoneNumber,
-          photo_url: object.photoURL,
-        });
+        })
       }
-    })
   })
 
   if (to.matched.some(record => record.meta.auth)) {
