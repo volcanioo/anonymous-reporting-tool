@@ -96,13 +96,6 @@ router.beforeEach((to, from, next) => {
   // TODO !! We need to update this function to optimize firebase connections.
   auth.onAuthStateChanged(user => {
     // get the data from angolia
-    if (! user) {
-      next({
-        path: "/login",
-      })
-      return;
-    }
-
     algoliaIndex.findObject((hit) => hit.userUid === user.uid).then(({object}) => {
       if (user) {
         store.dispatch('setCompanyData', {
