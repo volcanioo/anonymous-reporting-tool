@@ -5,7 +5,7 @@ export default {
     id: 'issueType',
     parentField: TYPES.CULTURE_ISSUES,
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'What type of issue did you experience?',
       'Culture is not welcoming or inclusive',
@@ -18,7 +18,7 @@ export default {
       'Other (please describe below)',
     ],
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 

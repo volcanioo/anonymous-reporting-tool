@@ -16,7 +16,7 @@
         v-for="(option, index) in element.options"
         :key="option"
         v-text="option"
-        :value="index !== 0 ? option : -1"
+        :value="index !== 0 ? option : ''"
       />
     </select>
     <input
@@ -69,6 +69,7 @@ export default {
     handleInput() {
       this.$emit('input', this.element.value);
       this.$emit('validation');
+      this.$emit('onUpdate', this.element);
     },
   },
 };

@@ -7,7 +7,7 @@ export default {
   feedbackType: {
     id: 'feedbackType',
     type: 'select',
-    value: '-1',
+    value: '',
     required: true,
     options: [
       'Feedback Type',
@@ -21,7 +21,7 @@ export default {
       ...harassmentOrBias,
     },
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 
@@ -31,7 +31,7 @@ export default {
   relationshipToCompany: {
     id: 'relationshipToCompany',
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'Relationship to the company',
       'Current Employee',
@@ -40,7 +40,7 @@ export default {
     ],
     subfields: {},
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 
@@ -90,5 +90,5 @@ export default {
 
       return true;
     },
-  }
-}
+  },
+};

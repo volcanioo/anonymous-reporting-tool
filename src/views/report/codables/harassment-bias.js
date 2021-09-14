@@ -5,7 +5,7 @@ export default {
     id: 'harassmentType',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'What type of issue did you experience?',
       'Sexual advances, requests for sexual favors',
@@ -18,7 +18,7 @@ export default {
       'Other (please describe below)',
     ],
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 
@@ -29,14 +29,14 @@ export default {
     id: 'toWho',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'Did this happen to you or someone else?',
       'Me',
       'Someone else',
     ],
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 
@@ -47,7 +47,7 @@ export default {
     id: 'whenDidHappen',
     parentField: TYPES.HARASSMENT_OR_BIAS,
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'When did this happen?',
       'Lately',
@@ -56,7 +56,7 @@ export default {
       'More than a year ago',
     ],
     validate: (value) => {
-      if (value === -1 || value === '-1') {
+      if (value === -1 || value === '') {
         return false;
       }
 
