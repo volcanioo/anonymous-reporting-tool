@@ -8,6 +8,7 @@ import CaseDetail from '../views/auth/CaseDetail.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/auth/Dashboard.vue';
 import Verify from '../views/auth/Verify.vue';
+import CompanySettings from '../views/auth/CompanySettings.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -71,6 +72,14 @@ const routes = [
     path: '/email-verification',
     name: 'Verify',
     component: Verify,
+    meta: {
+      auth: true
+    },
+  },
+  {
+    path: '/company-settings',
+    name: 'CompanySettings',
+    component: CompanySettings,
     meta: {
       auth: true
     },
