@@ -71,7 +71,7 @@ export default {
     messages() {
       setTimeout(() => {
         this.$refs.chat.scrollTop = 9999999999;
-      }, 300);
+      }, 10);
     },
   },
   methods: {
