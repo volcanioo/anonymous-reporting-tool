@@ -57,7 +57,7 @@
             :key="detail.id"
             :class="{
               'case-detail__object--noAnswer': !(details[detail] && details[detail] !== '-1'),
-              'case-detail__object--hide': hideElements(detail, ['company', 'category', 'created', 'message', 'feedbackType']),
+              'case-detail__object--hide': hideElements(detail, ['company', 'category', 'created', 'message', 'feedbackType', 'status', 'id']),
             }"
           >
           
