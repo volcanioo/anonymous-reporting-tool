@@ -76,9 +76,9 @@ export default {
         // we set the data we have right now.
         store.dispatch('setCompanyData', {
           company_email: credentials.user.email,
-            is_mail_verified: credentials.user.emailVerified,
-            userUid: credentials.user.userUid,
-            company_name: credentials.user.displayName,
+          is_mail_verified: credentials.user.emailVerified,
+          userUid: credentials.user.uid,
+          company_name: credentials.user.displayName,
         });
 
         this.$swal({
