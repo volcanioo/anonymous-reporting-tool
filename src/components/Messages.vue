@@ -43,68 +43,72 @@
 
 <script>
 import API from '../api';
+import _isEmpty from 'lodash/isEmpty';
 import utilities from '../utilities';
 
 export default {
   props: {
     caseId: {
       type: String,
-      default: null
+      default: null,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   data() {
     return {
-      message: "",
+      message: '',
       messages: [],
-      lastUpdate: "",
+      lastUpdate: '',
     }
   },
   created() {
-    this.getMessages()
+    this.getMessages();
   },
   watch: {
-    messages(newValue, oldValue) {
+    messages() {
       setTimeout(() => {
         this.$refs.chat.scrollTop = 9999999999;
-      }, 300)
-    }
+      }, 300);
+    },
   },
   methods: {
     convertDate(date) {
-      return utilities.dateMapper(date)
+      return utilities.dateMapper(date);
     },
     getMessages() {
       this.messages = [];
       this.lastUpdate = new Date();
       API.messages.get(this.$props.caseId)
-      .onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.doc.data().created !== null) {
-            this.messages.push(change.doc.data());
-          }
+        .onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.doc.data().created !== null) {
+              this.messages.push(change.doc.data());
+            }
+          });
         });
-      })
     },
     userCheck() {
       if (Object.keys(this.$store.getters.getCompany).length > 0) {
         localStorage.removeItem('caseId');
         return 'company';
-      } else {
-        return 'anonymous';
       }
+
+      return 'anonymous';
     },
     sendMessage() {
+      if (_isEmpty(this.message)) return;
+
       const sender = this.userCheck();
       API.messages.post(this.$props.caseId, sender, this.message)
-      .then((querySnapshot) => {
-        this.message = "";
-      }).catch((err) => {
-        console.warn(err);
-      });
+        .then((querySnapshot) => {
+          this.message = '';
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
     }
   },
 }
