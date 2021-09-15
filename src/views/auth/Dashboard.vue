@@ -121,9 +121,6 @@ export default {
     isVerified() {
       return this.$store.state.company.is_mail_verified; 
     },
-    oobCode() {
-      return this.$route.query.oobCode; 
-    },
     mode() {
       return this.$route.query.mode; 
     },

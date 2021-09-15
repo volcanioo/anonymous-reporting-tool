@@ -72,13 +72,22 @@ export default {
   methods: {
     verifyUser() {
       if (this.isVerified) return false;
+      if (! this.oobCode) {
+        this.$swal(this.messages.error);
+        this.$router.push({
+          name: 'Dashboard',
+        });
+
+        return;
+      }
       
       API.users.verify(this.oobCode).then(result => {
         API.companies.post(this.userUid, this.companyName, this.photoURL).then((result) => {
-          // this.$swal(this.messages.success);
+          this.$swal(this.messages.success);
+          return;
         });
       }).catch((err) => {
-        // this.$swal(this.messages.error);
+        this.$swal(this.messages.error);
         console.warn(err);
       });
     }

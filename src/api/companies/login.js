@@ -21,7 +21,6 @@ export default function (companyEmail, companyPassword) {
             phone_number: userObject.phoneNumber,
             photo_url: userObject.photoURL,
           });
-          console.log(store.state.company)
         })
         resolve(userCredential);
       })
