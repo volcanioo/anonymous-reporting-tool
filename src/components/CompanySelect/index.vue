@@ -1,9 +1,11 @@
 <template>
   <article class="company-selector">
+    <label for="company-name"> {{ $t('enter_your_company_name') }} </label>
     <input
       autofocus
+      id="company-name"
       type="text"
-      :placeholder="$t('type_your_company_name')"
+      :placeholder="$t('enter_your_company_name')"
       v-model="searchInput"
     >
     <company-list
@@ -15,11 +17,10 @@
       }"
       @set-selected-company="setSelectedCompany"
     />
-    <div v-if="isCompanyInviteVisible">
-      <router-link 
-        :to="{ name: 'Home' }"
-        v-text="$t('couldnt_find_company')" 
-      />
+    <div
+      v-if="isCompanyInviteVisible"
+      class="company-selector--footer"
+    >
       <button
         class="button"
         :class="{
@@ -28,6 +29,10 @@
         :disabled="!selectedCompany"
         @click="nextStep"
         v-text="$t('NEXT')"
+      />
+      <router-link
+        :to="{ name: 'Home' }"
+        v-text="$t('couldnt_find_company')"
       />
     </div>
   </article>
@@ -100,8 +105,26 @@ a {
 }
 
 .company-selector {
+
+  label {
+    display: block;
+    text-align: left;
+    margin-bottom: 4px;
+
+    &:after {
+      content: "*";
+      font-weight: bold;
+      color: var(--red);
+    }
+  }
+
   input {
     margin-bottom: 0px;
   }
+}
+
+.company-selector--footer {
+  display: block;
+  margin: 15px 0;
 }
 </style>
