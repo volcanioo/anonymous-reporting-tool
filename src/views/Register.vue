@@ -11,7 +11,7 @@
         v-model="companyName"
         type="companyName"
         name="companyName"
-        :placeholder="$t('type_your_company_name')"
+        :placeholder="$t('enter_your_company_name')"
       />
       <label for="email"> {{ $t('company_email') }} </label>
       <input
@@ -56,7 +56,7 @@ import API from "../api";
 export default {
   name: 'Register',
   components: {
-    BaseHeader
+    BaseHeader,
   },
   data() {
     return {

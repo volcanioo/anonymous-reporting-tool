@@ -15,7 +15,7 @@
           <span>TO:</span>
           <figure>
             <img
-              :src="selectedCompany.companyPhotoUrl"
+              :src="selectedCompanyImage"
               :alt="selectedCompany.companyName"
             >
           </figure>
@@ -112,6 +112,9 @@ export default {
       });
 
       return hasFormElementsValid.every((condition) => condition === true);
+    },
+    selectedCompanyImage() {
+      return (this.selectedCompany.companyPhotoUrl) ? this.selectedCompany.companyPhotoUrl : require('@/assets/user.svg');
     },
   },
   methods: {

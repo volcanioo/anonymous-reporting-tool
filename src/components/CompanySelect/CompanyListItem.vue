@@ -8,18 +8,19 @@
 </template>
 
 <script>
+
 export default {
-  name: "CompanyItem",
+  name: 'CompanyItem',
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   computed: {
     getImage() {
       return (this.item.companyPhotoUrl) ? this.item.companyPhotoUrl : require('@/assets/user.svg');
-    }
+    },
   },
   methods: {
     setSelectedCompany(item) {

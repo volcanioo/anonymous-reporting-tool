@@ -11,7 +11,7 @@
     <company-list
       v-if="searchInput.length > 3"
       :items='Object.values(items)'
-      :class="{ 
+      :class="{
         'company-selector__list--empty': !(searchInput.length > 0),
         'company-selector__list--loading': isLoading,
       }"
