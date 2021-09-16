@@ -1,11 +1,11 @@
 import TYPES from './TYPES';
 
-export const culturalIssues = {
+export default {
   issueType: {
     id: 'issueType',
     parentField: TYPES.CULTURE_ISSUES,
     type: 'select',
-    value: '-1',
+    value: '',
     options: [
       'What type of issue did you experience?',
       'Culture is not welcoming or inclusive',
@@ -17,5 +17,12 @@ export const culturalIssues = {
       'Punished for mistakes and failures',
       'Other (please describe below)',
     ],
+    validate: (value) => {
+      if (value === -1 || value === '') {
+        return false;
+      }
+
+      return true;
+    },
   },
 };

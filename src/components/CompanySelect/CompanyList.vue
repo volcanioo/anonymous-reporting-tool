@@ -64,6 +64,8 @@ export default {
   text-indent: 0px;
   margin: 0;
   padding: 0;
+
+  transition: max-height .8s;
 }
 
 .company-selector__empty {

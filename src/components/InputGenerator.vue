@@ -1,5 +1,11 @@
 <template>
-  <div v-if="element" class="element">
+  <div
+    v-if="element"
+    class="element"
+    :class="{
+      'element--error': !isInputInvalid,
+    }"
+  >
     <select
       v-if="element.type === 'select'"
       v-model="element.value"
@@ -12,7 +18,7 @@
         v-for="(option, index) in element.options"
         :key="option"
         v-text="option"
-        :value="index !== 0 ? option : -1"
+        :value="index !== 0 ? option : ''"
       />
     </select>
     <input
@@ -62,31 +68,35 @@ export default {
   props: {
     element: {
       type: Object,
-      default: {},
+      default: () => {},
+    },
+  },
+  computed: {
+    isRequired() {
+      return this.element.required;
+    },
+    isInputInvalid() {
+      return this.element?.validate(this.element.value);
     },
   },
   methods: {
-    handleInput (e) {
-      this.$emit('input', this.element.value)
-    }
-  }
-}
+    handleInput() {
+      this.$emit('input', this.element.value);
+      this.$emit('validation');
+      this.$emit('onUpdate', this.element);
+    },
+  },
+};
 </script>
 
-<style lang="scss">
-  .element {
-    &--file {
-      display: flex;
-      align-items: center;
+<style lang="scss" scoped>
+.element {
+  position: relative;
+}
 
-      img {
-        flex: 1;
-      }
-
-      input {
-        flex: 4;
-        margin-left: 1em;
-      }
-    }
+.element--error {
+  ::v-deep > * {
+    outline: 1px solid var(--red);
   }
+}
 </style>
