@@ -2,7 +2,7 @@
   <main class="company-settings z-index-3 main-container">
     <Sidebar />
     <div class="content">
-      <Form v-if="isEmailValidated" :elements="settingsInputs" :submitButton="submitButton" :submitAction="submit"/>
+      <Form v-if="isEmailValidated" :elements="settingsInputs" :submitAction="submit"/>
       <div v-else class="notification" v-text="$t('varify_email_settings')"></div>
     </div>
   </main>
@@ -64,13 +64,6 @@ export default {
     },
   },
   computed: {
-    submitButton() {
-      return {
-        id: 'submit',
-        type: 'button',
-        label: 'Save Changes',
-      }
-    },
     settingsInputs() {
       return [
         {
@@ -78,30 +71,45 @@ export default {
           placeholder: 'Name',
           type: 'input',
           value: this.companyData.company_name,
+          validate: (value) => {
+            if (value === -1 || value === '') {
+              return false;
+            }
+
+            return true;
+          },
         },
         {
           id: 'company_email',
           placeholder: 'Email',
           type: 'input',
           value: this.companyData.company_email,
+          validate: (value) => {
+            if (value === -1 || value === '') {
+              return false;
+            }
+
+            return true;
+          },
         },
         {
           id: 'phone_number',
           placeholder: 'Phone number',
           type: 'input',
           value: this.companyData.phone_number,
+          validate: (value) => {
+            if (value === -1 || value === '') {
+              return false;
+            }
+
+            return true;
+          },
         },
-        {
-          id: 'photo_url',
-          placeholder: 'Image or logo',
-          type: 'file',
-          value: this.companyData.photo_url,
-        },
-      ]
+      ];
     },
     companyData() {
       return this.$store.state.company;
-    }
+    },
   },
 }
 </script>

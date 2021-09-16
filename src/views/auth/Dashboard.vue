@@ -102,7 +102,7 @@
 import API from '../../api';
 import utilities from '../../utilities';
 import Sidebar from './Sidebar.vue';
-import TYPES from "../report/codables/TYPES";
+import TYPES from "../report/codables/TYPES.js";
 import _ from 'lodash';
 
 export default {

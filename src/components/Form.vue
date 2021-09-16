@@ -4,16 +4,14 @@
       @submit.prevent="submitAction"
     >
       <input-generator
-        v-for="element in elements" :key="element.id"
+        v-for="element in elements"
+        :key="element.id"
         :element="element"
         :data-field="element.id"
         v-model="element.value"
         :class="`form__element form__element--${element.type}`"
       />
-      <input-generator
-        :class="'form__element--submit'"
-        :element="submitButton"
-      />
+      <button @click="submitAction">action</button>
     </form>
 </template>
 
@@ -28,9 +26,6 @@ export default {
     elements: {
       type: Array,
       required: true
-    },
-    submitButton: {
-      type: Object,
     },
     submitAction: {
       type: Function,
