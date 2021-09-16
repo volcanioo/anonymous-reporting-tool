@@ -10,20 +10,20 @@ export default function (companyEmail, companyPassword) {
       .then((token) => {
         store.dispatch('saveToken', token);
         const userUid = userCredential.user.uid;
-        algoliaIndex.findObject((hit) => hit.userUid === userUid).then(obj => {
-          const userObject = obj.object;
-
-          store.dispatch('setCompanyData', {
-            company_email: userCredential.user.email,
-            is_mail_verified: userCredential.user.emailVerified,
-            userUid: userObject.userUid,
-            company_name: userObject.name,
-            phone_number: userObject.phoneNumber,
-            photo_url: userObject.photoURL,
-          });
-        })
-        resolve(userCredential);
+        return algoliaIndex.findObject((hit) => hit.userUid === userUid);
       })
+      .then((obj) => {
+        const userObject = obj.object;
+        return store.dispatch('setCompanyData', {
+          company_email: userCredential.user.email,
+          is_mail_verified: userCredential.user.emailVerified,
+          userUid: userObject.userUid,
+          company_name: userObject.name,
+          phone_number: userObject.phoneNumber,
+          photo_url: userObject.photoURL,
+        })
+      })
+      .then(() => resolve(userCredential));
     }).catch((error) => {
       reject(error);
     });

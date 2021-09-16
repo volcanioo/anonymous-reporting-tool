@@ -1,13 +1,12 @@
 <template>
-  <main class="dashboard z-index-1">
+  <main class="dashboard z-index-1 main-container">
     <Sidebar />
     <div class="content">
       <div
         v-if="!isVerified"
         class="notification"
-      >
-        Please approve your email. Otherwise, your emplooyes won't see your company in the company list.
-      </div>
+        v-text="$t('varify_email')"
+      />
       <div 
         v-if="cases.length > 0"
         class="dashboard__content"
@@ -142,6 +141,10 @@ export default {
     }
   },
   watch: {
+    userUid() {
+      // to run after the userUid is updated after login
+      this.fetchCases();
+    },
     cases(newValue, oldValue) {
       const date = utilities.dateMapper(new Date());
       const types = [TYPES.CULTURE_ISSUES, TYPES.GENERAL, TYPES.HARASSMENT_OR_BIAS, TYPES.DIVERSITY];
@@ -174,6 +177,9 @@ export default {
   },
   methods: {
     fetchCases() {
+      // to not to break at login or register
+      if (! this.$store.state.company.userUid) return;
+
       API.cases.list(this.$store.state.company.userUid)
       .then((query) => { 
         this.monthlyReport = {
@@ -204,24 +210,6 @@ export default {
 </script>
 
 <style lang="scss">
-.dashboard {
-  padding-left: 295px;
-}
-
-.content {
-  padding: 20px;
-}
-
-.notification {
-  background: #d01f09;
-  padding: 20px;
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  margin: -20px;
-  margin-bottom: 20px;
-}
-
 .dashboard__card {
   background: white;
   padding: 14px 18px;

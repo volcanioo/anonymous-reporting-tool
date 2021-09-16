@@ -40,5 +40,7 @@
     "congratulations": "Congratulations",
     "approved_email": "The email successfully approved. Now, your employees can see your company's name on the company list.",
     "oops": "Oops...",
-    "create_a_new_case": "Create a new case"
+    "create_a_new_case": "Create a new case",
+    "varify_email": "Please approve your email. Otherwise, your employees won't see your company in the company list.",
+    "varify_email_settings": "Please, procede with email verification to access your settings."
 }

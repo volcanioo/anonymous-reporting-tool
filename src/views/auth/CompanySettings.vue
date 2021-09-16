@@ -1,10 +1,11 @@
 <template>
-  <div class="company-settings z-index-3">
+  <main class="company-settings z-index-3 main-container">
     <Sidebar />
     <div class="content">
-      <Form :elements="settingsInputs" :submitButton="submitButton" :submitAction="submit"/>
+      <Form v-if="isEmailValidated" :elements="settingsInputs" :submitButton="submitButton" :submitAction="submit"/>
+      <div v-else class="notification" v-text="$t('varify_email_settings')"></div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -19,6 +20,11 @@ export default {
     Sidebar,
     InputGenerator,
     Form
+  },
+  data() {
+    return {
+      isEmailValidated: this.$store.state.company.is_mail_verified,
+    };
   },
   methods: {
     submit(e) {
