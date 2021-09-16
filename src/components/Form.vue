@@ -11,7 +11,7 @@
         v-model="element.value"
         :class="`form__element form__element--${element.type}`"
       />
-      <button @click="submitAction">action</button>
+      <button @click="submitAction">{{ submitLabel }}</button>
     </form>
 </template>
 
@@ -30,6 +30,9 @@ export default {
     submitAction: {
       type: Function,
     },
+    submitLabel: {
+      type: String,
+    }
   }
 }
 </script>
