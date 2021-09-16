@@ -1,5 +1,4 @@
 import { algoliaIndex } from '../../firebase';
-import { firebase } from '../../firebase/index';
 import store from '../../store';
 
 export default function (userUid, name, photoUrl, phoneNumber, email, generate = true) {
@@ -39,12 +38,3 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
 
   });
 };
-
-export function testUpdate(uid, name, photoUrl, email, phoneNumber) {
-  firebase.database().ref('companies/' + uid).set({
-    name,
-    photoUrl,
-    email,
-    phoneNumber
-  })
-}
