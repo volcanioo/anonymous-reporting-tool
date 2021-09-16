@@ -36,7 +36,7 @@
       >Send Message</button>
     </form>
     <div class="chat__info" v-else>
-      <p>This case has archived.</p>
+      <p>This case has been hide from public.</p>
     </div>
   </div>
 </template>

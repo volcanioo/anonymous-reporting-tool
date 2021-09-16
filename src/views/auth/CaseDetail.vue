@@ -31,7 +31,7 @@
             class="case-detail__object"
             v-if="details.category"
             :class="{
-              'case-detail__object--noAnswer': !(details.category && details.category !== '-1')  
+              'case-detail__object--noAnswer': !(details.category && details.category !== '-1')
             }"
           >
             <b>Category</b>
@@ -60,7 +60,6 @@
               'case-detail__object--hide': hideElements(detail, ['company', 'category', 'created', 'message', 'feedbackType', 'status', 'id']),
             }"
           >
-          
             <b>{{ camelCaseToNormal(detail) }}</b>
             <span>
               {{ (details[detail] && details[detail] !== '-1') ? details[detail] : 'No answer added.' }}
@@ -74,29 +73,39 @@
             <span>{{ details.message }}</span>
           </p>
         </div>
-
-        <div v-if="this.id && this.details.status">
-          <div class="checkbox">
-            <input type="checkbox" v-model="conditionsAccepted">
-            <span>
-              I'm aware of when I click the “Close the Case” button, and I won't be able to view the case again.
+        <div
+          v-if="isCompany"
+          class="achieve-the-case"
+        >
+          <div class="status-indicator">
+            <span class="status-indicator__title">
+              Status
+              <span
+                class="badge"
+                :class="{
+                  'generalFeedbackOrQuestion': details.status,
+                  'diversityEquityAndInclusion': !details.status,
+                }"
+              />
+              {{ details.status ? 'Active' : 'Hide from public' }}
             </span>
+            <p v-if="details.status">The reporter (anonymous user) can send messages & reach the case detail page.</p>
+            <p v-else>The reporter (anonymous user) <b>is not allowed</b> to send messages or reach the case detail page.</p>
           </div>
-
-          <button
-            class="button"
-            :disabled="!conditionsAccepted"
-            :class="{
-              'button--signal': conditionsAccepted,
-            }"
-            @click="closeTheCase()"
-          >Close the Case</button>
         </div>
+        <select
+          v-if="isCompany"
+          v-model="details.status"
+          @change="updateCaseStatus"
+        >
+          <option value="true">Active</option>
+          <option value="false">Hide from public</option>
+        </select>
       </aside>
       <div class="case-detail__chat">
          <messages
           :case-id="pageId"
-          :disabled="!this.details.status"
+          :disabled="!details.status"
          />
       </div>
     </div>
@@ -128,6 +137,15 @@ export default {
     BaseFooter,
     Messages,
   },
+  computed: {
+    isCompany() {
+      if (this.id) {
+        return true;
+      }
+
+      return false;
+    },
+  },
   data() {
     return {
       isPageActive: true,
@@ -137,27 +155,30 @@ export default {
     }
   },
   created() {
-    this.pageId = (this.id) ? this.id : localStorage.getItem('caseId');
-    if (!this.pageId) {
-      this.$router.push({ name: 'home' });
-    }
-    API.cases.getById(this.pageId).then((doc) => {
-      if (doc.exists && !((!doc.data().status) && !(this.id))) {
-        this.details = {
-          category: doc.data().feedbackType,
-          id: this.id,
-          ...doc.data(),
-        };
-      } else {
-        this.isPageActive = false;
-        this.logout();
-      }
-    })
-    .catch((err) => {
-      console.warn(err)
-    });
+    this.fetchCase();
   },
   methods: {
+    fetchCase() {
+      this.pageId = (this.id) ? this.id : localStorage.getItem('caseId');
+      if (!this.pageId) {
+        this.$router.push({ name: 'home' });
+      }
+      API.cases.getById(this.pageId).then((doc) => {
+        if (doc.exists && !((!doc.data().status) && !(this.id))) {
+          this.details = {
+            category: doc.data().feedbackType,
+            id: this.id,
+            ...doc.data(),
+          };
+        } else {
+          this.isPageActive = false;
+          this.logout();
+        }
+      })
+      .catch((err) => {
+        console.warn(err)
+      });
+    },
     convertDate(date) {
       return utilities.dateMapper(date)
     },
@@ -186,15 +207,14 @@ export default {
         }, 400)
       }
     },
-    closeTheCase() {
+    updateCaseStatus() {
+      const caseStatus = (this.details.status === 'true');
       API.cases.postById(this.pageId, {
         ...this.details,
-        status: false
+        status: caseStatus,
       })
       .then((doc) => {
-        this.logout({
-          name: "Dashboard"
-        });
+        this.fetchCase();
       })
       .catch((err) => {
         console.warn(err)
@@ -371,5 +391,40 @@ export default {
 
 .case-detail__footer {
   margin-top: 200px;
+}
+
+.achieve-the-case {
+  .wrapper {
+    padding: 12px 12px 12px 18px;
+    background: white;
+    margin-top: 8px;
+  }
+  strong {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--dark-black);
+  }
+  p {
+    font-size: 14px;
+    margin: 4px 0 0 0;
+    color: var(--gray);
+  }
+  button {
+    max-width: 200px;
+    margin-right: 0;
+    margin-left: auto;
+    font-size: 16px;
+  }
+}
+
+.status-indicator {
+  margin-top: 24px;
+  background: white;
+  padding: 12px 18px;
+  font-size: 16px;
+
+  .badge {
+    margin-left: 4px;
+  }
 }
 </style>
