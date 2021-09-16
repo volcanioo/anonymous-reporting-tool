@@ -101,8 +101,8 @@
 <script>
 import API from '../../api';
 import utilities from '../../utilities';
-import TYPES from "../report/form/TYPES";
 import Sidebar from './Sidebar.vue';
+import TYPES from "../report/codables/TYPES";
 import _ from 'lodash';
 
 export default {

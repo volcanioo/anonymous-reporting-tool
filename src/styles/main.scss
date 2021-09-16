@@ -1,14 +1,16 @@
-html, body {
-    padding: 0;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    --primary-color: #D0F6E4;
-    --secondary-color: #bbddcd;
-    --dark-black: #1a1a1a;
-    --gray: #808080;
-    --light-gray: #F6F7F9;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: antialiased;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  --primary-color: #d0f6e4;
+  --secondary-color: #bbddcd;
+  --dark-black: #1a1a1a;
+  --gray: #808080;
+  --light-gray: #f6f7f9;
+  --red: #f63131;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
 }
 * {
   box-sizing: border-box;
@@ -52,13 +54,13 @@ button {
   line-height: 68px;
   min-height: 68px;
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
   overflow: hidden;
 
   &:not([disabled]):hover {
     background: white;
     color: var(--dark-black);
-    transition: all .4s cubic-bezier(0.25, 1, 0.5, 1) .1s;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
     box-shadow: 0px 0px 0px 5px var(--secondary-color);
     animation: none;
   }
@@ -82,7 +84,7 @@ button {
     border-radius: 50%;
     border: 2px solid #ccc;
     border-top-color: #000;
-    animation: spinner .6s linear infinite;
+    animation: spinner 0.6s linear infinite;
   }
 }
 
@@ -104,7 +106,7 @@ button {
   opacity: 0;
   transform: scale(1.02);
   pointer-events: none;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &.active {
     opacity: 1;
@@ -122,9 +124,9 @@ button {
     margin-top: -50px;
     margin-left: -50px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, .2);
-    border-top-color: rgba(255, 255, 255, .5);
-    animation: spinner .4s linear infinite;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: rgba(255, 255, 255, 0.5);
+    animation: spinner 0.4s linear infinite;
   }
 }
 
@@ -133,7 +135,7 @@ button {
   overflow: initial;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     box-shadow: 0 0 0 1px var(--dark-black);
     left: 0;
@@ -161,17 +163,24 @@ button {
     height: calc(100% + 25px);
     box-shadow: inset 0 0 0 1px var(--dark-black);
     opacity: 0;
-    transform: translate(-12px, -12px)
+    transform: translate(-12px, -12px);
   }
 }
 
-.button--red {
-  background: #F63131;
+button[disabled] {
+  background: #bbddcd;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: no-drop;
 }
 
-button[disabled] {
-  opacity: .4;
-  cursor: no-drop;
+.button--red {
+  background: #f63131;
+
+  &[disabled] {
+    background: #f63131;
+    color: white;
+    opacity: 0.4;
+  }
 }
 
 h1 {
@@ -195,8 +204,13 @@ textarea {
   display: block;
 
   &::placeholder {
-    color: rgba(8, 8, 8, .20);
+    color: rgba(8, 8, 8, 0.5);
     opacity: 1;
+  }
+
+  &:focus {
+    outline: 2px solid #2d825b;
+    box-shadow: 0 0 2pt 1pt #2d825b;
   }
 }
 
@@ -207,7 +221,8 @@ select {
   background-position: right 20px center;
   padding-right: 50px;
   -webkit-appearance: none;
-    -moz-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
   &::-ms-expand {
     display: none;
   }
@@ -233,7 +248,6 @@ textarea {
 .diversityEquityAndInclusion {
   background-color: #fb4560;
 }
-
 
 .checkbox {
   position: relative;
@@ -269,7 +283,7 @@ textarea {
 
     &:after,
     &:before {
-      content: "";
+      content: '';
       width: 20px;
       height: 20px;
       background: rgba(255, 255, 255, 1);
@@ -283,7 +297,6 @@ textarea {
 
 .checkbox--signal {
   span {
-
     &:before {
       background: transparent;
       border: 1px solid white;
@@ -304,14 +317,16 @@ textarea {
     height: 30px;
     box-shadow: inset 0 0 0 1px var(--dark-black);
     opacity: 0;
-    transform: translate(-5px, -5px)
+    transform: translate(-5px, -5px);
   }
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
-@import "z-indexes";
+@import 'z-indexes';
 
 // textarea:invalid,
 // select:invalid,

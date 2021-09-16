@@ -59,6 +59,7 @@ export default {
   text-align: center;
   color: white;
   padding: 20px;
+  position: fixed;
   width: 295px;
   left: 0;
   top: 0;
