@@ -11,7 +11,7 @@
         v-model="element.value"
         :class="`form__element form__element--${element.type}`"
       />
-      <button @click="submitAction">{{ submitLabel }}</button>
+      <button>{{ submitLabel }}</button>
     </form>
 </template>
 
