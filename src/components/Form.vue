@@ -1,13 +1,14 @@
 <template>
     <form
       class="form"
-      @submit.prevent="submitAction"
+      @submit.prevent="submit"
     >
       <input-generator
         v-for="element in elements"
         :key="element.id"
         :element="element"
         :data-field="element.id"
+        :required="element.required"
         v-model="element.value"
         :class="`form__element form__element--${element.type}`"
       />
@@ -32,6 +33,17 @@ export default {
     },
     submitLabel: {
       type: String,
+    }
+  },
+  methods: {
+    submit(e) {
+      const isValid = this.elements.reduce((valid, element) => {
+        if (!element.validate) return valid && true;
+
+        return valid && element.validate(element.value)
+      }, true);
+
+      if (isValid) this.submitAction(e);
     }
   }
 }

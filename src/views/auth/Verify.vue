@@ -89,7 +89,6 @@ export default {
       }
       
       API.users.verify(this.oobCode).then(result => {
-        console.log(result);
         API.companies.post(this.userUid, this.companyName, this.photoURL, this.email).then((result) => {
           this.$swal(this.messages.success);
           return;

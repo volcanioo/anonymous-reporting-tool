@@ -70,6 +70,7 @@ export default {
           id: 'company_name',
           placeholder: 'Name',
           type: 'input',
+          required: true,
           value: this.companyData.company_name,
           validate: (value) => {
             if (value === -1 || value === '') {
@@ -83,6 +84,7 @@ export default {
           id: 'company_email',
           placeholder: 'Email',
           type: 'input',
+          required: true,
           value: this.companyData.company_email,
           validate: (value) => {
             if (value === -1 || value === '') {
@@ -96,6 +98,7 @@ export default {
           id: 'phone_number',
           placeholder: 'Phone number',
           type: 'input',
+          required: true,
           value: this.companyData.phone_number,
           validate: (value) => {
             if (value === -1 || value === '') {
