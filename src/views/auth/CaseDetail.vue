@@ -12,9 +12,15 @@
         Back to Dashboard
       </router-link>
       <div class="passcode">
-        Case: <input ref="passcode" type="text" readonly :value="details.passcode"  @click="copyToClipboard"> 
+        Case:
+        <input
+          ref="passcode"
+          type="text"
+          readonly
+          :value="details.passcode"
+          @click="copyToClipboard"
+        >
         <span @click="copyToClipboard">COPY</span>
-
         <button
           v-if="!id"
           class="button button--red"
@@ -26,81 +32,12 @@
         </button>
       </div>
       <aside class="case-detail__sidebar">
-        <div class="case-detail__content">
-          <p
-            class="case-detail__object"
-            v-if="details.category"
-            :class="{
-              'case-detail__object--noAnswer': !(details.category && details.category !== '-1')
-            }"
-          >
-            <b>Category</b>
-            <span>{{ details.category }}</span>
-          </p>
-          <p 
-            class="case-detail__object"
-            v-if="details.company"
-          >
-            <b>Company</b>
-            <span>{{ details.company.companyName }}</span>
-          </p>
-          <p 
-            class="case-detail__object case-detail__object--half"
-            v-if="details.created"
-          >
-            <b>Date</b>
-            <span>{{ convertDate(details.created.toDate()) }}</span>
-          </p>
-          <p
-            class="case-detail__object case-detail__object--half"
-            v-for="detail in Object.keys(details)"
-            :key="detail.id"
-            :class="{
-              'case-detail__object--noAnswer': !(details[detail] && details[detail] !== '-1'),
-              'case-detail__object--hide': hideElements(detail, ['company', 'category', 'created', 'message', 'feedbackType', 'status', 'id']),
-            }"
-          >
-            <b>{{ camelCaseToNormal(detail) }}</b>
-            <span>
-              {{ (details[detail] && details[detail] !== '-1') ? details[detail] : 'No answer added.' }}
-            </span>
-          </p>
-          <p 
-            class="case-detail__object"
-            v-if="details.message"
-          >
-            <b>Message:</b>
-            <span>{{ details.message }}</span>
-          </p>
-        </div>
-        <div
-          v-if="isCompany"
-          class="achieve-the-case"
-        >
-          <div class="status-indicator">
-            <span class="status-indicator__title">
-              Status
-              <span
-                class="badge"
-                :class="{
-                  'generalFeedbackOrQuestion': details.status,
-                  'diversityEquityAndInclusion': !details.status,
-                }"
-              />
-              {{ details.status ? 'Active' : 'Hide from public' }}
-            </span>
-            <p v-if="details.status">The reporter (anonymous user) can send messages & reach the case detail page.</p>
-            <p v-else>The reporter (anonymous user) <b>is not allowed</b> to send messages or reach the case detail page.</p>
-          </div>
-        </div>
-        <select
-          v-if="isCompany"
-          v-model="details.status"
-          @change="updateCaseStatus"
-        >
-          <option value="true">Active</option>
-          <option value="false">Hide from public</option>
-        </select>
+        <card
+          :case-id="pageId"
+          :details="details"
+          :is-company="isCompany"
+          @status-updated="fetchCase"
+        />
       </aside>
       <div class="case-detail__chat">
          <messages
@@ -109,8 +46,11 @@
          />
       </div>
     </div>
-    <div v-if="!isPageActive" class="case-detail__archived">
-      <h1>This case has been archived or removed.</h1>
+    <div
+      v-if="!isPageActive"
+      class="case-detail__deactive"
+    >
+      <h1>This case has been concluded. Please click here if the problem is not solved yet.</h1>
       <router-link
         class="case-detail__button"
         :to="{ name: 'Home' }"
@@ -123,10 +63,10 @@
 </template>
 
 <script>
+import Messages from '../../components/CaseDetail/Messages.vue';
+import Card from '../../components/CaseDetail/Card.vue';
 import BaseFooter from '../../components/BaseFooter.vue';
 import BaseHeader from '../../components/BaseHeader.vue';
-import Messages from '@/components/Messages.vue';
-import utilities from '../../utilities';
 import API from '../../api';
 
 export default {
@@ -136,6 +76,7 @@ export default {
     BaseHeader,
     BaseFooter,
     Messages,
+    Card,
   },
   computed: {
     isCompany() {
@@ -179,20 +120,6 @@ export default {
         console.warn(err)
       });
     },
-    convertDate(date) {
-      return utilities.dateMapper(date)
-    },
-    camelCaseToNormal(data) {
-      return data.replace(/([A-Z])/g, ' $1')
-      .replace(/^./, function(str){ return str.toUpperCase(); })
-    },
-    hideElements(target, stringArray) {
-      var value = 0;
-      stringArray.forEach(function(word){
-        value = value + target.includes(word);
-      });
-      return (value === 1);
-    },
     copyToClipboard() {
       var copyText = this.$refs.passcode;
       copyText.select();
@@ -207,33 +134,11 @@ export default {
         }, 400)
       }
     },
-    updateCaseStatus() {
-      const caseStatus = (this.details.status === 'true');
-      API.cases.postById(this.pageId, {
-        ...this.details,
-        status: caseStatus,
-      })
-      .then((doc) => {
-        this.fetchCase();
-      })
-      .catch((err) => {
-        console.warn(err)
-      });
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  max-width: 85%;
-  margin: 0 auto;
-  padding-top: 42px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
 .case-detail__button {
   display: flex;
   align-items: center;
@@ -266,73 +171,13 @@ export default {
     margin-right: 4px;
   }
 }
-
-.case-detail__content {
+.container {
+  max-width: 85%;
+  margin: 0 auto;
+  padding-top: 42px;
   display: flex;
-  background: white;
   flex-wrap: wrap;
-}
-
-.case-detail__sidebar {
-  flex: 0 0 48%;
-  margin: 0 2% 0 0%;
-}
-
-.case-detail__wrapper {
-  height: 600px;
-  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  overflow: scroll;
-}
-
-.case-detail__object {
-  border: 1px solid var(--light-gray);
-  border-left: none;
-  border-top: none;
-  margin: 0;
-  padding: 12px 20px;
-  font-size: 16px;
-  max-width: 100%;
-  flex: 0 0 100%;
-
-  &:last-child {
-    border-top: 1px solid var(--light-gray);
-    margin-top: -1px;
-    width: 100%;
-  }
-
-  b {
-    display: block;
-    font-weight: 500;
-    opacity: .6;
-    font-size: 14px;
-  }
-}
-
-.case-detail__object--half {
-  max-width: 50%;
-  flex: 0 0 50%;
-}
-
-.case-detail__object--noAnswer {
-  background-image: linear-gradient(rgba(223, 223, 223, 0.04) .1em, transparent .1em), linear-gradient(90deg, rgba(223, 223, 223, 0.04) .1em, transparent .1em);
-  background-size: .3em .3em;
-  overflow: hidden;
-  opacity: .6;
-
-  span {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: .3px;
-    opacity: .2;
-  }
-}
-
-.case-detail__object--hide {
-  visibility: hidden;
-  display: none;
 }
 
 .passcode {
@@ -372,11 +217,16 @@ export default {
   }
 }
 
-.case-detail__chat {
+.case-detail__chat,
+.case-detail__sidebar {
   width: 50%;
 }
 
-.case-detail__archived {
+.case-detail__sidebar {
+  padding-right: 24px;
+}
+
+.case-detail__deactive {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -391,40 +241,5 @@ export default {
 
 .case-detail__footer {
   margin-top: 200px;
-}
-
-.achieve-the-case {
-  .wrapper {
-    padding: 12px 12px 12px 18px;
-    background: white;
-    margin-top: 8px;
-  }
-  strong {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--dark-black);
-  }
-  p {
-    font-size: 14px;
-    margin: 4px 0 0 0;
-    color: var(--gray);
-  }
-  button {
-    max-width: 200px;
-    margin-right: 0;
-    margin-left: auto;
-    font-size: 16px;
-  }
-}
-
-.status-indicator {
-  margin-top: 24px;
-  background: white;
-  padding: 12px 18px;
-  font-size: 16px;
-
-  .badge {
-    margin-left: 4px;
-  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div 
+    <div
       class="chat"
       ref="chat"
       v-if="messages"
@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import API from '../api';
-import _isEmpty from 'lodash/isEmpty';
-import utilities from '../utilities';
+import API from '@/api';
+import isEmpty from 'lodash/isEmpty';
+import utilities from '../../utilities';
 
 export default {
   props: {
@@ -99,7 +99,7 @@ export default {
       return 'anonymous';
     },
     sendMessage() {
-      if (_isEmpty(this.message)) return;
+      if (isEmpty(this.message)) return;
 
       const sender = this.userCheck();
       API.messages.post(this.$props.caseId, sender, this.message)

@@ -13,6 +13,7 @@
     "send": "Send",
     "company_register": "Company Register",
     "register": "Register",
+    "date": "Date",
     "company": "Company",
     "company_name": "Company Name",
     "enter_your_company_name": "Enter Your Company's Name",
@@ -40,5 +41,13 @@
     "congratulations": "Congratulations",
     "approved_email": "The email successfully approved. Now, your employees can see your company's name on the company list.",
     "oops": "Oops...",
-    "create_a_new_case": "Create a new case"
+    "create_a_new_case": "Create a new case",
+    "active": "Active",
+    "hide_from_public": "Hide from public",
+    "active_description": "The reporter (anonymous user) can send messages & reach the case detail page.",
+    "hide_from_public_description": "The reporter (anonymous user) <b>is not allowed</b> to send messages or reach the case detail page.",
+    "are_you_sure": "Are you sure?",
+    "reporter_warning": "The reporter (anonymous user) won't be able to reach the case detail page via passcode if you hide from public!",
+    "yes_hide_from_public": "Yes, hide from public",
+    "category": "Category"
 }
