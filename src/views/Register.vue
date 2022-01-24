@@ -27,12 +27,12 @@
         name="password"
         :placeholder="$t('dummy_password')"
       />
-      <!-- <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
+      <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
       <input
         v-model="companyPhotoURL"
         type="text"
         name="companyPhotoURL"
-      /> -->
+      />
       <button
         type="submit"
         :class="{ 'button--progress': progress }"
