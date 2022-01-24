@@ -12,7 +12,7 @@
         v-model="companyName"
         type="companyName"
         name="companyName"
-        :placeholder="$t('type_your_company_name')"
+        :placeholder="$t('enter_your_company_name')"
       />
       <label for="email"> {{ $t('company_email') }} </label>
       <input
@@ -28,12 +28,12 @@
         name="password"
         :placeholder="$t('dummy_password')"
       />
-      <!-- <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
+      <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
       <input
         v-model="companyPhotoURL"
         type="text"
         name="companyPhotoURL"
-      /> -->
+      />
       <button
         type="submit"
         :class="{ 'button--progress': progress }"
@@ -59,7 +59,7 @@ import logout from "../api/companies/logout";
 export default {
   name: 'Register',
   components: {
-    BaseHeader
+    BaseHeader,
   },
   data() {
     return {

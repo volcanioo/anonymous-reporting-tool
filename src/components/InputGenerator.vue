@@ -3,7 +3,7 @@
     v-if="element"
     class="element"
     :class="{
-      'element--error': !isInputInvalid,
+      'element--error': isInputInvalid,
     }"
   >
     <select
@@ -46,20 +46,12 @@
       class="button"
       v-text="element.label"
     />
-    <div
-      class="element--file"
-      v-else-if="element.type === 'file'"
+    <span
+      v-if="isInputInvalid && element.required"
+      class="element--message"
     >
-      <img v-if="element.value" :src="element.value" :alt="element.placeholder">
-      <input
-        type="file"
-        @keyup="handleInput"
-        :placeholder="element.placeholder"
-        :required="Boolean(element.required)"
-        :name="element.id"
-        :id="element.id"
-      />
-    </div> 
+      Required
+    </span>
   </div>
 </template>
 
@@ -70,13 +62,17 @@ export default {
       type: Object,
       default: () => {},
     },
+    showErrorMessage: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   computed: {
     isRequired() {
       return this.element.required;
     },
     isInputInvalid() {
-      return this.element?.validate(this.element.value);
+      return !this.element?.validate(this.element.value) && this.showErrorMessage;
     },
   },
   methods: {
@@ -96,7 +92,18 @@ export default {
 
 .element--error {
   ::v-deep > * {
-    outline: 1px solid var(--red);
+    box-shadow: 0 0 0px 1px var(--red);
   }
+}
+
+.element--message {
+  font-weight: 600;
+  color: white;
+  position: absolute;
+  font-size: 12px;
+  right: 0;
+  bottom: 21px;
+  background: var(--red);
+  padding: 0 6px;
 }
 </style>
