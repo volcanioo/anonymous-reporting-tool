@@ -3,7 +3,7 @@
     v-if="element"
     class="element"
     :class="{
-      'element--error': !isInputInvalid,
+      'element--error': isInputInvalid,
     }"
   >
     <select
@@ -11,6 +11,8 @@
       v-model="element.value"
       @change="handleInput"
       :required="element.required"
+      :name="element.id"
+      :id="element.id"
     >
       <option
         v-for="(option, index) in element.options"
@@ -26,6 +28,8 @@
       v-model="element.value"
       :placeholder="element.placeholder"
       :required="element.required"
+      :name="element.id"
+      :id="element.id"
     >
     <textarea
       v-else-if="element.type === 'textarea'"
@@ -33,6 +37,8 @@
       v-model="element.value"
       :placeholder="element.placeholder"
       :required="element.required"
+      :name="element.id"
+      :id="element.id"
     />
     <button
       v-else-if="element.type === 'button'"
@@ -41,7 +47,7 @@
       v-text="element.label"
     />
     <span
-      v-if="!isInputInvalid"
+      v-if="isInputInvalid && element.required"
       class="element--message"
     >
       Required
@@ -56,13 +62,17 @@ export default {
       type: Object,
       default: () => {},
     },
+    showErrorMessage: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   computed: {
     isRequired() {
       return this.element.required;
     },
     isInputInvalid() {
-      return this.element?.validate(this.element.value);
+      return !this.element?.validate(this.element.value) && this.showErrorMessage;
     },
   },
   methods: {
@@ -81,7 +91,7 @@ export default {
 
 .element--error {
   ::v-deep > * {
-    outline: 1px solid var(--red);
+    box-shadow: 0 0 0px 1px var(--red);
   }
 }
 
@@ -94,5 +104,6 @@ export default {
   bottom: 21px;
   background: var(--red);
   padding: 0 6px;
+
 }
 </style>

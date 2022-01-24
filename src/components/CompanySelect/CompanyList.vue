@@ -1,7 +1,7 @@
 <template>
   <ul
     class="company-selector__list"
-    :class="{ 
+    :class="{
       'company-selector__list--loading': isLoading
     }"
   >
@@ -10,11 +10,11 @@
       class="company-selector__empty"
       v-text="$t('NO_RESULT')"
     />
-    <company-list-item 
+    <company-list-item
       v-for="item in items"
       :key="item.objectID"
       :item="item"
-      :class="{ 
+      :class="{
         'company-selector__item--selected': (item.userUid === selectedCompanyId),
       }"
       @click.native="setSelectedCompany(item)"
@@ -47,9 +47,9 @@ export default {
     setSelectedCompany(item) {
       this.selectedCompanyId = item.userUid;
       this.$emit('set-selected-company', item);
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

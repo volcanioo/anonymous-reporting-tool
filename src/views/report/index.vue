@@ -15,7 +15,7 @@
           <span>TO:</span>
           <figure>
             <img
-              :src="selectedCompany.companyPhotoUrl"
+              :src="selectedCompanyImage"
               :alt="selectedCompany.companyName"
             >
           </figure>
@@ -24,11 +24,14 @@
         <div
           v-for="element in formFields"
           class="report-page__element"
+          :class="{ 'report-page__element--shake-invalid-elements': shakeInvalidElements }"
           :key="element.id"
         >
           <input-generator
+            ref="inputField"
             :element="element"
             :data-field="element.id"
+            :showErrorMessage="showErrorMessage"
             @onUpdate="onInputChange"
             v-model="element.value"
           />
@@ -42,9 +45,11 @@
               class="report-page__element"
             >
               <input-generator
+                ref="inputField"
                 v-if="subfield.parentField === element.value"
                 :element="subfield"
                 :data-field="subfield.id"
+                :showErrorMessage="showErrorMessage"
                 @onUpdate="onInputChange"
                 v-model="subfield.value"
               />
@@ -52,10 +57,12 @@
           </div>
         </div>
         <button
-          :disabled="!isFormValid"
           class="button"
           @click="goLastStep"
-        >Go Last Step</button>
+        >Send Report</button>
+        <div class="alternative-exit">
+          <button @click="goBack()">Cancel</button>
+        </div>
       </div>
       <warning
         v-if="showWarningMessage"
@@ -70,7 +77,6 @@
 <script>
 /*
  * !TODO(1): The form should be resetted once the user update the FeedbackType. (to avoid some bugs)
- * !TODO(2): Required messages shouldn't be visible at the first load
  */
 import mapValues from 'lodash/mapValues';
 import InputGenerator from '@/components/InputGenerator.vue';
@@ -91,7 +97,11 @@ export default {
     return {
       showWarningMessage: false,
       loading: false,
-      formFields: FORM_FIELDS,
+      formFields: {
+        ...FORM_FIELDS,
+      },
+      showErrorMessage: false,
+      shakeInvalidElements: false,
       selectedCompany: null,
       enteredData: [],
       passcode: null,
@@ -113,13 +123,39 @@ export default {
 
       return hasFormElementsValid.every((condition) => condition === true);
     },
+    selectedCompanyImage() {
+      return (this.selectedCompany.companyPhotoUrl) ? this.selectedCompany.companyPhotoUrl : require('@/assets/user.svg');
+    },
   },
   methods: {
     setCompany(e) {
       this.selectedCompany = e;
     },
+    goBack() {
+      this.resetForm();
+      window.scrollTo(0, 0);
+      this.$router.push({ name: 'Home' });
+    },
+    indicateErrorMessages() {
+      this.shakeInvalidElements = true;
+      let firstInvalidField = this.$refs.inputField
+        .map((element) => element.$el.classList)
+        .findIndex((element) => element.contains('element--error'));
+
+      firstInvalidField = (firstInvalidField === -1) ? 0 : firstInvalidField;
+
+      window.scrollTo(0, this.$refs.inputField[firstInvalidField].$el.offsetTop);
+
+      setTimeout(() => {
+        this.shakeInvalidElements = false;
+      }, 750);
+    },
     goLastStep() {
-      if (!this.isFormValid) return;
+      if (!this.isFormValid) {
+        this.showErrorMessage = true;
+        this.indicateErrorMessages();
+        return;
+      }
 
       /*
        * The reason of usage `allEnteredFields`
@@ -220,6 +256,31 @@ export default {
   flex-direction: column;
 }
 
+.report-page__element--shake-invalid-elements {
+  ::v-deep .element--error > *,
+  ::v-deep .element--error > *,
+  ::v-deep .element--error > * {
+    animation-name: animate;
+    animation-duration: 0.4s;
+    transition-timing-function: ease-in;
+  }
+}
+
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 0px 1px rgba(255, 0, 0, 1);
+    -webkit-box-shadow: 0 0 0px 1px rgba(255, 0, 0, 1);
+  }
+  50% {
+    box-shadow: 0 0 0px 6px rgba(255, 0, 0, .3);
+    -webkit-box-shadow: 0 0 0px 6px rgba(255, 0, 0, .3);
+  }
+  100% {
+    box-shadow: 0 0 0px 1px rgba(255, 0, 0, 1);
+    -webkit-box-shadow: 0 0 0px 1px rgba(255, 0, 0, 1);
+  }
+}
+
 .company-card {
   display: flex;
   flex-direction: row;
@@ -235,6 +296,39 @@ export default {
       display: block;
       margin: 0 15px;
       border-radius: 100%;
+    }
+  }
+}
+
+.alternative-exit {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+
+  span {
+    padding-bottom: 8px;
+    font-size: 18px;
+    color: rgba(26, 26, 26, 0.3);
+    font-weight: 600;
+  }
+  button {
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 100px;
+    border: none;
+    margin: 0 auto;
+    background: var(--secondary-color);
+    color: var(--dark-black);
+    font-weight: 500;
+    font-size: 14px;
+    transition:
+      background cubic-bezier(0.075, 0.82, 0.165, 1) .4s,
+      color cubic-bezier(0.075, 0.82, 0.165, 1) .4s;
+
+    &:hover {
+      background: var(--dark-black);
+      color: white;
     }
   }
 }
