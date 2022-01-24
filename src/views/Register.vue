@@ -1,6 +1,7 @@
 <template>
   <div class="register-page">
     <base-header></base-header>
+    <!-- TODO Remove and use the component -->
     <form
       class="form"
       @submit.prevent="submit"
@@ -51,7 +52,9 @@
 
 <script>
 import BaseHeader from '../components/BaseHeader.vue';
+import store from "../store";
 import API from "../api";
+import logout from "../api/companies/logout";
 
 export default {
   name: 'Register',
@@ -67,10 +70,21 @@ export default {
       progress: false,
     }
   },
+  mounted: () => {
+    logout();
+  },
   methods: {
     submit() {
       this.progress = true;
       API.users.post(this.email, this.password, this.companyName, this.companyPhotoURL).then((credentials) => {
+        // we set the data we have right now.
+        store.dispatch('setCompanyData', {
+          company_email: credentials.user.email,
+          is_mail_verified: credentials.user.emailVerified,
+          userUid: credentials.user.uid,
+          company_name: credentials.user.displayName,
+        });
+
         this.$swal({
           icon: 'success',
           showConfirmButton: false,

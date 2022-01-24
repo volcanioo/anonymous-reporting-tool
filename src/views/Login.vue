@@ -1,6 +1,7 @@
 <template>
   <div>
     <base-header></base-header>
+    <!-- TODO Remove and use the component -->
     <form
       class="form"
       @submit.prevent="submit"

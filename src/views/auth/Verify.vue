@@ -39,6 +39,11 @@ export default {
           icon: 'success',
           title: this.$t('congratulations'),
           text: this.$t('approved_email'),
+        },
+        invalid_oob: {
+          icon: 'error',
+          title: this.$t('oops'),
+          text: this.$t('invalid_oob'),
         }
       }
     }
@@ -52,6 +57,9 @@ export default {
     },
     userUid() {
       return this.$store.state.company.userUid; 
+    },
+    email() {
+      return this.$store.state.company.company_email; 
     },
     isVerified() {
       return this.$store.state.company.is_mail_verified; 
@@ -71,14 +79,22 @@ export default {
   },
   methods: {
     verifyUser() {
-      if (this.isVerified) return false;
+      if (! this.oobCode) this.$swal(this.messages.error);
+      if (this.isVerified || ! this.oobCode) {
+        this.$router.push({
+          name: 'Dashboard',
+        });
+
+        return;
+      }
       
       API.users.verify(this.oobCode).then(result => {
-        API.companies.post(this.userUid, this.companyName, this.photoURL).then((result) => {
-          // this.$swal(this.messages.success);
+        API.companies.post(this.userUid, this.companyName, this.photoURL, this.email).then((result) => {
+          this.$swal(this.messages.success);
+          return;
         });
       }).catch((err) => {
-        // this.$swal(this.messages.error);
+        this.$swal(this.messages.invalid_oob);
         console.warn(err);
       });
     }

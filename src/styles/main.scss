@@ -15,6 +15,29 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.main-container {
+  display: flex;
+
+  .content {
+    flex: 1;
+  }
+}
+
+.content {
+  padding: 20px;
+}
+
+.notification {
+  background: #d01f09;
+  padding: 20px;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  margin: -20px;
+  margin-bottom: 20px;
+}
+
 button {
   font-family: inherit;
   text-transform: capitalize;

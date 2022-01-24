@@ -10,7 +10,7 @@
       v-if="element.type === 'select'"
       v-model="element.value"
       @change="handleInput"
-      :required="element.required"
+      :required="Boolean(element.required)"
       :name="element.id"
       :id="element.id"
     >
@@ -27,7 +27,7 @@
       @keyup="handleInput"
       v-model="element.value"
       :placeholder="element.placeholder"
-      :required="element.required"
+      :required="Boolean(element.required)"
       :name="element.id"
       :id="element.id"
     >
@@ -36,7 +36,7 @@
       @keyup="handleInput"
       v-model="element.value"
       :placeholder="element.placeholder"
-      :required="element.required"
+      :required="Boolean(element.required)"
       :name="element.id"
       :id="element.id"
     />
@@ -84,6 +84,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .element {
   position: relative;
@@ -104,6 +105,5 @@ export default {
   bottom: 21px;
   background: var(--red);
   padding: 0 6px;
-
 }
 </style>

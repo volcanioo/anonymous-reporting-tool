@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
+const defaultState = {
+  company: {},
+  token: null,
+  report: {},
+};
+
 export default new Vuex.Store({
-  state: {
-    company: {},
-    token: null,
-    report: {},
-  },
+  plugins: [createPersistedState({
+    storage: window.sessionStorage,
+  })],
+  state: defaultState,
   mutations: {
     setCompanyInfo(state, company) {
       Vue.set(state, 'company', company);
@@ -21,6 +27,12 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    resetCompanyData({ commit }) {
+      commit('setCompanyInfo', defaultState);
+    },
+    resetToken({ commit }) {
+      commit('setToken', undefined);
+    },
     setCompanyData({ commit }, company) {
       commit('setCompanyInfo', company);
     },

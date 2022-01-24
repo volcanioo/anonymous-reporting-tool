@@ -41,7 +41,6 @@
     "congratulations": "Congratulations",
     "approved_email": "The email successfully approved. Now, your employees can see your company's name on the company list.",
     "oops": "Oops...",
-    "create_a_new_case": "Create a new case",
     "active": "Active",
     "hide_from_public": "Hide from public",
     "active_description": "The reporter (anonymous user) can send messages & reach the case detail page.",
@@ -49,5 +48,9 @@
     "are_you_sure": "Are you sure?",
     "reporter_warning": "The reporter (anonymous user) won't be able to reach the case detail page via passcode if you hide from public!",
     "yes_hide_from_public": "Yes, hide from public",
-    "category": "Category"
+    "category": "Category",
+    "invalid_oob": "Sorry, seams like your activation code is not valid",
+    "create_a_new_case": "Create a new case",
+    "verify_email": "Please approve your email. Otherwise, your employees won't see your company in the company list.",
+    "verify_email_settings": "Please, procede with email verification to access your settings."
 }
