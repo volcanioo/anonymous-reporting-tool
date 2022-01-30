@@ -13,6 +13,10 @@
     <router-link
       :to="'/dashboard'"
       class="button button--small go-dashboard-button"
+      :class="{
+        'button--signal': !loading,
+        'button--progress': loading
+      }"
       v-text="'Go Dashboard'"
     />
   </div>
@@ -29,6 +33,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       messages: {
         error: {
           icon: 'error',
@@ -88,20 +93,19 @@ export default {
         return;
       }
 
-      // Everything is going ok,
-      // you only need to pass everything except email
-      // and then go add fileUploader for the company data page,
-      // you can also do this in the register page as well!
-      // https://github.com/lian-yue/vue-upload-component/blob/master/docs/views/examples/Simple.vue
-
-      API.users.verify(this.oobCode).then(result => {
-        API.companies.createNewObject(this.companyName, this.photoURL, this.userUid).then(() => {
-          this.$swal(this.messages.success);
+      this.loading = true;
+      API.users.verify(this.oobCode)
+        .then(result => {
+          API.companies.createNewObject(this.companyName, this.photoURL, this.userUid).then(() => {
+            this.$swal(this.messages.success);
+          });
+        }).catch((err) => {
+          this.$swal(this.messages.invalid_oob);
+          console.warn(err);
+        })
+        .finally(() => {
+          this.loading = false;
         });
-      }).catch((err) => {
-        this.$swal(this.messages.invalid_oob);
-        console.warn(err);
-      });
 
     }
   },

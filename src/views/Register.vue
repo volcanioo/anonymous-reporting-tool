@@ -69,9 +69,6 @@ export default {
       progress: false,
     }
   },
-  mounted: () => {
-    logout();
-  },
   methods: {
     submit() {
       this.progress = true;
