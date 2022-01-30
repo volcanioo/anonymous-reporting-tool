@@ -7,7 +7,7 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
       .then(obj => {
         const objectID = obj.object.objectID
 
-        if (! objectID) {
+        if (!objectID) {
           console.error('no id');
           return;
         }
@@ -18,7 +18,7 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
           name,
           photoUrl,
           phoneNumber,
-          email
+          email,
         }, { autoGenerateObjectIDIfNotExist: generate })
           .then((response) => {
             const companyData = store.state.company;

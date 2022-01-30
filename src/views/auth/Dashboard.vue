@@ -5,9 +5,9 @@
       <div
         v-if="!isVerified"
         class="notification"
-        v-text="$t('varify_email')"
+        v-text="$t('verify_email')"
       />
-      <div 
+      <div
         v-if="cases.length > 0"
         class="dashboard__content"
       >
@@ -73,17 +73,17 @@
               <div>{{ (report.relationshipToCompany) ? report.relationshipToCompany : '-' }}</div>
               <div>{{ (report.whichCityDidThisHappen) ? report.whichCityDidThisHappen : '-' }}</div>
               <div class="card__item--short">
-                <span 
+                <span
                   class="badge generalFeedbackOrQuestion"
                   :class="{
                     'diversityEquityAndInclusion': (report.status === false)
-                  }"></span> 
+                  }"></span>
               </div>
             </router-link>
           </div>
         </div>
       </div>
-      <div 
+      <div
         v-else
         class="dashboard__content"
       >
@@ -112,19 +112,19 @@ export default {
   },
   computed: {
     companyName() {
-      return this.$store.state.company.company_name; 
+      return this.$store.state.company.company_name;
     },
     userUid() {
-      return this.$store.state.company.userUid; 
+      return this.$store.state.company.userUid;
     },
     isVerified() {
-      return this.$store.state.company.is_mail_verified; 
+      return this.$store.state.company.is_mail_verified;
     },
     mode() {
-      return this.$route.query.mode; 
+      return this.$route.query.mode;
     },
     lang() {
-      return this.$route.query.lang; 
+      return this.$route.query.lang;
     }
   },
   data() {
@@ -181,7 +181,7 @@ export default {
       if (! this.$store.state.company.userUid) return;
 
       API.cases.list(this.$store.state.company.userUid)
-      .then((query) => { 
+      .then((query) => {
         this.monthlyReport = {
           ...this.monthlyReport,
           total: query.size,

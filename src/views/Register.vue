@@ -38,7 +38,6 @@
         type="submit"
         :class="{ 'button--progress': progress }"
         class="button"
-        @click="submit()"
         v-text="$t('register')"
       />
       <router-link
@@ -52,9 +51,9 @@
 
 <script>
 import BaseHeader from '../components/BaseHeader.vue';
-import store from "../store";
-import API from "../api";
-import logout from "../api/companies/logout";
+import store from '../store';
+import API from '../api';
+import logout from '../api/companies/logout';
 
 export default {
   name: 'Register',
@@ -81,7 +80,7 @@ export default {
         store.dispatch('setCompanyData', {
           company_email: credentials.user.email,
           is_mail_verified: credentials.user.emailVerified,
-          userUid: credentials.user.uid,
+          user_uid: credentials.user.uid,
           company_name: credentials.user.displayName,
         });
 

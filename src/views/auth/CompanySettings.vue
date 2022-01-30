@@ -3,7 +3,7 @@
     <Sidebar />
     <div class="content">
       <Form v-if="isEmailValidated" :elements="settingsInputs" :submitAction="submit" :submitLabel="$t('save')"/>
-      <div v-else class="notification" v-text="$t('varify_email_settings')"></div>
+      <div v-else class="notification" v-text="$t('verify_email_settings')"></div>
     </div>
   </main>
 </template>

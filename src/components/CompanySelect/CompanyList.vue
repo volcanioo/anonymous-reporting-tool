@@ -15,7 +15,7 @@
       :key="item.objectID"
       :item="item"
       :class="{
-        'company-selector__item--selected': (item.userUid === selectedCompanyId),
+        'company-selector__item--selected': (item.user_uid === selectedCompanyId),
       }"
       @click.native="setSelectedCompany(item)"
     />
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     setSelectedCompany(item) {
-      this.selectedCompanyId = item.userUid;
+      this.selectedCompanyId = item.user_uid;
       this.$emit('set-selected-company', item);
     },
   },

@@ -7,7 +7,7 @@
       @submit.prevent="submit"
     >
       <h1 v-text="$t('company_login')" />
-      <div 
+      <div
         class="form-validation"
         data-error="Dies ist ein Pflichtfeld."
       >
@@ -61,27 +61,27 @@ export default {
     submit() {
       this.progress = true;
       API.companies.login(this.email, this.password)
-      .then((userCredential) => {
-        this.progress = false;
-        this.$swal({
-          icon: 'success',
-          showConfirmButton: false,
-          position: 'top-end',
-          title: `Welcome, ${userCredential.user.displayName}`,
-          toast: true,
-          timer: 1500,
-          timerProgressBar: true,
+        .then((userCredential) => {
+          this.progress = false;
+          this.$swal({
+            icon: 'success',
+            showConfirmButton: false,
+            position: 'top-end',
+            title: `Welcome, ${userCredential.user.displayName}`,
+            toast: true,
+            timer: 1500,
+            timerProgressBar: true,
+          });
+        }).catch((error) => {
+          this.progress = false;
+          this.$swal({
+            icon: 'error',
+            showConfirmButton: false,
+            position: 'top-left',
+            title: error,
+            toast: true,
+          });
         });
-      }).catch((error) => {
-        this.progress = false;
-        this.$swal({
-          icon: 'error',
-          showConfirmButton: false,
-          position: 'top-left',
-          title: error,
-          toast: true,
-        });
-      });
     }
   },
 };

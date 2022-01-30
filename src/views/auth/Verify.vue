@@ -50,28 +50,28 @@ export default {
   },
   computed: {
     photoURL() {
-      return this.$store.state.company.photo_url; 
+      return this.$store.state.company.photo_url;
     },
     companyName() {
-      return this.$store.state.company.company_name; 
+      return this.$store.state.company.company_name;
     },
     userUid() {
-      return this.$store.state.company.userUid; 
+      return this.$store.state.company.user_uid;
     },
     email() {
-      return this.$store.state.company.company_email; 
+      return this.$store.state.company.company_email;
     },
     isVerified() {
-      return this.$store.state.company.is_mail_verified; 
+      return this.$store.state.company.is_mail_verified;
     },
     oobCode() {
-      return this.$route.query.oobCode; 
+      return this.$route.query.oobCode;
     },
     mode() {
-      return this.$route.query.mode; 
+      return this.$route.query.mode;
     },
     lang() {
-      return this.$route.query.lang; 
+      return this.$route.query.lang;
     }
   },
   mounted () {
@@ -79,24 +79,30 @@ export default {
   },
   methods: {
     verifyUser() {
-      if (! this.oobCode) this.$swal(this.messages.error);
-      if (this.isVerified || ! this.oobCode) {
+      if (!this.oobCode) this.$swal(this.messages.error);
+      if (this.isVerified || !this.oobCode) {
         this.$router.push({
           name: 'Dashboard',
         });
 
         return;
       }
-      
+
+      // Everything is going ok,
+      // you only need to pass everything except email
+      // and then go add fileUploader for the company data page,
+      // you can also do this in the register page as well!
+      // https://github.com/lian-yue/vue-upload-component/blob/master/docs/views/examples/Simple.vue
+
       API.users.verify(this.oobCode).then(result => {
-        API.companies.post(this.userUid, this.companyName, this.photoURL, this.email).then((result) => {
+        API.companies.createNewObject(this.companyName, this.photoURL, this.userUid).then(() => {
           this.$swal(this.messages.success);
-          return;
         });
       }).catch((err) => {
         this.$swal(this.messages.invalid_oob);
         console.warn(err);
       });
+
     }
   },
 };

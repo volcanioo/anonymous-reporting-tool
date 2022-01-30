@@ -2,8 +2,8 @@
   <li
     class="company-selector__item"
   >
-    <img :src="getImage" :alt="item.companyName">
-    <p>{{ item.companyName }}</p>
+    <img :src="getImage" :alt="item.name">
+    <p>{{ item.name }}</p>
   </li>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     getImage() {
-      return (this.item.companyPhotoUrl) ? this.item.companyPhotoUrl : require('@/assets/user.svg');
+      return (this.item.photo_url) ? this.item.photo_url : require('@/assets/user.svg');
     },
   },
   methods: {
