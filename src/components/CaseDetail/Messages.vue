@@ -91,7 +91,7 @@ export default {
         });
     },
     userCheck() {
-      if (Object.keys(this.$store.getters.getCompany).length > 0) {
+      if (this.$store.state.company.user_uid) {
         localStorage.removeItem('caseId');
         return 'company';
       }
@@ -137,7 +137,7 @@ export default {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
+    user-select: none;
   }
 }
 

@@ -48,9 +48,6 @@ export default {
     companyName() {
       return this.$store.state.company.company_name;
     },
-    userUid() {
-      return this.$store.state.company.userUid;
-    },
   }
 }
 </script>
