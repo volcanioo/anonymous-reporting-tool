@@ -81,7 +81,7 @@ export default {
     },
     anonymousLogin() {
       this.loading = true;
-      API.cases.get(this.selectedCompany.userUid, this.passcode)
+      API.cases.get(this.selectedCompany.user_uid, this.passcode)
         .then((query) => {
           if (query.size === 0) this.$swal(this.messages.error)
           query.forEach((doc) => {
