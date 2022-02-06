@@ -14,11 +14,11 @@
       >
         Dashboard
       </router-link>
-      <router-link
+      <!-- <router-link
         :to="{ name: 'CompanySettings', params: { id: userUid } }"
       >
         Settings
-      </router-link>
+      </router-link> -->
     </nav>
     <button class="button" @click="singOut">SIGN OUT</button>
   </aside>
@@ -43,10 +43,10 @@ export default {
       return userIcon;
     },
     companyName() {
-      return this.$store.state.company.company_name; 
+      return this.$store.state.company.company_name;
     },
     userUid() {
-      return this.$store.state.company.userUid; 
+      return this.$store.state.company.userUid;
     },
   }
 }
@@ -100,7 +100,7 @@ export default {
       background: rgba(255, 255, 255, .04);
       margin-bottom: 1.5em;
       transition: .3s;
-      
+
       &:hover {
         margin: 4px 0 1.5em 0;
         background: rgba(255, 255, 255, .1);
