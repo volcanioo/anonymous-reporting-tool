@@ -33,6 +33,9 @@ export default {
   methods: {
     singOut() {
       API.companies.logout();
+      this.$router.push({
+        name: 'home',
+      });
     },
   },
   computed: {
