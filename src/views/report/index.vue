@@ -1,7 +1,7 @@
 <template>
   <div class="report-page">
     <div v-if="!selectedCompany">
-      <h1>Select your company.</h1>
+      <h1>Select your representative.</h1>
       <div class="container">
         <company-select
           @company-selected="setCompany"

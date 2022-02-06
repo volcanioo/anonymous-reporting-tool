@@ -1,11 +1,11 @@
 <template>
   <article class="company-selector">
-    <label for="company-name"> {{ $t('enter_your_company_name') }} </label>
+    <label for="company-name"> {{ $t('enter_your_representatives_name') }} </label>
     <input
       autofocus
       id="company-name"
       type="text"
-      :placeholder="$t('enter_your_company_name')"
+      :placeholder="$t('enter_your_representatives_name')"
       v-model="searchInput"
     >
     <company-list

@@ -4,26 +4,19 @@
     <!-- TODO Remove and use the component -->
     <div class="form">
       <h1> {{ $t('anonymous_login') }} </h1>
-      <div v-if="selectedCompany">
-        <label for="passcode"> {{ $t('passcode') }} </label>
-        <input
-          v-model="passcode"
-          type="passcode"
-          name="passcode"
-          :placeholder="$t('dummy_passcode')"
-        />
-        <button
-          @click="anonymousLogin"
-          class="button"
-          :class="{ 'button--progress': loading }"
-          v-text="$t('go_case_detail')"
-        />
-      </div>
-      <div v-else>
-        <company-select
-          @company-selected="setCompany"
-        />
-      </div>
+      <label for="passcode"> {{ $t('passcode') }} </label>
+      <input
+        v-model="passcode"
+        type="passcode"
+        name="passcode"
+        :placeholder="$t('dummy_passcode')"
+      />
+      <button
+        @click="anonymousLogin"
+        class="button"
+        :class="{ 'button--progress': loading }"
+        v-text="$t('go_case_detail')"
+      />
     </div>
   </div>
 </template>
@@ -81,7 +74,7 @@ export default {
     },
     anonymousLogin() {
       this.loading = true;
-      API.cases.get(this.selectedCompany.user_uid, this.passcode)
+      API.cases.get(this.passcode)
         .then((query) => {
           if (query.size === 0) this.$swal(this.messages.error)
           query.forEach((doc) => {

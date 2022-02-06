@@ -30,7 +30,7 @@
         type="submit"
         :class="{ 'button--progress': progress }"
         class="button"
-        v-text="$t('sign_in')"
+        v-text="$t('login')"
       />
       <router-link
         :to="'/register'"
