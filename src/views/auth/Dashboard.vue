@@ -114,11 +114,14 @@ export default {
     companyName() {
       return this.$store.state.company.company_name;
     },
-    userUid() {
-      return this.$store.state.company.userUid;
+    userId() {
+      return this.$store.state.company.user_uid;
     },
     isVerified() {
       return this.$store.state.company.is_mail_verified;
+    },
+    oobCode() {
+      return this.$route.query.oobCode;
     },
     mode() {
       return this.$route.query.mode;
@@ -129,6 +132,24 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      messages: {
+        error: {
+          icon: 'error',
+          title: this.$t('oops'),
+          text: this.$t('we_couldnt_find'),
+        },
+        success: {
+          icon: 'success',
+          title: this.$t('congratulations'),
+          text: this.$t('approved_email'),
+        },
+        invalid_oob: {
+          icon: 'error',
+          title: this.$t('oops'),
+          text: this.$t('invalid_oob'),
+        }
+      },
       monthlyReport: {
         cases: []
       },
@@ -173,31 +194,51 @@ export default {
     },
   },
   created() {
+    if (!this.isVerified && this.oobCode) {
+      this.verifyUser();
+    }
+
     this.fetchCases();
   },
   methods: {
     fetchCases() {
-      // to not to break at login or register
-      if (! this.$store.state.company.userUid) return;
+      if (!this.userId) {
+        return;
+      }
 
-      API.cases.list(this.$store.state.company.userUid)
-      .then((query) => {
-        this.monthlyReport = {
-          ...this.monthlyReport,
-          total: query.size,
-        }
-        query.forEach((doc) => {
-          if (doc.exists) {
-            this.cases.push({
-              ...doc.data(),
-              id: doc.id,
-            });
+      API.cases.list(this.userId)
+        .then((query) => {
+          this.monthlyReport = {
+            ...this.monthlyReport,
+            total: query.size,
           }
+          query.forEach((doc) => {
+            if (doc.exists) {
+              this.cases.push({
+                ...doc.data(),
+                id: doc.id,
+              });
+            }
+          })
         })
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
+        .catch((err) => {
+          console.warn(err);
+        });
+    },
+    verifyUser() {
+      API.users.verify(this.oobCode)
+        .then(() => {
+          API.companies.createNewObject(this.companyName, this.userId).then(() => {
+            this.$swal(this.messages.success).then(() => {
+              this.$router.go({
+                name: 'Dashboard',
+                query: null
+              })
+            });
+          });
+        }).catch((err) => {
+          this.$swal(this.messages.invalid_oob);
+        })
     },
     getCamelCase(text) {
       return _.camelCase(text);

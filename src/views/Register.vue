@@ -6,15 +6,15 @@
       class="form"
       @submit.prevent="submit"
     >
-      <h1 v-text="$t('company_register')" />
-      <label for="companyName"> {{ $t('company_name') }} </label>
+      <h1 v-text="$t('create_a_new_account')" />
+      <label for="yourName"> {{ $t('your_name') }} </label>
       <input
-        v-model="companyName"
-        type="companyName"
-        name="companyName"
-        :placeholder="$t('enter_your_company_name')"
+        v-model="yourName"
+        type="yourName"
+        name="yourName"
+        :placeholder="$t('enter_your_name')"
       />
-      <label for="email"> {{ $t('company_email') }} </label>
+      <label for="email"> {{ $t('your_email') }} </label>
       <input
         v-model="email"
         type="email"
@@ -27,12 +27,6 @@
         type="password"
         name="password"
         :placeholder="$t('dummy_password')"
-      />
-      <label for="companyPhotoURL"> {{ $t('company_photo_url') }} </label>
-      <input
-        v-model="companyPhotoURL"
-        type="text"
-        name="companyPhotoURL"
       />
       <button
         type="submit"
@@ -64,7 +58,7 @@ export default {
     return {
       email: '',
       password: '',
-      companyName: '',
+      yourName: '',
       companyPhotoURL: '',
       progress: false,
     }
@@ -72,10 +66,10 @@ export default {
   methods: {
     submit() {
       this.progress = true;
-      API.users.post(this.email, this.password, this.companyName, this.companyPhotoURL).then((credentials) => {
+      API.users.post(this.email, this.password, this.yourName, this.companyPhotoURL).then((credentials) => {
         // we set the data we have right now.
         store.dispatch('setCompanyData', {
-          company_email: credentials.user.email,
+          your_email: credentials.user.email,
           is_mail_verified: credentials.user.emailVerified,
           user_uid: credentials.user.uid,
           company_name: credentials.user.displayName,
