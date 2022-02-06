@@ -10,7 +10,7 @@ export default function (companyEmail, companyPassword, companyName, companyPhot
       }).then(() => {
         auth.currentUser.sendEmailVerification();
         resolve(userData);
-      }); 
+      });
     },
     err => reject(err))
   });

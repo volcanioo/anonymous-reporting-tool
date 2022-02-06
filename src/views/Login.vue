@@ -1,22 +1,30 @@
 <template>
-  <div class="login">
+  <div>
     <base-header></base-header>
+    <!-- TODO Remove and use the component -->
     <form
       class="form"
       @submit.prevent="submit"
     >
-      <h1 v-text="$t('sign_in')" />
-      <label for="email"> {{ $t('sign_in') }} </label>
-      <input
-        v-model="email"
-        type="email"
-        name="email"
-      />
+      <h1 v-text="$t('company_login')" />
+      <div
+        class="form-validation"
+        data-error="Dies ist ein Pflichtfeld."
+      >
+        <label for="email"> {{ $t('company_email') }} </label>
+        <input
+          v-model="email"
+          type="email"
+          name="email"
+          :placeholder="$t('dummy_email')"
+        />
+      </div>
       <label for="password"> {{ $t('password') }} </label>
       <input
         v-model="password"
         type="password"
         name="password"
+        :placeholder="$t('dummy_password')"
       />
       <button
         type="submit"
@@ -26,8 +34,8 @@
       />
       <router-link
         :to="'/register'"
-        class="form__link"
-        v-text="$t('register')"
+        class="form__link router-link-active"
+        v-text="$t('company_register')"
       />
     </form>
   </div>
@@ -53,13 +61,27 @@ export default {
     submit() {
       this.progress = true;
       API.companies.login(this.email, this.password)
-      .then((userCredential) => {
-        this.progress = false;
-        alert(`Welcome! You logged in successufully!`);
-      }).catch((error) => {
-        this.progress = false;
-        alert(error);
-      });
+        .then((userCredential) => {
+          this.progress = false;
+          this.$swal({
+            icon: 'success',
+            showConfirmButton: false,
+            position: 'top-end',
+            title: `Welcome, ${userCredential.user.displayName}`,
+            toast: true,
+            timer: 1500,
+            timerProgressBar: true,
+          });
+        }).catch((error) => {
+          this.progress = false;
+          this.$swal({
+            icon: 'error',
+            showConfirmButton: false,
+            position: 'top-left',
+            title: error,
+            toast: true,
+          });
+        });
     }
   },
 };

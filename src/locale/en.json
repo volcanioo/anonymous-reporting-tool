@@ -1,5 +1,5 @@
 {
-    "name": "Anonymous Reporting Tool",
+    "name": "Anonymously Reporting Tool",
     "anonymous_login": "Anonymous Login",
     "company_login": "Company Login",
     "scroll_down": "Scroll down to learn how it works",
@@ -9,7 +9,48 @@
     "sign_in": "Sign In",
     "company_email": "Company E-mail",
     "password": "Password",
+    "passcode": "Passcode",
+    "send": "Send",
+    "company_register": "Company Register",
     "register": "Register",
+    "date": "Date",
+    "company": "Company",
     "company_name": "Company Name",
-    "company_photo_url": "Company Photo URL"
+    "enter_your_company_name": "Enter Your Company's Name",
+    "company_photo_url": "Company Photo URL",
+    "AT_LEAST_THREE_CHAR": "type at least 3 characters",
+    "NO_RESULT": "No result",
+    "NEXT": "Next",
+    "couldnt_find_company": "Couldn't find your company?",
+    "go_case_detail": "Go Case Detail",
+    "dummy_passcode": "X000-00:00",
+    "dummy_password": "•••••••••",
+    "dummy_email": "email@domain.com",
+    "HOMEPAGE": {
+        "HOW_DOES_IT_WORK": {
+            "TITLE": "How does it work?",
+            "DESC": "Have you experienced something bad at your company and want to share this problem with your managers? You can report report harassment/bias, send feedback, or ask questions to your company while not sharing any personal data (e.g., name, surname, e-mail, phone number). The app will automatically create a passcode that makes you available to log in anonymously into the app to follow the case's further updates, such as messages or company answers."
+        },
+        "HOW_ANON_IT_IS": {
+            "TITLE": "How Anonymous it is?",
+            "DESC": "The app doesn't require you to share any personal data (e.g., name, surname, e-mail, phone number) to report an issue. Alternatively, it generates a unique passcode before completing the case report and shows it to the user. The passcode must not be forgotten as it will be needed to login into the app to be able for the user to follow their case's further updates."
+        }
+    },
+    "we_couldnt_find": "We couldn't find your case!",
+    "welcome": "Welcome",
+    "congratulations": "Congratulations",
+    "approved_email": "The email successfully approved. Now, your employees can see your company's name on the company list.",
+    "oops": "Oops...",
+    "active": "Active",
+    "hide_from_public": "Hide from public",
+    "active_description": "The reporter (anonymous user) can send messages & reach the case detail page.",
+    "hide_from_public_description": "The reporter (anonymous user) <b>is not allowed</b> to send messages or reach the case detail page.",
+    "are_you_sure": "Are you sure?",
+    "reporter_warning": "The reporter (anonymous user) won't be able to reach the case detail page via passcode if you hide from public!",
+    "yes_hide_from_public": "Yes, hide from public",
+    "category": "Category",
+    "invalid_oob": "Sorry, seams like your activation code is not valid",
+    "create_a_new_case": "Create a new case",
+    "verify_email": "Please approve your email. Otherwise, your employees won't see your company in the company list.",
+    "verify_email_settings": "Please, procede with email verification to access your settings."
 }

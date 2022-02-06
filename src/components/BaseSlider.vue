@@ -1,23 +1,69 @@
 <template>
   <div class="slider">
+    
     <span 
       class="slider__title"
-      v-html="$t('slider_title')"
-    />
-    <p 
+    >
+      <b>Anonymously</b> <span ref="sentence" style="white-space:pre;"></span> to your company!
+    </span>
+    <p
       class="slider__description"
-      v-html="$t('slider_description')"
-    />
+    >
+      This app allows you to send feedback, report harassment/bias, or ask questions anonymously to your company.
+    </p>
     <button
-      class="button"
-      v-html="$t('send_feedback')"
-    />
+      class="button slider__button"
+      @click="goReportPage()"
+    >
+      Send Feedback
+    </button>
   </div>
 </template>
 
 <script>
+import Typed from "typed.js";
+
 export default {
   name: "BaseSlider",
+  data() {
+    return {
+      sentences: ["send feedback",
+                  "report harassment",
+                  "report bias",
+                  "report bullying",
+                  "report culture issues"],
+      sentence: '',
+      typed: {},
+      options: {}
+    }
+  },
+  mounted(){
+    this.options = {
+      strings: this.sentences,
+      typeSpeed: 20,
+      backSpeed: 0,
+      loop: true,
+      showCursor: false,
+      backDelay: 3000,
+    }
+
+    this.typed = new Typed(this.$refs.sentence, this.options);
+  },
+  methods:{
+    addSentence(){
+      this.sentences.push(this.sentence);
+      this.sentence='';
+    },
+    goReportPage() {
+      this.$router.push({name: 'Report'})
+    }
+  },
+  watch:{
+    sentences(newValue){
+      this.typed.destroy();
+      this.typed = new Typed(this.$refs.sentence, this.options);
+    }
+  }
 }
 </script>
 
@@ -25,8 +71,6 @@ export default {
 $element_offset: 75px;
 
 .slider {
-  width: 768px;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -40,11 +84,16 @@ $element_offset: 75px;
   }
 }
 
+.slider__description, 
+.slider__button {
+  margin: 0 auto 0 auto;
+  max-width: 768px;
+}
+
 .slider__description {
   font-size: 20px;
   line-height: 32px;
   font-weight: 400;
-  padding: 0 $element_offset;
-  margin: 20px 0 40px 0;
+  margin: 20px auto 40px auto;
 }
 </style>
