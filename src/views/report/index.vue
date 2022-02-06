@@ -12,14 +12,7 @@
       <h1>Enter report details.</h1>
       <div class="container report-page__form" ref="form">
         <div class="company-card">
-          <span>TO:</span>
-          <figure>
-            <img
-              :src="selectedCompanyImage"
-              :alt="selectedCompany.companyName"
-            >
-          </figure>
-          <strong> {{ selectedCompany.companyName }} </strong>
+          <b>TO: </b> {{ selectedCompany.name }}
         </div>
         <div
           v-for="element in formFields"
@@ -122,9 +115,6 @@ export default {
       });
 
       return hasFormElementsValid.every((condition) => condition === true);
-    },
-    selectedCompanyImage() {
-      return (this.selectedCompany.companyPhotoUrl) ? this.selectedCompany.companyPhotoUrl : require('@/assets/user.svg');
     },
   },
   methods: {
@@ -289,14 +279,8 @@ export default {
   margin-bottom: 25px;
   padding: 8px 20px;
 
-  figure {
-    margin: 0;
-    img {
-      max-width: 30px;
-      display: block;
-      margin: 0 15px;
-      border-radius: 100%;
-    }
+  b {
+    margin-right: 8px;
   }
 }
 

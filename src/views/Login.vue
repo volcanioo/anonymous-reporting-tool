@@ -6,12 +6,12 @@
       class="form"
       @submit.prevent="submit"
     >
-      <h1 v-text="$t('company_login')" />
+      <h1 v-text="$t('login')" />
       <div
         class="form-validation"
         data-error="Dies ist ein Pflichtfeld."
       >
-        <label for="email"> {{ $t('company_email') }} </label>
+        <label for="email"> {{ $t('your_email') }} </label>
         <input
           v-model="email"
           type="email"
@@ -35,7 +35,7 @@
       <router-link
         :to="'/register'"
         class="form__link router-link-active"
-        v-text="$t('company_register')"
+        v-text="$t('create_a_new_account')"
       />
     </form>
   </div>

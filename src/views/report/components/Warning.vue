@@ -41,7 +41,7 @@ export default {
     passcode() {
       const d = new Date();
       const random = Date.now().toString();
-      return `${this.selectedCompany.companyName.toString().charAt(0)}${random.substring(8, random.length)}-${d.getHours()}:${d.getUTCMinutes()}`;
+      return `${this.selectedCompany.name.toString().charAt(0)}${random.substring(8, random.length)}-${d.getHours()}:${d.getUTCMinutes()}`;
     },
   },
   props: {
@@ -117,7 +117,7 @@ export default {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
+    user-select: none;
     margin-right: 8px;
   }
 

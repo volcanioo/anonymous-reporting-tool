@@ -2,7 +2,7 @@ import { collections } from '../../firebase/index';
 
 export default function (userUid) {
   return collections.cases
-    .where("company.userUid", "==", userUid)
+    .where("company.user_uid", "==", userUid)
     .orderBy('created')
     .get()
 }
