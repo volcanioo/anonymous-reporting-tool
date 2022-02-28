@@ -8,6 +8,7 @@ import CaseDetail from '../views/auth/CaseDetail.vue';
 import Register from '../views/Register.vue';
 import Dashboard from '../views/auth/Dashboard.vue';
 import CompanySettings from '../views/auth/CompanySettings.vue';
+import UserSettings from '../views/auth/UserSettings.vue';
 import { auth } from '../firebase/index';
 import store from "../store/index";
 Vue.use(VueRouter);
@@ -73,6 +74,14 @@ const routes = [
     component: CompanySettings,
     meta: {
       auth: true
+    },
+  },
+  {
+    path: '/user-settings',
+    name: 'UserSettings',
+    component: UserSettings,
+    meta: {
+      auth: false
     },
   },
   { path: "*", component: Home }

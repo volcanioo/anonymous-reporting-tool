@@ -9,11 +9,13 @@
       <strong>{{ companyName }}</strong>
     </div>
     <nav class="sidebar__nav">
-      <router-link
-        :to="{ name: 'Dashboard' }"
-      >
-        Dashboard
-      </router-link>
+      <slot>
+        <router-link
+          :to="{ name: 'Dashboard' }"
+        >
+          Dashboard
+        </router-link>
+      </slot>
       <!-- <router-link
         :to="{ name: 'CompanySettings', params: { id: userUid } }"
       >

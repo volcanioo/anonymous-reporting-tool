@@ -1,68 +1,83 @@
 <template>
   <div class="case-detail z-index-3">
-    <div
-      class="container"
-      v-if="details"
-    >
-      <router-link
-        v-if="id"
-        class="case-detail__button"
-        :to="{ name: 'Dashboard' }"
-      >
-        Back to Dashboard
-      </router-link>
-      <div class="passcode">
-        Case:
-        <input
-          ref="passcode"
-          type="text"
-          readonly
-          :value="details.passcode"
-          @click="copyToClipboard"
+    <div class="main-container">
+      <Sidebar>
+        <router-link
+          :to="{ name: 'CaseDetail' }"
         >
-        <span @click="copyToClipboard">COPY</span>
-        <button
-          v-if="!id"
-          class="button button--red"
-          @click="logout({
-            name: 'Home'
-          })"
+          Case Detail
+        </router-link>
+        <router-link
+          :to="{ name: 'UserSettings' }"
         >
-          Logout
-        </button>
-      </div>
-      <aside class="case-detail__sidebar">
-        <card
-          :case-id="pageId"
-          :details="details"
-          :is-company="isCompany"
-          @status-updated="fetchCase"
-        />
-      </aside>
-      <div class="case-detail__chat">
-         <messages
-          :case-id="pageId"
-          :disabled="!details.status"
-         />
-      </div>
-    </div>
-    <div
-      v-if="!isPageActive"
-      class="case-detail__deactive"
-    >
-      <h1>This case has been concluded. Please click here if the problem is not solved yet.</h1>
-      <router-link
-        class="case-detail__button"
-        :to="{ name: 'Home' }"
+          Settings
+        </router-link>
+      </Sidebar>
+      <div
+        class="content"
+        v-if="details"
       >
-        Back to Home
-      </router-link>
+        <router-link
+          v-if="id"
+          class="case-detail__button"
+          :to="{ name: 'Dashboard' }"
+        >
+          Back to Dashboard
+        </router-link>
+        <div class="passcode">
+          Case:
+          <input
+            ref="passcode"
+            type="text"
+            readonly
+            :value="details.passcode"
+            @click="copyToClipboard"
+          >
+          <span @click="copyToClipboard">COPY</span>
+          <button
+            v-if="!id"
+            class="button button--red"
+            @click="logout({
+              name: 'Home'
+            })"
+          >
+            Logout
+          </button>
+        </div>
+        <aside class="case-detail__sidebar">
+          <card
+            :case-id="pageId"
+            :details="details"
+            :is-company="isCompany"
+            @status-updated="fetchCase"
+          />
+        </aside>
+        <div class="case-detail__chat">
+          <messages
+            :case-id="pageId"
+            :disabled="!details.status"
+          />
+        </div>
+      </div>
+      <div
+        v-if="!isPageActive"
+        class="case-detail__deactive"
+      >
+        <h1>This case has been concluded. Please click here if the problem is not solved yet.</h1>
+        <router-link
+          class="case-detail__button"
+          :to="{ name: 'Home' }"
+        >
+          Back to Home
+        </router-link>
+      </div>
     </div>
     <base-footer class="case-detail__footer"></base-footer>
   </div>
 </template>
 
 <script>
+import Sidebar from '@/views/auth/Sidebar.vue';
 import Messages from '../../components/CaseDetail/Messages.vue';
 import Card from '../../components/CaseDetail/Card.vue';
 import BaseFooter from '../../components/BaseFooter.vue';
@@ -77,6 +92,7 @@ export default {
     BaseFooter,
     Messages,
     Card,
+    Sidebar,
   },
   computed: {
     isCompany() {
@@ -171,7 +187,7 @@ export default {
     margin-right: 4px;
   }
 }
-.container {
+.content {
   max-width: 85%;
   margin: 0 auto;
   padding-top: 42px;
@@ -236,10 +252,5 @@ export default {
   justify-content: center;
   color: var(--dark-black);
   flex-direction: column;
-
-}
-
-.case-detail__footer {
-  margin-top: 200px;
 }
 </style>
