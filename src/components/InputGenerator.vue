@@ -30,6 +30,7 @@
       :required="Boolean(element.required)"
       :name="element.id"
       :id="element.id"
+      :disabled="element.disabled"
     >
     <textarea
       v-else-if="element.type === 'textarea'"

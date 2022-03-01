@@ -15,12 +15,12 @@
         >
           Dashboard
         </router-link>
+        <router-link
+          :to="{ name: 'UserSettings' }"
+        >
+          Settings
+        </router-link>
       </slot>
-      <!-- <router-link
-        :to="{ name: 'CompanySettings', params: { id: userUid } }"
-      >
-        Settings
-      </router-link> -->
     </nav>
     <button class="button" @click="singOut">SIGN OUT</button>
   </aside>

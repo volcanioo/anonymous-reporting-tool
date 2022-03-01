@@ -16,8 +16,6 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
           objectID,
           userUid,
           name,
-          photoUrl,
-          phoneNumber,
           email,
         }, { autoGenerateObjectIDIfNotExist: generate })
           .then((response) => {
@@ -26,8 +24,6 @@ export default function (userUid, name, photoUrl, phoneNumber, email, generate =
             store.dispatch('setCompanyData', {
               ...companyData,
               company_name: name,
-              phone_number: phoneNumber,
-              photo_url: photoUrl,
               company_email: email,
             });
             resolve(response);

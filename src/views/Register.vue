@@ -47,7 +47,6 @@
 import BaseHeader from '../components/BaseHeader.vue';
 import store from '../store';
 import API from '../api';
-import logout from '../api/companies/logout';
 
 export default {
   name: 'Register',

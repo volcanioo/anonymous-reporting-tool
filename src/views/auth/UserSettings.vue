@@ -1,17 +1,6 @@
 <template>
   <main class="company-settings z-index-3 main-container">
-    <Sidebar>
-      <router-link
-        :to="{ name: 'CaseDetail' }"
-      >
-        Case Detail
-      </router-link>
-      <router-link
-        :to="{ name: 'UserSettings' }"
-      >
-        Settings
-      </router-link>
-    </Sidebar>
+    <Sidebar />
     <div class="content">
       <Form :elements="settingsInputs" :submitAction="submit" :submitLabel="$t('save')"/>
     </div>
@@ -33,18 +22,11 @@ export default {
   },
   methods: {
     submit(e) {
-      const userUid = this.$store.state.company.userUid;
       const values = {};
-      e.target.elements.forEach(e => (e.name) ? values[e.name] = e.value : null);
+      Object.values(e.target.elements).forEach(e => (e.name) ? values[e.name] = e.value : null);
 
-      API.companies.post(
-        userUid,
-        values.company_name,
-        values.photo_url,
-        values.phone_number,
-        values.company_email,
-        false
-      ).then( () => {
+      API.users.edit(values.company_name)
+      .then( () => {
         this.$swal({
           icon: 'success',
           showConfirmButton: false,
@@ -89,22 +71,8 @@ export default {
           id: 'company_email',
           placeholder: 'Email',
           type: 'input',
-          required: true,
+          disabled: true,
           value: this.companyData.company_email,
-          validate: (value) => {
-            if (value === -1 || value === '') {
-              return false;
-            }
-
-            return true;
-          },
-        },
-        {
-          id: 'phone_number',
-          placeholder: 'Phone number',
-          type: 'input',
-          required: true,
-          value: this.companyData.phone_number,
           validate: (value) => {
             if (value === -1 || value === '') {
               return false;
