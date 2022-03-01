@@ -34,9 +34,12 @@ export default {
   name: 'Sidebar',
   methods: {
     singOut() {
+      // company logout
       API.companies.logout();
+      // User logout
+      localStorage.removeItem('caseId');
       this.$router.push({
-        name: 'home',
+        name: 'Home',
       });
     },
   },
