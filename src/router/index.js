@@ -72,7 +72,7 @@ const routes = [
     name: 'UserSettings',
     component: UserSettings,
     meta: {
-      auth: false
+      auth: true
     },
   },
   { path: "*", component: Home }
