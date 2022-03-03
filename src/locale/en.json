@@ -1,11 +1,11 @@
 {
-    "name": "Anonymously Reporting Tool",
+    "name": "Anonymous Reporting Tool",
     "anonymous_login": "Anonymous Login",
-    "company_login": "Company Login",
+    "company_login": "Supporter Login",
     "scroll_down": "Scroll down to learn how it works",
     "slider_title": "<strong>Anonymously</strong> send feedback to your company!",
-    "slider_description": "This tool allows the employees to send feedback <strong>anonymously</strong> to their company.",
-    "send_feedback": "Send Feedback",
+    "slider_description": "This app allows you to send feedback, report harassment/bias, or ask questions <strong>anonymously</strong> to your company.",
+    "send_feedback": "Report Issue",
     "login": "Login",
     "sign_in": "Sign In",
     "company_email": "Company E-mail",
@@ -34,7 +34,7 @@
     "HOMEPAGE": {
         "HOW_DOES_IT_WORK": {
             "TITLE": "How does it work?",
-            "DESC": "Have you experienced something bad at your company and want to share this problem with your managers? You can report report harassment/bias, send feedback, or ask questions to your company while not sharing any personal data (e.g., name, surname, e-mail, phone number). The app will automatically create a passcode that makes you available to log in anonymously into the app to follow the case's further updates, such as messages or company answers."
+            "DESC": "Have you experienced something distressing at Homeday or are in need of support or want to share this problem? You can report report general problems, harassment or bias, diverstiy, equality and inclusion issues or mental health worries while not sharing any personal data (e.g., name, surname, e-mail, phone number). The app will automatically create a passcode that allows you to log in anonymously into the app to follow the case's further updates, such as messages or answers."
         },
         "HOW_ANON_IT_IS": {
             "TITLE": "How Anonymous it is?",
@@ -57,5 +57,5 @@
     "invalid_oob": "Sorry, seams like your activation code is not valid",
     "create_a_new_case": "Create a new case",
     "verify_email": "Please approve your email. Otherwise, your employees won't see your company in the company list.",
-    "verify_email_settings": "Please, procede with email verification to access your settings."
+    "verify_email_settings": "Please, proceed with email verification to access your settings."
 }

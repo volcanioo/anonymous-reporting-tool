@@ -99,4 +99,11 @@ export default {
     text-decoration: underline;
   }
 }
+
+@media (max-width: 992px) {
+  .form {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
 </style>

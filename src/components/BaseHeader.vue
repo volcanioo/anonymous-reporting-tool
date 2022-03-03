@@ -59,9 +59,13 @@
   &:first-child:hover {
     background: var(--dark-black);
     border-color: var(--dark-black);
-    color: var(--secondary-color);
+    color: white;
+  }
+  &:last-child:hover {
+    color: white;
   }
   &:last-child {
+    border-color: var(--secondary-color);
     box-shadow: 5px 5px var(--secondary-color);
   }
   &:hover {
@@ -69,6 +73,34 @@
     border-color: var(--secondary-color);
     color: var(--dark-black);
     box-shadow: 0px 0px var(--dark-black);
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    padding-top: 45px;
+  }
+
+  .header .header__title {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    line-height: 45px;
+    font-size: 19px;
+  }
+
+  .header__button {
+    box-shadow: none!important;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 4px;
+    padding: 6px 12px;
+
+    &:hover {
+      background: var(--dark-black);
+      border-color: var(--dark-black);
+      color: white;
+    }
   }
 }
 </style>

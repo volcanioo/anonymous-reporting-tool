@@ -28,7 +28,7 @@
 
 <script>
 import API from '../../api';
-import userIcon from '@/assets/user.svg';
+import userIcon from '@/assets/user.png';
 
 export default {
   name: 'Sidebar',
@@ -60,6 +60,7 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   background: var(--dark-black);
+  position: fixed;
   height: 100vh;
   text-align: center;
   color: white;

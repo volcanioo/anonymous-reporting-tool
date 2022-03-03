@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     getImage() {
-      return (this.item.photo_url) ? this.item.photo_url : require('@/assets/user.svg');
+      return (this.item.photo_url) ? this.item.photo_url : require('@/assets/user.png');
     },
   },
   methods: {

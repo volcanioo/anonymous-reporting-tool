@@ -138,4 +138,48 @@ export default {
   }
 }
 
+@media (max-width: 992px) {
+  .homepage {
+    padding: 0 16px;
+    height: auto;
+  }
+  .container {
+    max-width: 100%;
+    flex-direction: column;
+    margin: 20px 0px;
+    text-align: center;
+
+    figure, .wrapper {
+      width: 100%;
+      padding: 0;
+    }
+
+    &:first-child {
+      flex-direction: column-reverse;
+    }
+
+    figure {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    strong {
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      color: white;
+    }
+  }
+
+  .homepage__footer {
+    padding-bottom: 0;
+  }
+}
 </style>

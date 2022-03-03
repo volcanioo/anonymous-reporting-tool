@@ -147,4 +147,28 @@ export default {
   }
 }
 
+@media (max-width: 992px) {
+  .report-page__warning {
+    padding: 16px;
+    flex-direction: column;
+    margin-top: 40px;
+
+    & > img {
+      margin: 20px auto;
+    }
+
+    .report-page__content {
+      padding: 0;
+    }
+
+    strong {
+      font-size: 24px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+  }
+}
 </style>

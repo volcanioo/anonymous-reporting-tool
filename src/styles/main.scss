@@ -3,9 +3,10 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  --primary-color: #d0f6e4;
-  --secondary-color: #bbddcd;
-  --dark-black: #1a1a1a;
+  --primary-color: #d6dde6;
+  --secondary-color: #97a9be;
+  --new-blue: #2988ff;
+  --dark-black: #2988ff;
   --gray: #808080;
   --light-gray: #f6f7f9;
   --red: #f63131;
@@ -45,7 +46,7 @@ button {
 
 .button {
   width: 100%;
-  background: var(--dark-black);
+  background: var(--new-blue);
   margin: 0 auto;
   color: white;
   border: none;
@@ -168,7 +169,7 @@ button {
 }
 
 button[disabled] {
-  background: #bbddcd;
+  background: #97a9be;
   color: rgba(0, 0, 0, 0.2);
   cursor: no-drop;
 }
@@ -209,8 +210,8 @@ textarea {
   }
 
   &:focus {
-    outline: 2px solid #2d825b;
-    box-shadow: 0 0 2pt 1pt #2d825b;
+    outline: 2px solid #2988ff;
+    box-shadow: 0 0 2pt 1pt #2988ff;
   }
 }
 
@@ -292,6 +293,14 @@ textarea {
       top: 6px;
       position: absolute;
     }
+  }
+}
+
+@media (max-width: 992px) {
+  input {
+    font-size: 16px !important;
+    line-height: 44px !important;
+    height: 44px !important;
   }
 }
 

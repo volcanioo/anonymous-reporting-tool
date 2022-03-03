@@ -191,4 +191,12 @@ export default {
   font-size: 24px;
   opacity: .4
 }
+
+@media (max-width: 992px) {
+
+  .chat__message {
+    max-width: 90% !important;
+  }
+
+}
 </style>

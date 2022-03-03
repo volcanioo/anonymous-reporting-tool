@@ -1,18 +1,6 @@
 <template>
   <div class="case-detail z-index-3">
     <div class="main-container">
-      <Sidebar>
-        <router-link
-          :to="{ name: 'CaseDetail' }"
-        >
-          Case Detail
-        </router-link>
-        <router-link
-          :to="{ name: 'UserSettings' }"
-        >
-          Settings
-        </router-link>
-      </Sidebar>
       <div
         class="content"
         v-if="details"
@@ -208,12 +196,12 @@ export default {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; 
+  user-select: none;
 
   input {
-    background: #bbddcd;
+    background: #97A9BE;
     padding: 0 12px;
-    color: var(--dark-black);
+    color: #F6F7F9;
     font-size: 32px;
     width: 250px;
     outline: none;
@@ -252,5 +240,60 @@ export default {
   justify-content: center;
   color: var(--dark-black);
   flex-direction: column;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  .case-detail__chat,
+  .case-detail__sidebar {
+    width: 100%;
+  }
+  .case-detail__chat {
+    margin-bottom: 26px;
+  }
+  .case-detail__sidebar {
+    padding-right: 0;
+  }
+  .case-detail__deactive {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-black);
+    flex-direction: column;
+  }
+  .case-detail__footer {
+    margin-top: 0;
+  }
+  .chat__message {
+    max-width: 90%;
+  }
+  .passcode {
+    font-size: 16px !important;
+  }
+
+  .passcode input {
+    line-height: 26px !important;
+    width: 140px !important;
+    height: 37px !important;
+    min-height: initial;
+  }
+
+  .logout-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    padding: 0 16px;
+    min-height: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+  }
+
 }
 </style>

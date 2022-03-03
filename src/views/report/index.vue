@@ -11,9 +11,9 @@
     <div v-else>
       <h1>Enter report details.</h1>
       <div class="container report-page__form" ref="form">
-        <div class="company-card">
+        <!-- <div class="company-card">
           <b>TO: </b> {{ selectedCompany.name }}
-        </div>
+        </div> -->
         <div
           v-for="element in formFields"
           class="report-page__element"
@@ -95,7 +95,11 @@ export default {
       },
       showErrorMessage: false,
       shakeInvalidElements: false,
-      selectedCompany: null,
+      selectedCompany: {
+        name: "Persons of Trust",
+        user_id: "aOugkJisMMNuaeTxRkNXggKfQDG3",
+        objectID: "3308604001",
+      },
       enteredData: [],
       passcode: null,
     };
@@ -303,7 +307,7 @@ export default {
     border: none;
     margin: 0 auto;
     background: var(--secondary-color);
-    color: var(--dark-black);
+    color: white;
     font-weight: 500;
     font-size: 14px;
     transition:
@@ -314,6 +318,19 @@ export default {
       background: var(--dark-black);
       color: white;
     }
+  }
+}
+
+@media (max-width: 992px) {
+  .report-page {
+    h1 {
+      font-size: 24px;
+
+    }
+  }
+  .report-page__form,
+  .company-selector {
+    padding: 0 16px;
   }
 }
 </style>
