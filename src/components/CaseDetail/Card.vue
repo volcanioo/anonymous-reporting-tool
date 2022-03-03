@@ -11,14 +11,14 @@
         <b>{{ $t('category') }}</b>
         <span>{{ details.category }}</span>
       </p>
-      <p 
+      <p
         class="case-detail__object"
         v-if="details.company"
       >
         <b>{{ $t('company') }}</b>
         <span>{{ details.company.companyName }}</span>
       </p>
-      <p 
+      <p
         class="case-detail__object case-detail__object--half"
         v-if="details.created"
       >
@@ -39,7 +39,7 @@
           {{ (details[detail] && details[detail] !== '-1') ? details[detail] : 'No answer added.' }}
         </span>
       </p>
-      <p 
+      <p
         class="case-detail__object"
         v-if="details.message"
       >
@@ -274,5 +274,18 @@ export default {
   .badge {
     margin-left: 4px;
   }
+}
+
+@media (max-width: 992px) {
+
+  .case-detail__object--half {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .case-detail__content {
+    margin-bottom: 16px;
+  }
+
 }
 </style>

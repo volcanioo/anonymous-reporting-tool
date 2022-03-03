@@ -11,13 +11,7 @@
         v-if="cases.length > 0"
         class="dashboard__content"
       >
-        <div class="dashboard__card dashboard__card--welcome">
-          <strong class="card__title">Welcome! <span>{{ companyName }}</span></strong>
-          <div class="card__content">
-            <p></p>
-          </div>
-        </div>
-        <div class="dashboard__card dashboard__card--overall">
+        <div class="dashboard__card dashboard__card--overall dashboard__card--full">
           <strong class="card__title">Overall Numbers ({{ monthlyReport.total }}) <span>as of {{ lastUpdated }}</span> </strong>
           <div class="card__content">
             <div class="dashboard__chart">
@@ -251,6 +245,10 @@ export default {
 </script>
 
 <style lang="scss">
+.dashboard {
+  padding-left: 295px;
+}
+
 .dashboard__card {
   background: white;
   padding: 14px 18px;
@@ -258,15 +256,6 @@ export default {
 
 .dashboard__card--full {
   flex: 0 0 100%;
-}
-
-.dashboard__card--overall {
-  flex: 0 0 60%;
-}
-
-.dashboard__card--welcome {
-  flex: 0 0 calc(40% - 20px);
-  margin-right: 20px;
 }
 
 .dashboard__card--cases {
@@ -399,5 +388,20 @@ a {
 
 .card__item--short {
   max-width: 10%;
+}
+
+@media (max-width: 992px) {
+  .dashboard__card--overall,
+  .dashboard__card--welcome,
+  .dashboard__card--chart {
+    display: none;
+  }
+
+  .dashboard__card {
+    overflow: scroll;
+  }
+  .card-content {
+    width: 768px;
+  }
 }
 </style>

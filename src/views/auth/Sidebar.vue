@@ -9,16 +9,18 @@
       <strong>{{ companyName }}</strong>
     </div>
     <nav class="sidebar__nav">
-      <router-link
-        :to="{ name: 'Dashboard' }"
-      >
-        Dashboard
-      </router-link>
-      <!-- <router-link
-        :to="{ name: 'CompanySettings', params: { id: userUid } }"
-      >
-        Settings
-      </router-link> -->
+      <slot>
+        <router-link
+          :to="{ name: 'Dashboard' }"
+        >
+          Dashboard
+        </router-link>
+        <router-link
+          :to="{ name: 'UserSettings' }"
+        >
+          Settings
+        </router-link>
+      </slot>
     </nav>
     <button class="button" @click="singOut">SIGN OUT</button>
   </aside>
@@ -26,15 +28,18 @@
 
 <script>
 import API from '../../api';
-import userIcon from '@/assets/user.svg';
+import userIcon from '@/assets/user.png';
 
 export default {
   name: 'Sidebar',
   methods: {
     singOut() {
+      // company logout
       API.companies.logout();
+      // User logout
+      localStorage.removeItem('caseId');
       this.$router.push({
-        name: 'home',
+        name: 'Home',
       });
     },
   },
@@ -55,6 +60,7 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   background: var(--dark-black);
+  position: fixed;
   height: 100vh;
   text-align: center;
   color: white;

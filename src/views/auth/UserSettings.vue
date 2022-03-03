@@ -2,8 +2,7 @@
   <main class="company-settings z-index-3 main-container">
     <Sidebar />
     <div class="content">
-      <Form v-if="isEmailValidated" :elements="settingsInputs" :submitAction="submit" :submitLabel="$t('save')"/>
-      <div v-else class="notification" v-text="$t('verify_email_settings')"></div>
+      <Form :elements="settingsInputs" :submitAction="submit" :submitLabel="$t('save')"/>
     </div>
   </main>
 </template>
@@ -15,31 +14,19 @@ import Form from '@/components/Form.vue';
 import API from '@/api';
 
 export default {
-  name: 'CompanySettings',
+  name: 'UserSettings',
   components: {
     Sidebar,
     InputGenerator,
     Form
   },
-  data() {
-    return {
-      isEmailValidated: this.$store.state.company.is_mail_verified,
-    };
-  },
   methods: {
     submit(e) {
-      const userUid = this.$store.state.company.userUid;
       const values = {};
-      e.target.elements.forEach(e => (e.name) ? values[e.name] = e.value : null);
+      Object.values(e.target.elements).forEach(e => (e.name) ? values[e.name] = e.value : null);
 
-      API.companies.post(
-        userUid,
-        values.company_name,
-        values.photo_url,
-        values.phone_number,
-        values.company_email,
-        false
-      ).then( () => {
+      API.users.edit(values.company_name)
+      .then( () => {
         this.$swal({
           icon: 'success',
           showConfirmButton: false,
@@ -84,22 +71,8 @@ export default {
           id: 'company_email',
           placeholder: 'Email',
           type: 'input',
-          required: true,
+          disabled: true,
           value: this.companyData.company_email,
-          validate: (value) => {
-            if (value === -1 || value === '') {
-              return false;
-            }
-
-            return true;
-          },
-        },
-        {
-          id: 'phone_number',
-          placeholder: 'Phone number',
-          type: 'input',
-          required: true,
-          value: this.companyData.phone_number,
           validate: (value) => {
             if (value === -1 || value === '') {
               return false;

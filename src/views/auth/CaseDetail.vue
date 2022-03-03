@@ -1,68 +1,71 @@
 <template>
   <div class="case-detail z-index-3">
-    <div
-      class="container"
-      v-if="details"
-    >
-      <router-link
-        v-if="id"
-        class="case-detail__button"
-        :to="{ name: 'Dashboard' }"
+    <div class="main-container">
+      <div
+        class="content"
+        v-if="details"
       >
-        Back to Dashboard
-      </router-link>
-      <div class="passcode">
-        Case:
-        <input
-          ref="passcode"
-          type="text"
-          readonly
-          :value="details.passcode"
-          @click="copyToClipboard"
+        <router-link
+          v-if="id"
+          class="case-detail__button"
+          :to="{ name: 'Dashboard' }"
         >
-        <span @click="copyToClipboard">COPY</span>
-        <button
-          v-if="!id"
-          class="button button--red"
-          @click="logout({
-            name: 'Home'
-          })"
-        >
-          Logout
-        </button>
+          Back to Dashboard
+        </router-link>
+        <div class="passcode">
+          Case:
+          <input
+            ref="passcode"
+            type="text"
+            readonly
+            :value="details.passcode"
+            @click="copyToClipboard"
+          >
+          <span @click="copyToClipboard">COPY</span>
+          <button
+            v-if="!id"
+            class="button button--red"
+            @click="logout({
+              name: 'Home'
+            })"
+          >
+            Logout
+          </button>
+        </div>
+        <aside class="case-detail__sidebar">
+          <card
+            :case-id="pageId"
+            :details="details"
+            :is-company="isCompany"
+            @status-updated="fetchCase"
+          />
+        </aside>
+        <div class="case-detail__chat">
+          <messages
+            :case-id="pageId"
+            :disabled="!details.status"
+          />
+        </div>
       </div>
-      <aside class="case-detail__sidebar">
-        <card
-          :case-id="pageId"
-          :details="details"
-          :is-company="isCompany"
-          @status-updated="fetchCase"
-        />
-      </aside>
-      <div class="case-detail__chat">
-         <messages
-          :case-id="pageId"
-          :disabled="!details.status"
-         />
-      </div>
-    </div>
-    <div
-      v-if="!isPageActive"
-      class="case-detail__deactive"
-    >
-      <h1>This case has been concluded. Please click here if the problem is not solved yet.</h1>
-      <router-link
-        class="case-detail__button"
-        :to="{ name: 'Home' }"
+      <div
+        v-if="!isPageActive"
+        class="case-detail__deactive"
       >
-        Back to Home
-      </router-link>
+        <h1>This case has been concluded. Please click here if the problem is not solved yet.</h1>
+        <router-link
+          class="case-detail__button"
+          :to="{ name: 'Home' }"
+        >
+          Back to Home
+        </router-link>
+      </div>
     </div>
     <base-footer class="case-detail__footer"></base-footer>
   </div>
 </template>
 
 <script>
+import Sidebar from '@/views/auth/Sidebar.vue';
 import Messages from '../../components/CaseDetail/Messages.vue';
 import Card from '../../components/CaseDetail/Card.vue';
 import BaseFooter from '../../components/BaseFooter.vue';
@@ -77,6 +80,7 @@ export default {
     BaseFooter,
     Messages,
     Card,
+    Sidebar,
   },
   computed: {
     isCompany() {
@@ -171,7 +175,7 @@ export default {
     margin-right: 4px;
   }
 }
-.container {
+.content {
   max-width: 85%;
   margin: 0 auto;
   padding-top: 42px;
@@ -192,12 +196,12 @@ export default {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; 
+  user-select: none;
 
   input {
-    background: #bbddcd;
+    background: #97A9BE;
     padding: 0 12px;
-    color: var(--dark-black);
+    color: #F6F7F9;
     font-size: 32px;
     width: 250px;
     outline: none;
@@ -236,10 +240,60 @@ export default {
   justify-content: center;
   color: var(--dark-black);
   flex-direction: column;
-
 }
 
-.case-detail__footer {
-  margin-top: 200px;
+@media screen and (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  .case-detail__chat,
+  .case-detail__sidebar {
+    width: 100%;
+  }
+  .case-detail__chat {
+    margin-bottom: 26px;
+  }
+  .case-detail__sidebar {
+    padding-right: 0;
+  }
+  .case-detail__deactive {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-black);
+    flex-direction: column;
+  }
+  .case-detail__footer {
+    margin-top: 0;
+  }
+  .chat__message {
+    max-width: 90%;
+  }
+  .passcode {
+    font-size: 16px !important;
+  }
+
+  .passcode input {
+    line-height: 26px !important;
+    width: 140px !important;
+    height: 37px !important;
+    min-height: initial;
+  }
+
+  .logout-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    padding: 0 16px;
+    min-height: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+  }
+
 }
 </style>

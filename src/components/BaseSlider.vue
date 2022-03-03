@@ -1,7 +1,7 @@
 <template>
   <div class="slider">
-    
-    <span 
+
+    <span
       class="slider__title"
     >
       <b>Anonymously</b> <span ref="sentence" style="white-space:pre;"></span> to your company!
@@ -15,7 +15,7 @@
       class="button slider__button"
       @click="goReportPage()"
     >
-      Send Feedback
+      Report Issue
     </button>
   </div>
 </template>
@@ -84,10 +84,12 @@ $element_offset: 75px;
   }
 }
 
-.slider__description, 
+.slider__description,
 .slider__button {
   margin: 0 auto 0 auto;
-  max-width: 768px;
+  max-width: 992px;
+  width: fit-content;
+  padding: 0 64px;
 }
 
 .slider__description {
@@ -95,5 +97,27 @@ $element_offset: 75px;
   line-height: 32px;
   font-weight: 400;
   margin: 20px auto 40px auto;
+}
+
+
+@media (max-width: 992px) {
+  .slider__title {
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+    line-height: 32px;
+
+    span {
+      min-height: 32px;
+    }
+  }
+  .slider__description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .slider__button {
+    margin-bottom: 24px;
+  }
 }
 </style>

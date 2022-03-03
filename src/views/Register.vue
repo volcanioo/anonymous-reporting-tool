@@ -47,7 +47,6 @@
 import BaseHeader from '../components/BaseHeader.vue';
 import store from '../store';
 import API from '../api';
-import logout from '../api/companies/logout';
 
 export default {
   name: 'Register',
@@ -150,5 +149,12 @@ export default {
   font-weight: 600;
   color: var(--dark-black);
   text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .form {
+    width: 100%;
+    padding: 0 16px;
+  }
 }
 </style>
